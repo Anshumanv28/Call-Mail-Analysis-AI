@@ -1,0 +1,692 @@
+{
+ "PAY-MODE-002": [
+  {
+   "text": "Assistant Teacher ke niyam mein fees credit card, debit card ya net banking se hi bharne ki baat hai. UPI ka zikr nahi hai, isliye main use confirm nahi kar sakta.",
+   "fact": "the fee is payable only after the form is fully filled, through credit card, debit card or net banking only",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "PhonePe ya UPI ka niyam mein zikr nahi hai, isliye main use confirm nahi kar sakta. Fees credit card, debit card ya net banking se hi bharne ki baat hai.",
+   "fact": "UPI / wallets / QR are not listed in these rules — the AI must not confirm them as allowed",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Assistant Professor ke niyam mein fees credit card, debit card ya net banking se hi bharne ki baat hai. UPI ka zikr nahi hai, isliye main use confirm nahi kar sakta.",
+   "fact": "through credit card, debit card or net banking only",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Debit card nahi hai to net banking ya credit card se fees bhar sakte hain; Assistant Professor ke niyam mein yahi tareeke diye gaye hain.",
+   "fact": "through credit card, debit card or net banking only",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Debit card nahi hai to net banking ya credit card se fees bhar sakte hain; Assistant Teacher ke niyam mein yahi tareeke diye gaye hain. UPI ka zikr nahi hai, isliye main use confirm nahi kar sakta.",
+   "fact": "Per the exam rules the fee is payable only after the form is fully filled, through credit card, debit card or net banking only; payment is valid only after bank confirmation; keep the receipt (Assistant Teacher F-ATP-07; PGT F-PGT-03; Assistant Professor F-AP-07).",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Debit card nahi hai to net banking ya credit card se fees bhar sakte hain; Assistant Teacher ke niyam mein yahi tareeke diye gaye hain. PhonePe ya UPI ka zikr nahi hai, isliye main use confirm nahi kar sakta.",
+   "fact": "UPI / wallets / QR are not listed in these rules — the AI must not confirm them as allowed.",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Debit card nahi hai to net banking ya credit card se fees bhar sakte hain; Assistant Teacher ke niyam mein yahi tareeke diye gaye hain.",
+   "fact": "Per the exam rules the fee is payable only after the form is fully filled, through credit card, debit card or net banking only; payment is valid only after bank confirmation; keep the receipt (Assistant Teacher F-ATP-07",
+   "status": "ai-drafted",
+   "round": 9
+  },
+  {
+   "text": "Card nahi hai to Assistant Teacher ki fees net banking se bhar sakte hain; niyam mein credit card, debit card ya net banking hi diye gaye hain.",
+   "fact": "the fee is payable only after the form is fully filled, through credit card, debit card or net banking only",
+   "status": "ai-drafted",
+   "round": 9
+  }
+ ],
+ "PAY-PEND-002": [
+  {
+   "text": "Transaction ID note kar liya. OTR ID, application number aur payment ka time bata dijiye — main isko Payment Team ko verify karne ke liye bhej raha hoon.",
+   "fact": "then escalate to the Payment Team with the captured details",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Transaction ID note kar liya, lekin us se status dekhne ka tareeka mere paas nahi hai. OTR ID, application number aur payment ka time bata dijiye, main ise Payment Team ko verify karne ke liye bhej raha hoon.",
+   "fact": "Whether the helpline/AI can look up payment status by OTR ID, application number or transaction ID is not in the flow",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Transaction ID note kar li hai, par main yahan se payment status check nahi kar sakta. OTR ID, application number aur payment ka time bata dijiye, main ise Payment Team ko verify karne ke liye bhej raha hoon.",
+   "fact": "the AI must not claim to have checked, nor report 'initiated'/'failed' from any unofficial tool",
+   "status": "ai-drafted",
+   "round": 5
+  },
+  {
+   "text": "Transaction ID note kar liya hai. Aap OTR ID, application number aur payment ka time bata dijiye — main isko Payment Team ko verify karne ke liye bhej raha hoon.",
+   "fact": "then escalate to the Payment Team with the captured details",
+   "status": "ai-drafted",
+   "round": 9
+  }
+ ],
+ "ELG-APPR-002": [
+  {
+   "text": "Assistant Teacher ke niyam mein yeh nahi likha ki final year wale form bhar sakte hain ya nahi, isliye main pakka nahi bol sakta.",
+   "fact": "do NOT state a cut-off date for holding the qualification or whether appearing/final-year candidates may apply",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Assistant Teacher ke rules mein yeh nahi likha ki final year ya appearing wale form bhar sakte hain ya nahi, isliye main pakka nahi bol sakta. Main aapki query Aayog ko escalate kar raha hoon.",
+   "fact": "do NOT state a cut-off date for holding the qualification or whether appearing/final-year candidates may apply",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Assistant Teacher (Primary) ke rules mein yeh nahi likha ki qualification kis tareekh tak poori honi chahiye ya final year wale bhar sakte hain ya nahi, isliye main pakka nahi bol sakta. Main aapki query Aayog ko escalate kar raha hoon, tab tak fee pay ya lock mat kijiye.",
+   "fact": "The ATP and PGT rules in the fact library do NOT state a cut-off date for holding the qualification or whether appearing/final-year candidates may apply – HUMAN REVIEW REQUIRED",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "REG-WINDOW-003": [
+  {
+   "text": "Correction mein subject ya photo badal sakenge ya nahi, yeh Aayog ki correction notice hi batayegi. Correction fee ki jaankari hamare official source mein nahi hai.",
+   "fact": "the full list of editable fields, whether photo/signature/documents can be re-uploaded, or any correction fee",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "REG-CORR-005": [
+  {
+   "text": "Assistant Teacher mein male ko Urban aur Aided Boys post dikhte hain, Aided Girls sirf mahila ummeedwar ko. Iska aage kya asar hoga, yeh main apni taraf se nahi keh sakta, main aapka case Aayog ko bhej raha hoon.",
+   "fact": "Assistant Teacher (Primary) post cards – Male: Urban and Aided Boys; Female: Urban, Aided Boys and Aided Girls",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Assistant Teacher mein final submit ke baad gender locked rehta hai, aur correction sirf un fields mein hota hai jo Aayog khole. Isliye main koi vaada nahi kar sakta.",
+   "fact": "only for fields the Commission enables, with DOB, gender, category and sub-category staying locked after final submission",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "ELG-AGERLX-001": [
+  {
+   "text": "Sarkari karmachari ko alag se 5 saal ki chhoot ka niyam mere official documents mein nahi hai, isliye main iska vaada nahi kar sakta. Main aapka sawaal team ko bhej raha hoon.",
+   "fact": "A 5-year relaxation for government/state employees is NOT in the ATP facts – do not promise it (HUMAN REVIEW).",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Haan, UP ki OBC hone ke naate 43 saal par umar ke hisaab se aap Urban ke liye eligible hain. Bas OTR mein Seeking Age Relaxation Yes karke category chuniye.",
+   "fact": "If an eligible reserved candidate (e.g. OBC, 43) still cannot select Urban after Age Relaxation is set in the OTR",
+   "status": "ai-drafted",
+   "round": 5
+  },
+  {
+   "text": "Haan, Shiksha Mitra ke liye Urban post mein umar ki seema 60 saal tak hai. Yeh chhoot sirf UP ke mool nivasi ko milti hai.",
+   "fact": "Shiksha Mitra up to 60; Aided: minimum 21, no separate maximum (F-ATP-15). Relaxation is only for UP original residents",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "ELG-AGE-002": [
+  {
+   "text": "Special TET mein eligibility sirf umar ki hai, jo OTR ki janm tithi se advertisement ki tareekh ke hisaab se dekhi jaati hai. Umar ki exact seema mere official documents mein nahi hai.",
+   "fact": "Special TET – eligibility is age only, read from the OTR DOB as on the advertisement date",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "REG-SAVE-001": [
+  {
+   "text": "Ek baar page refresh karke ya dobara login karke try kijiye, aur ho sake to doosre browser ya device se kholiye. Phir bhi aage na badhe to screenshot rakh lijiye, main team ko bhej dunga.",
+   "fact": "Check these, then refresh or retry, check internet, try a different browser or device, log in again, keep a screenshot. If all fields are valid and it still does not move, escalate.",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "PAY-RCPT-001": [
+  {
+   "text": "Portal se fee receipt download karne ka tareeka official manual mein nahi diya gaya hai. Isliye bank ki slip, SMS aur paid status ka screenshot hi sambhal ke rakhiye.",
+   "fact": "The manuals do not describe a downloadable portal fee-receipt page — the AI should advise keeping the bank/gateway receipt, SMS, and a screenshot of the Payments page / My applications showing paid.",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Portal se receipt print karne ka tareeka official manual mein nahi diya gaya hai. Aapko portal ki receipt zaroori hai to main ise technical team ko escalate kar raha hoon.",
+   "fact": "The manuals do not describe a downloadable portal fee-receipt page — the AI should advise keeping the bank/gateway receipt, SMS, and a screenshot of the Payments page / My applications showing paid. If a portal receipt/print is not available and the candidate needs it, escalate to Technical Team.",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Manual mein portal se fee receipt download karne ka koi tareeka nahi diya gaya hai. Tab tak bank ki slip, SMS aur paid status ka screenshot sambhal ke rakhiye.",
+   "fact": "The manuals do not describe a downloadable portal fee-receipt page",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Portal se fee receipt download karne ka tareeka official manual mein nahi diya gaya hai. Abhi bank ki slip aur SMS hi sambhal ke rakhiye.",
+   "fact": "The manuals do not describe a downloadable portal fee-receipt page — the AI should advise keeping the bank/gateway receipt, SMS",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "PAY-FEE-005": [
+  {
+   "text": "Assistant Teacher mein doosre state ke candidate General maane jaate hain, isliye aapki fees ₹1,000 hai.",
+   "fact": "Assistant Teacher (Primary) — reservation/relaxation only for UP original residents; others treated as General → ₹1,000 (F-ATP-16, F-ATP-08).",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Special TET mein UP ke bahar ke domicile wale candidates ki fees ₹1,000 hai.",
+   "fact": "Per exam: Special TET — Non-UP domicile fee ₹1,000 (F-STET-11)",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "PAY-FEE-001": [
+  {
+   "text": "Special TET mein OBC ki fees ₹1,000 hai, lekin portal fees OTR ki details se nikalta hai.",
+   "fact": "Special TET fee is calculated by the portal from the OTR social category, with no service charges (F-STET-11): PwD ₹300 | SC ₹500 | ST ₹500 | UR ₹1,000 | OBC ₹1,000",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Special TET mein OBC category ki fees ₹1,000 hai; portal ye fees aapki OTR category se khud lagata hai.",
+   "fact": "Special TET fee is calculated by the portal from the OTR social category, with no service charges (F-STET-11): PwD ₹300 | SC ₹500 | ST ₹500 | UR ₹1,000 | OBC ₹1,000",
+   "status": "ai-drafted",
+   "round": 5
+  },
+  {
+   "text": "Special TET mein SC category ki fees ₹500 hai; portal ye fees aapki OTR category se khud lagata hai.",
+   "fact": "Special TET fee is calculated by the portal from the OTR social category, with no service charges (F-STET-11): PwD ₹300 | SC ₹500",
+   "status": "ai-drafted",
+   "round": 9
+  }
+ ],
+ "PAY-FAIL-001": [
+  {
+   "text": "Jab paisa nahi kata hai, to payment poora nahi hua; aap application ya Payments page se dobara payment try kar sakte hain. Ek baar refresh karke, doosre browser ya device se aur internet check karke try kijiye.",
+   "fact": "Failed and not debited: the payment was not completed; the candidate can retry the payment (generic retry / different browser or device / check internet) from the application or Payments page",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Ji, paisa nahi kata hai to aap application ya Payments page se dobara payment try kar sakte hain. Ek baar refresh karke, doosre browser ya device se aur internet check karke kijiye.",
+   "fact": "Failed and not debited: the payment was not completed; the candidate can retry the payment (generic retry / different browser or device / check internet) from the application or Payments page",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Paisa nahi kata hai to payment poora nahi hua, isliye aap application ya Payments page se dobara payment kar sakte hain. Special TET mein fees ICICI EazyPay ya BillDesk se bharti hai.",
+   "fact": "Failed and not debited: the payment was not completed; the candidate can retry the payment (generic retry / different browser or device / check internet) from the application or Payments page — Special TET via ICICI EazyPay or BillDesk (F-STET-12)",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Paisa nahi kata to payment poora nahi hua; aap application ya Payments page se dobara bhar sakte hain. Assistant Teacher ki fees credit card, debit card ya net banking se bharti hai.",
+   "fact": "Failed and not debited: the payment was not completed; the candidate can retry the payment (generic retry / different browser or device / check internet) from the application or Payments page — Special TET via ICICI EazyPay or BillDesk (F-STET-12); ATP / PGT / AP via credit card, debit card or net banking",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Ji, dobara try kijiye; ho sake to doosre browser ya device se, aur internet check kar lijiye.",
+   "fact": "the candidate can retry the payment (generic retry / different browser or device / check internet)",
+   "status": "ai-drafted",
+   "round": 4
+  }
+ ],
+ "ELG-TET-001": [
+  {
+   "text": "Advertisement mein Classes I–V ka TET maanga gaya hai; sirf Upper Primary (VI–VIII) wala TET is shart se match nahi karta.",
+   "fact": "an Upper-Primary-only (VI–VIII) TET does not match that wording",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "REG-CAT-002": [
+  {
+   "text": "Assistant Teacher (Primary) ke niyam mein final submit ke baad category aur sub-category locked rehti hai. Aapka case Aayog ke paas faisle ke liye darj kar raha hoon.",
+   "fact": "After final submission, category, sub-category, DOB, gender and other fields the Commission marks non-editable stay locked",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Nahi, final submit ke baad OTR mein category badalne se submitted form nahi badalta.",
+   "fact": "Editing the OTR now will not change the submitted application",
+   "status": "ai-drafted",
+   "round": 4
+  }
+ ],
+ "DOC-EWS-001": [
+  {
+   "text": "Aapke certificate ki issue date 01-04-2026 ke baad ki hai, isliye issue date wali shart poori hoti hai. Bas dekh lijiye ki certificate FY 2025-26 ki income par, FY 2026-27 ke liye valid aur nirdharit format mein ho.",
+   "fact": "issued between 01-04-2026 and the last date of application, on FY 2025-26 income, valid for FY 2026-27",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Aapke certificate ki issue date 01-04-2026 ke baad ki hai, isliye woh rules ki issue-date window ke andar hai. Bas certificate FY 2025-26 ki income par, FY 2026-27 ke liye valid aur nirdharit format mein hona chahiye.",
+   "fact": "issued between 01-04-2026 and the last date of application, on FY 2025-26 income, valid for FY 2026-27",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Aapka certificate 01-04-2026 ke baad jaari hua hai, isliye issue date rules ke andar hai. Bas check kar lijiye ki woh FY 2025-26 ki income par, FY 2026-27 ke liye valid aur nirdharit format mein ho.",
+   "fact": "issued between 01-04-2026 and the last date of application, on FY 2025-26 income, valid for FY 2026-27",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "DOC-PHOTO-001": [
+  {
+   "text": "OTR Documents mein photo JPG ya PNG, 10 se 100 KB ki honi chahiye; aapki photo is limit se zyada hai. Quality thodi kam karke dobara save kijiye.",
+   "fact": "Photograph must be JPG or PNG, 10–100 KB; a file outside the range is refused. To reduce size, re-save at lower quality",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "OTR Documents mein photo JPG ya PNG, 10 se 100 KB ki honi chahiye; aapki photo is limit se badi hai. Quality thodi kam karke dobara save kijiye.",
+   "fact": "Photograph must be JPG or PNG, 10–100 KB; a file outside the range is refused. To reduce size, re-save at lower quality",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Aapki photo 100 KB ki limit se badi hai, isliye upload nahi ho rahi. Quality kam karke ise 10 se 100 KB ke beech save kijiye.",
+   "fact": "Photograph must be JPG or PNG, 10–100 KB; a file outside the range is refused. To reduce size, re-save at lower quality",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "OTR Documents mein photo JPG ya PNG, 10 se 100 KB ki honi chahiye; aapki photo is limit se zyada hai.",
+   "fact": "Photograph must be JPG or PNG, 10–100 KB; a file outside the range is refused.",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Aapki photo ka format aur size limit ke andar hai. Error ka screenshot rakhiye, main ise technical team ko bhej raha hoon.",
+   "fact": "with a file inside the limits: refresh, log in again, try another browser/device, check internet; if it persists, escalate to the Technical Team with a screenshot",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "PAY-FEE-003": [
+  {
+   "text": "PGT mein General, OBC aur EWS ki fees ₹1,500 hai.",
+   "fact": "Lecturer PGT fee (F-PGT-04): General / UR / OBC / EWS / Other ₹1,500",
+   "status": "ai-drafted",
+   "round": 3
+  }
+ ],
+ "PAY-FEE-002": [
+  {
+   "text": "Assistant Teacher mein PwD ki fees ₹300 hai. Aapki OTR mein PwD 'Yes' save hai?",
+   "fact": "Assistant Teacher (Primary) fee (F-ATP-08): General / UR / OBC / EWS / Other ₹1,000 | SC / ST ₹500 | PwD ₹300",
+   "status": "ai-drafted",
+   "round": 3
+  },
+  {
+   "text": "Assistant Teacher mein General, OBC aur EWS ki fees ₹1,000 hai.",
+   "fact": "Assistant Teacher (Primary) fee (F-ATP-08): General / UR / OBC / EWS / Other ₹1,000",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Registration mein identity ke liye Aadhaar, PAN ya Driving Licence mein se koi ek chahiye. Fees category ke hisaab se lagti hai — General, OBC aur EWS ki ₹1,000, SC/ST ki ₹500 aur PwD ki ₹300.",
+   "fact": "General / UR / OBC / EWS / Other ₹1,000 | SC / ST ₹500 | PwD ₹300",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Haan, SC ki fees kam hai. Assistant Teacher mein General ki fees ₹1,000 hai aur SC/ST ki ₹500.",
+   "fact": "General / UR / OBC / EWS / Other ₹1,000 | SC / ST ₹500",
+   "status": "ai-drafted",
+   "round": 8
+  },
+  {
+   "text": "Haan, UP ke SC hone ke naate aapki fees kam lagegi – ₹500, jabki General ki ₹1,000 hai.",
+   "fact": "Assistant Teacher (Primary) fee (F-ATP-08): General / UR / OBC / EWS / Other ₹1,000 | SC / ST ₹500",
+   "status": "ai-drafted",
+   "round": 9
+  }
+ ],
+ "REG-PWD-001": [
+  {
+   "text": "Ji, aap abhi dobara try kar sakte hain – page refresh karke, internet check karke ya doosre browser ya device se.",
+   "fact": "generic steps (refresh, another browser/device, check internet)",
+   "status": "ai-drafted",
+   "round": 4
+  }
+ ],
+ "REG-CORR-012": [
+  {
+   "text": "Dashboard par OTR ka 'Edit' kholke Personal Details mein PwD 'Yes' kariye, details bhariye aur Disability Certificate upload karke 'Complete OTR Profile' dabaiye. Phir form mein fees dobara check kijiye.",
+   "fact": "Dashboard → OTR 'Edit' → Personal Details → PwD Yes / correct type → upload Disability Certificate → Complete OTR Profile",
+   "status": "ai-drafted",
+   "round": 4
+  }
+ ],
+ "GEN-EXAM-001": [
+  {
+   "text": "Ek baar doosre browser mein dobara download try kijiye. Phir bhi page not found aaye to main details aage bhej doonga.",
+   "fact": "retry/another browser if a download fails. If download fails or the candidate needs a date, capture details and escalate",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Admit card kab aayega aur message kis number par aayega, yeh mere official documents mein nahi hai. Available Exams mein exam ki listing aur notification dekhte rahiye.",
+   "fact": "Admit card, city slip and exam date release are NOT described in the official flows",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Admit card kab aur kis number par aayega, yeh official source mein nahi likha hai, isliye main andaza nahi lagaunga. Available Exams aur notification dekhte rahiye.",
+   "fact": "Admit card, city slip and exam date release are NOT described in the official flows",
+   "status": "ai-drafted",
+   "round": 10
+  }
+ ],
+ "DOC-DECL-002": [
+  {
+   "text": "Jo abhyarthi khud nahi likh sakte, woh ghoshna kaise denge, yeh manual mein nahi diya gaya hai. Main yeh sawal senior team ko bhej raha hoon.",
+   "fact": "nor how a candidate who cannot write (e.g. PwD) should provide it",
+   "status": "ai-drafted",
+   "round": 4
+  }
+ ],
+ "PAY-DEB-006": [
+  {
+   "text": "Pehla paisa wapas milega, iski guarantee main nahi de sakta. Isliye dobara payment ka faisla Payment Team ke jawab ke baad hi kijiye.",
+   "fact": "the decision to make any further payment should be taken only after the Payment Team's response, and that the AI cannot guarantee refunds for duplicate payments",
+   "status": "ai-drafted",
+   "round": 4
+  },
+  {
+   "text": "Abhi dobara payment mat kijiye jab tak status verify na ho. PGT ki last date mere documents mein nahi hai, isliye notification dobara dekh lijiye.",
+   "fact": "PGT/AP/Special TET last dates are not in the facts — re-read the notification",
+   "status": "ai-drafted",
+   "round": 6
+  }
+ ],
+ "REG-APPLY-001": [
+  {
+   "text": "OTR complete hone ke baad left side ke menu mein Available Exams milega, wahan apna exam chun ke \"Apply\" dabaiye.",
+   "fact": "After the OTR is completed, go to Available Exams in the left navigation (F-OTR-05).",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "DOC-DECL-003": [
+  {
+   "text": "Aapki file 100 KB se badi hai; Hindi aur English jodne se aisa ho sakta hai. Portal sirf Hindi text maangta hai, to sirf Hindi wala haath se likh kar 100 KB ke andar upload kijiye.",
+   "fact": "a merged two-language image may exceed 100 KB; the portal text asks for the Hindi text only",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "PAY-DEB-002": [
+  {
+   "text": "Paisa wapas aane ka niyam aur samay mere official documents mein nahi hai, isliye main andaza nahi lagaunga. Last date 15-10-2026 paas hai, isliye main aapki shikayat urgent mark karke Payment Team ko bhej raha hoon.",
+   "fact": "The AI must not quote any wait time or promise auto-refund. If the ATP fee last date (15-10-2026) is near, mark the escalation urgent.",
+   "status": "ai-drafted",
+   "round": 5
+  }
+ ],
+ "ELG-CAT-005": [
+  {
+   "text": "Domicile No hone se category aur fee General wali ho jaati hai. Main aapka case abhi escalate kar raha hoon – official helpline ya email.",
+   "fact": "so category/reservation shows General/unreserved and fee is General",
+   "status": "ai-drafted",
+   "round": 6
+  }
+ ],
+ "REG-DUPACC-002": [
+  {
+   "text": "Dusra OTR delete karne ka tareeka manual mein nahi hai, isliye khud kuch mat kijiye. Form cancel hoga ya nahi, iski guarantee main nahi de sakta.",
+   "fact": "The manual has no procedure to delete, merge or deactivate an OTR",
+   "status": "ai-drafted",
+   "round": 6
+  }
+ ],
+ "REG-OTP-001": [
+  {
+   "text": "Nahi ji, aapki taraf se bas itna hi; baaki main technical team ko escalate kar raha hoon.",
+   "fact": "If OTP still does not arrive, capture details and escalate to the Technical Team",
+   "status": "ai-drafted",
+   "round": 6
+  },
+  {
+   "text": "Sorry, OTP kab tak aayega, iska koi official waiting time nahi hai; main aapka case technical team ko escalate kar raha hoon.",
+   "fact": "The flow documents give no cause, no SMS delivery time and no alternative verification path.",
+   "status": "ai-drafted",
+   "round": 10
+  }
+ ],
+ "GEN-UPTET-007": [
+  {
+   "text": "Maaf kijiye, phone par main aapka result ya status check karke nahi bata sakta.",
+   "fact": "The AI must not look up or disclose any person's result, marks, status or roll number on the phone",
+   "status": "ai-drafted",
+   "round": 6
+  },
+  {
+   "text": "Phone par main system mein kisi ka result ya record check nahi kar sakta. Roll number note kar liya hai, bas level aur mobile number bata dijiye, main details team ko bhej raha hoon.",
+   "fact": "The AI must not look up or disclose any person's result, marks, status or roll number on the phone",
+   "status": "ai-drafted",
+   "round": 6
+  },
+  {
+   "text": "Lekin phone par main kisi ka result ya status check karke nahi bata sakta — yeh unki niji jaankari hai. Aap unka roll number, level aur apna mobile number bata dijiye, main details team ko bhej raha hoon.",
+   "fact": "Aap unke roll number, level aur apna mobile number bata dijiye",
+   "status": "ai-drafted",
+   "round": 10
+  }
+ ],
+ "REG-SAVE-003": [
+  {
+   "text": "Nahi, sab shuru se bharne ki zaroorat nahi hai, jo steps save ho chuke hain woh rahenge. Sirf jo save nahi hua, woh dobara bharna hoga.",
+   "fact": "are retained, and the OTR stays editable (F-OTR-03). Anything not saved before the drop must be re-entered.",
+   "status": "ai-drafted",
+   "round": 6
+  }
+ ],
+ "PAY-FEE-004": [
+  {
+   "text": "Assistant Professor mein General, OBC aur EWS ki fees ₹2,000 hai.",
+   "fact": "Assistant Professor fee (F-AP-07): General / UR / OBC / EWS / Other ₹2,000",
+   "status": "ai-drafted",
+   "round": 6
+  },
+  {
+   "text": "Assistant Professor ki fees non-refundable hai, aur doosre application mein transfer bhi nahi hoti. Date clash par kya hoga, iska niyam mere paas nahi hai, main aapka sawal team ko bhej raha hoon.",
+   "fact": "the fee is non-refundable and non-transferable to another application",
+   "status": "ai-drafted",
+   "round": 6
+  }
+ ],
+ "ELG-PWD-003": [
+  {
+   "text": "Zyada fees ka antar baad mein wapas milega ya nahi, yeh official niyam mein nahi hai, isliye main vaada nahi kar sakta. Abhi andaze par zyada fees mat bhariye.",
+   "fact": "do NOT pay the higher fee on assumption; screenshot OTR preview + application + fee; escalate to the Technical Team. Whether an overpaid fee difference is adjusted/refunded is NOT in the flow",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "REG-DUPACC-003": [
+  {
+   "text": "Ji haan, ek hi OTR se sab exams ke form bhar sakte hain. Bas har exam ka application alag se \"Apply\" karke bharna hota hai.",
+   "fact": "one OTR is used for all exams on the portal",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Ji haan, ek hi OTR se PGT aur Assistant Professor dono ke form bhar sakte hain. Bas har exam ka application alag se \"Apply\" karke bharna hota hai.",
+   "fact": "So one OTR is used for all exams on the portal – a separate application is made per exam.",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "DOC-NAMEPFX-002": [
+  {
+   "text": "Manual ke Documents page par marriage certificate ki koi alag row nahi hai. DV mein surname ke badlav ka kaunsa proof maanga jayega, yeh manual mein nahi hai, main ise confirm karwane ke liye aage bhej raha hoon.",
+   "fact": "whether an affidavit/marriage certificate will be asked at document verification",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Ji, main aapka sawaal aage bhej raha hoon. Registration ke baad naam read-only ho jaata hai, isliye notification padh kar hi submit kijiye.",
+   "fact": "re-read the notification's name instruction and escalate if unsure, before submitting (name becomes read-only after registration, F-OTR-02)",
+   "status": "ai-drafted",
+   "round": 11
+  }
+ ],
+ "DOC-NAMEPFX-005": [
+  {
+   "text": "Registration wala naam hi OTR aur har application mein read-only jaata hai; admit card par naam kaise chhapega, yeh manual mein nahi likha. Document verification mein kya accept hoga, ye Aayog decide karta hai — portal manual mein iska niyam nahi hai, isliye main guarantee nahi de sakta.",
+   "fact": "The registered name is carried read-only into the OTR and every application (F-OTR-02)",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "DV mein kya accept hoga aur admit card par naam kaise chhapega, yeh dono baatein manual mein nahi hain, isliye main andaza nahi lagaunga. Main dono sawaal confirmation ke liye aage bhej raha hoon.",
+   "fact": "The manual does not say anything else about how the name is printed or checked. Not in the flow: whether a prefix/surname difference will be accepted at document verification or counselling",
+   "status": "ai-drafted",
+   "round": 10
+  }
+ ],
+ "REG-MULTI-002": [
+  {
+   "text": "Primary aur Upper Primary ke alag application hote hain, aur har exam ka application aur fee alag hota hai. Dono bharne ki anumati hai ya nahi, yeh hamare official source mein saaf nahi hai.",
+   "fact": "Special TET Primary and Upper Primary are separate applications",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "REG-APPLY-002": [
+  {
+   "text": "OTR yaani One Time Registration, matlab ek baar ka panjikaran, jismein poti ki saari details ek hi baar bharni hoti hain. Phir wahi details har exam ke form mein apne aap aa jaati hain.",
+   "fact": "details are entered once in the OTR and carried into every exam application",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "ELG-NET-003": [
+  {
+   "text": "Doosre rajya ka SET maanya hai ya nahi, yeh rules mein spasht nahi hai, isliye main aapki query Aayog ko escalate kar raha hoon. Aap General maani jaayengi, isliye fee bhi General wali lagegi.",
+   "fact": "without stating whether a SET conducted by another state is accepted, and does not mention ICAR/ASRB NET – HUMAN REVIEW REQUIRED; the AI must not confirm or deny. Non-UP candidates are treated as General/unreserved for reservation and fee (F-OTR-P6)",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "DOC-MARK-001": [
+  {
+   "text": "Ji haan, teeno saal ki marksheet ek hi PDF mein jod sakte hain, bas poori file 20 se 200 KB ke andar honi chahiye.",
+   "fact": "if they combine several pages into one PDF it must still be within 20–200 KB",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "ELG-APPR-003": [
+  {
+   "text": "Rule ke hisaab se NET ya PhD last date tak hona chahiye; agar result ya award uske baad aata hai, to yeh shart poori nahi hoti.",
+   "fact": "so a NET result or PhD award expected after the last date does not meet this rule",
+   "status": "ai-drafted",
+   "round": 7
+  },
+  {
+   "text": "Agar PhD award last date ke baad milta hai, to Assistant Professor ke rule ki shart poori nahi hoti, kyunki qualification last date tak honi chahiye.",
+   "fact": "candidates must hold the qualification by the final date of application (F-AP-03); so a NET result or PhD award expected after the last date does not meet this rule",
+   "status": "ai-drafted",
+   "round": 7
+  }
+ ],
+ "DOC-PWD-001": [
+  {
+   "text": "OTR mein PwD ke liye kam se kam 40% disability chahiye, to 40% ya usse zyada wala certificate is shart ko poora karta hai.",
+   "fact": "In the OTR, PwD = Yes asks Disability Type, Percentage (minimum 40%)",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "DOC-CERTNO-001": [
+  {
+   "text": "OTR baad mein bhi edit ho sakta hai, isliye official instruction aane par yeh number theek kiya ja sakta hai; bas tab tak application lock mat kariye.",
+   "fact": "Advise the candidate not to lock any exam application on a guessed value (locking is permanent for Special TET, F-STET-10); the OTR itself stays editable, so the value can be updated later once guidance is received (F-OTR-03).",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "REG-OTRID-002": [
+  {
+   "text": "Iske liye koi intezaar nahi hai – login karte hi OTR ID aapke Dashboard par hi dikh jaati hai.",
+   "fact": "the OTR ID is displayed on the Dashboard One-Time Registration panel (F-OTR-05)",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "DOC-SIGN-001": [
+  {
+   "text": "Aapki signature file 100 KB se badi hai; ise 10 se 100 KB ke beech save karke dobara upload kijiye.",
+   "fact": "OTR Documents page: Signature must be JPG or PNG, 10–100 KB (F-OTR-D1).",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "REG-NEWREG-001": [
+  {
+   "text": "OTR matlab ek baar ka registration – isme details ek hi baar bharni hoti hain, phir wahi details har exam ke form mein kaam aati hain.",
+   "fact": "(1) Candidate Registration creates the account, (2) the OTR profile stores reusable details",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "ELG-PWD-005": [
+  {
+   "text": "Ji, apna OTR ID bata dijiye; scribe aur ghoshna dono sawaal main senior team ko bhej raha hoon.",
+   "fact": "who may act as scribe (e.g. a minor), extra time",
+   "status": "ai-drafted",
+   "round": 8
+  }
+ ],
+ "REG-LOGIN-001": [
+  {
+   "text": "Login theek karne ka koi official tareeka manual mein nahi hai, isliye main aapka case technical team ko escalate kar raha hoon.",
+   "fact": "capture details and escalate to the Technical Team. No recovery path is documented (F-LOG-02).",
+   "status": "ai-drafted",
+   "round": 11
+  }
+ ],
+ "REG-CORR-004": [
+  {
+   "text": "Assistant Professor mein final submit ke baad DOB locked rehti hai; correction mein theek hogi ya nahi, yeh Aayog tay karega, isliye main vaada nahi kar sakta. Main isko Aayog ke liye escalate kar raha hoon.",
+   "fact": "for Assistant Professor, category, sub-category, DOB and gender are locked after final submit (F-AP-02) and correction is allowed till the Commission-fixed date (F-AP-04)",
+   "status": "ai-drafted",
+   "round": 11
+  }
+ ],
+ "REG-MULTI-003": [
+  {
+   "text": "PGT mein do subject aur dono exam ek hi din padne par kya hoga, yeh dono baatein hamare source mein nahi hain. Main dono sawaal Aayog ke liye darj kar raha hoon.",
+   "fact": "PGT in two subjects, and exam-date clashes, are not covered in the sources",
+   "status": "ai-drafted",
+   "round": 11
+  }
+ ],
+ "DOC-SIZE-002": [
+  {
+   "text": "Aapki photo 100 KB ki limit se badi hai, isliye upload nahi ho rahi. OTR Documents page par photo aur signature dono JPG ya PNG, 10 se 100 KB ke hone chahiye.",
+   "fact": "Photo aur signature wahan 10 se 100 KB JPG/PNG hain.",
+   "status": "ai-drafted",
+   "round": 11
+  }
+ ]
+}

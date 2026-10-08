@@ -1,0 +1,27 @@
+test calls 300 (portal Gemini turns as reference)
+v1 text          segment accuracy 0.712 | word role agreement 0.739
+v2 words+voice   segment accuracy 0.810 | word role agreement 0.806
+ceiling (segments that mix both speakers) 0.881
+  portal AGENT     words -> v2 says AGENT 77%, CANDIDATE 23%
+  portal CANDIDATE words -> v2 says AGENT 16%, CANDIDATE 84%
+
+sample:
+AGENT: Hello.
+CANDIDATE: Nahi, haan ji sir. Haan ji, mam Toh PGT form mein Balak ya Balka varg, ye option aa nahi raha hai, usse pata kuch chalega ki hum kis varg bhar rahe hain us time?
+AGENT: Hello. Hello, ma'am, hello.
+CANDIDATE: Achha, achha. Haan ji.
+AGENT: Aapki cut-cut kya aa rahi hai? Hum toh network mein aake baat kariye.
+CANDIDATE: Toh main yeh sara, PGT form Balak ya balkya varg ka option nahi aa raha hai. Toh kaise pata chalega ki hum six-word mein form bhar rahe hain?
+AGENT: Ma'am woh Woh ma'am option na ab aa gaya hai, pehle nahi aa raha tha. Aap ek baar na log out kare ke refres
+
+portal:
+B: Hello
+A: Good morning sir, please help.
+B: Haan ji, mam bataye.
+A: Sir, in the UPTET form, the option for balak or balika varg is not coming. So how will we know which category we are filling the form in?
+B: Hello mam, hello. Awaaz aa rahi hai mam?
+A: Haan, aa rahi hai.
+B: Aapki cut-cut ke aa rahi hai mam, thoda network mein aake baat kariye.
+A: Sir, main yeh keh rahi thi ki UPTET form mein balak ya balika varg ka option nahi aa rahe hain. To is kaise pata chalega ki hum kis varg mein form bhar rahe hain?
+B: Mam, woh
+B: Toh woh mam, option na ab aa gaya hai, pehle nahi aa raha tha. Aap ek b

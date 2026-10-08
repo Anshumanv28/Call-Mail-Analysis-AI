@@ -1,0 +1,47 @@
+# --- Large model weights (download or copy separately; GitHub limit is 100 MB) ---
+models/whisper_otr_ft/model.safetensors
+models/*.gguf
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.onnx
+
+# --- Created by setup.py ---
+llama/
+hf/
+
+# --- Created at run time (contain callers' personal data) ---
+logs/
+work/
+*.wav
+*.mp3
+*.part
+*.dl
+
+# --- Call data: real caller transcripts and labels, plus embeddings derived from them ---
+code/data/otr/
+code/out/
+
+# --- Portal call reports and filled outputs (personal data) ---
+call-report-*.xlsx
+*_CallAI.xlsx
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Editors / OS ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- Secrets ---
+.env
+.env.*

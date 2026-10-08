@@ -1,0 +1,823 @@
+# OTR segregation — from "Innovatiview-Complaint-Taxonomy.pdf": 5 categories, 196 sub-categories
+# (all legacy sub-categories preserved, names globally unique). `description` currently repeats
+# the name; add one-line meanings / Hinglish cues per sub-category as they are learnt from calls.
+# `unclassified` is the code-level fallback the model may also choose explicitly.
+
+issues:
+- id: registration_and_portal
+  name: Registration & Portal
+  description: Registration, login, OTP, password, portal navigation, application form, technical issues, submission, application
+    status, correction window.
+  sub_issues:
+  - id: fresh_registration_query
+    name: Fresh Registration Query
+    description: Fresh Registration Query.
+    cues: []
+  - id: duplicate_registration_concern
+    name: Duplicate Registration Concern
+    description: Duplicate Registration Concern.
+    cues: []
+  - id: otr_vs_exam_application_confusion
+    name: OTR vs Exam Application Confusion
+    description: OTR vs Exam Application Confusion.
+    cues: []
+  - id: resume_incomplete_application
+    name: Resume Incomplete Application
+    description: Resume Incomplete Application.
+    cues: []
+  - id: offline_application_query
+    name: Offline Application Query
+    description: Offline Application Query.
+    cues: []
+  - id: portal_not_loading_technical_error
+    name: Portal Not Loading / Technical Error
+    description: Portal Not Loading / Technical Error.
+    cues: []
+  - id: registration_form_submission_error
+    name: Registration Form Submission Error
+    description: Registration Form Submission Error.
+    cues: []
+  - id: multiple_otr_accounts_issue
+    name: Multiple OTR Accounts Issue
+    description: Multiple OTR Accounts Issue.
+    cues: []
+  - id: otr_id_not_received_after_registration
+    name: OTR ID Not Received After Registration
+    description: OTR ID Not Received After Registration.
+    cues: []
+  - id: registration_confirmation_not_received
+    name: Registration Confirmation Not Received
+    description: Registration Confirmation Not Received.
+    cues: []
+  - id: apply_otr_link_not_visible_on_portal
+    name: Apply / OTR Link Not Visible on Portal
+    description: Apply / OTR Link Not Visible on Portal.
+    cues: []
+  - id: mobile_otp_not_received
+    name: Mobile OTP Not Received
+    description: Mobile OTP Not Received.
+    cues: []
+  - id: email_otp_not_received
+    name: Email OTP Not Received
+    description: Email OTP Not Received.
+    cues: []
+  - id: otp_expired_before_use
+    name: OTP Expired Before Use
+    description: OTP Expired Before Use.
+    cues: []
+  - id: wrong_otp_entered_multiple_times
+    name: Wrong OTP Entered Multiple Times
+    description: Wrong OTP Entered Multiple Times.
+    cues: []
+  - id: password_forgotten_reset
+    name: Password Forgotten / Reset
+    description: Password Forgotten / Reset.
+    cues: []
+  - id: captcha_not_loading_unclear
+    name: CAPTCHA Not Loading / Unclear
+    description: CAPTCHA Not Loading / Unclear.
+    cues: []
+  - id: account_recovery_query
+    name: Account Recovery Query
+    description: Account Recovery Query.
+    cues: []
+  - id: otp_coming_on_wrong_number
+    name: OTP Coming on Wrong Number
+    description: OTP Coming on Wrong Number.
+    cues: []
+  - id: category_change_after_form_submission
+    name: Category Change After Form Submission
+    description: Category Change After Form Submission.
+    cues: []
+  - id: permanent_address_entry_issue
+    name: Permanent Address Entry Issue
+    description: Permanent Address Entry Issue.
+    cues: []
+  - id: correspondence_address_entry_issue
+    name: Correspondence Address Entry Issue
+    description: Correspondence Address Entry Issue.
+    cues: []
+  - id: district_state_dropdown_issue
+    name: District / State Dropdown Issue
+    description: District / State Dropdown Issue.
+    cues: []
+  - id: village_ward_tehsil_not_found
+    name: Village / Ward / Tehsil Not Found
+    description: Village / Ward / Tehsil Not Found.
+    cues: []
+  - id: pincode_not_accepted
+    name: Pincode Not Accepted
+    description: Pincode Not Accepted.
+    cues: []
+  - id: personal_details_correction_request
+    name: Personal Details Correction Request
+    description: Personal Details Correction Request.
+    cues: []
+  - id: date_of_birth_entry_issue
+    name: Date of Birth Entry Issue
+    description: Date of Birth Entry Issue.
+    cues: []
+  - id: gender_nationality_entry_issue
+    name: Gender / Nationality Entry Issue
+    description: Gender / Nationality Entry Issue.
+    cues: []
+  - id: twin_information_query
+    name: Twin Information Query
+    description: Twin Information Query.
+    cues: []
+  - id: father_husband_name_entry_issue
+    name: Father / Husband Name Entry Issue
+    description: Father / Husband Name Entry Issue.
+    cues: []
+  - id: mobile_email_change_in_profile
+    name: Mobile / Email Change in Profile
+    description: Mobile / Email Change in Profile.
+    cues: []
+  - id: marital_status_field_query
+    name: Marital Status Field Query
+    description: Marital Status Field Query.
+    cues: []
+  - id: preview_and_edit_before_otr_completion
+    name: Preview & Edit Before OTR Completion
+    description: Preview & Edit Before OTR Completion.
+    cues: []
+  - id: otr_profile_locked_after_submission
+    name: OTR Profile Locked After Submission
+    description: OTR Profile Locked After Submission.
+    cues: []
+  - id: complete_otr_profile_step_query
+    name: Complete OTR Profile Step Query
+    description: Complete OTR Profile Step Query.
+    cues: []
+  - id: otr_submission_confirmation_not_received
+    name: OTR Submission Confirmation Not Received
+    description: OTR Submission Confirmation Not Received.
+    cues: []
+  - id: preview_section_data_missing_or_wrong
+    name: Preview Section Data Missing or Wrong
+    description: Preview Section Data Missing or Wrong.
+    cues: []
+  - id: how_to_edit_saved_otr_data
+    name: How to Edit Saved OTR Data
+    description: How to Edit Saved OTR Data.
+    cues: []
+  - id: otr_final_submit_button_issue
+    name: OTR Final Submit Button Issue
+    description: OTR Final Submit Button Issue.
+    cues: []
+  - id: print_download_otr_form
+    name: Print / Download OTR Form
+    description: Print / Download OTR Form.
+    cues: []
+  - id: both_papers_application_query
+    name: Both Papers Application Query
+    description: Both Papers Application Query.
+    cues: []
+  - id: practising_government_teacher_details_entry
+    name: Practising Government Teacher Details Entry
+    description: Practising Government Teacher Details Entry.
+    cues: []
+  - id: exam_centre_preference_entry
+    name: Exam Centre Preference Entry
+    description: Exam Centre Preference Entry.
+    cues: []
+  - id: application_form_section_not_saving
+    name: Application Form Section Not Saving
+    description: Application Form Section Not Saving.
+    cues: []
+  - id: how_to_apply_for_exam_after_otr
+    name: How to Apply for Exam After OTR
+    description: How to Apply for Exam After OTR.
+    cues: []
+  - id: login_method_query
+    name: Login Method Query
+    description: Login Method Query.
+    cues: []
+  - id: otr_id_forgotten_recovery
+    name: OTR ID Forgotten / Recovery
+    description: OTR ID Forgotten / Recovery.
+    cues: []
+  - id: otp_login_not_working
+    name: OTP Login Not Working
+    description: OTP Login Not Working.
+    cues: []
+  - id: account_locked_blocked
+    name: Account Locked / Blocked
+    description: Account Locked / Blocked.
+    cues: []
+  - id: too_many_failed_login_attempts
+    name: Too Many Failed Login Attempts
+    description: Too Many Failed Login Attempts.
+    cues: []
+  - id: registered_mobile_not_accessible
+    name: Registered Mobile Not Accessible
+    description: Registered Mobile Not Accessible.
+    cues: []
+  - id: login_with_new_device_issue
+    name: Login with New Device Issue
+    description: Login with New Device Issue.
+    cues: []
+  - id: session_timeout_issue
+    name: Session Timeout Issue
+    description: Session Timeout Issue.
+    cues: []
+  - id: amendment_window_opening_date_query
+    name: Amendment Window Opening Date Query
+    description: Amendment Window Opening Date Query.
+    cues: []
+  - id: what_fields_can_be_corrected
+    name: What Fields Can Be Corrected
+    description: What Fields Can Be Corrected.
+    cues: []
+  - id: amendment_process_step_by_step_query
+    name: Amendment Process Step-by-Step Query
+    description: Amendment Process Step-by-Step Query.
+    cues: []
+  - id: correction_window_already_closed
+    name: Correction Window Already Closed
+    description: Correction Window Already Closed.
+    cues: []
+  - id: photo_signature_amendment
+    name: Photo / Signature Amendment
+    description: Photo / Signature Amendment.
+    cues: []
+  - id: name_dob_correction_after_submission
+    name: Name / DOB Correction After Submission
+    description: Name / DOB Correction After Submission.
+    cues: []
+  - id: category_correction_after_submission
+    name: Category Correction After Submission
+    description: Category Correction After Submission.
+    cues: []
+  - id: subject_paper_change_after_submission
+    name: Subject / Paper Change After Submission
+    description: Subject / Paper Change After Submission.
+    cues: []
+  - id: address_correction_after_submission
+    name: Address Correction After Submission
+    description: Address Correction After Submission.
+    cues: []
+  - id: amendment_confirmation_not_received
+    name: Amendment Confirmation Not Received
+    description: Amendment Confirmation Not Received.
+    cues: []
+  - id: wrong_exam_level_selected_primary_vs_junior
+    name: Wrong Exam Level Selected (Primary vs Junior)
+    description: Wrong Exam Level Selected (Primary vs Junior).
+    cues: []
+  - id: form_cancellation_withdrawal_request
+    name: Form Cancellation / Withdrawal Request
+    description: Form Cancellation / Withdrawal Request.
+    cues: []
+- id: eligibility_and_qualifications
+  name: Eligibility & Qualifications
+  description: Age, educational qualification, degree, subject eligibility, experience, reservation eligibility, percentage/marks
+    criteria.
+  sub_issues:
+  - id: general_category_query
+    name: General Category Query
+    description: General Category Query.
+    cues: []
+  - id: obc_category_and_creamy_layer
+    name: OBC Category & Creamy Layer
+    description: OBC Category & Creamy Layer.
+    cues: []
+  - id: obc_non_creamy_layer_certificate_query
+    name: OBC Non-Creamy Layer Certificate Query
+    description: OBC Non-Creamy Layer Certificate Query.
+    cues: []
+  - id: sc_st_category
+    name: SC / ST Category
+    description: SC / ST Category.
+    cues: []
+  - id: sc_st_sub_category_clarification
+    name: SC / ST Sub-Category Clarification
+    description: SC / ST Sub-Category Clarification.
+    cues: []
+  - id: ews_category
+    name: EWS Category
+    description: EWS Category.
+    cues: []
+  - id: divyang_pwd_ph_category
+    name: Divyang / PwD / PH Category
+    description: Divyang / PwD / PH Category.
+    cues: []
+  - id: disability_type_and_percentage_query
+    name: Disability Type & Percentage Query
+    description: Disability Type & Percentage Query.
+    cues: []
+  - id: dependent_freedom_fighter_category
+    name: Dependent Freedom Fighter Category
+    description: Dependent Freedom Fighter Category.
+    cues: []
+  - id: ex_army_ex_serviceman_category
+    name: Ex-Army / Ex-Serviceman Category
+    description: Ex-Army / Ex-Serviceman Category.
+    cues: []
+  - id: age_relaxation_query
+    name: Age Relaxation Query
+    description: Age Relaxation Query.
+    cues: []
+  - id: up_residency_and_reservation_eligibility
+    name: UP Residency & Reservation Eligibility
+    description: UP Residency & Reservation Eligibility.
+    cues: []
+  - id: education_details_entry_in_otr
+    name: Education Details Entry in OTR
+    description: Education Details Entry in OTR.
+    cues: []
+  - id: wrong_education_row_added
+    name: Wrong Education Row Added
+    description: Wrong Education Row Added.
+    cues: []
+  - id: board_university_not_in_dropdown
+    name: Board / University Not in Dropdown
+    description: Board / University Not in Dropdown.
+    cues: []
+  - id: b_ed_d_el_ed_qualification_entry
+    name: B.Ed / D.El.Ed Qualification Entry
+    description: B.Ed / D.El.Ed Qualification Entry.
+    cues: []
+  - id: graduation_subject_stream_entry
+    name: Graduation Subject / Stream Entry
+    description: Graduation Subject / Stream Entry.
+    cues: []
+  - id: training_qualification_entry
+    name: Training Qualification Entry
+    description: Training Qualification Entry.
+    cues: []
+  - id: marks_percentage_entry_issue
+    name: Marks / Percentage Entry Issue
+    description: Marks / Percentage Entry Issue.
+    cues: []
+  - id: cgpa_to_percentage_conversion_query
+    name: CGPA to Percentage Conversion Query
+    description: CGPA to Percentage Conversion Query.
+    cues: []
+  - id: year_of_passing_entry_issue
+    name: Year of Passing Entry Issue
+    description: Year of Passing Entry Issue.
+    cues: []
+  - id: appearing_passed_status_query
+    name: Appearing / Passed Status Query
+    description: Appearing / Passed Status Query.
+    cues: []
+  - id: final_year_appearing_candidate_entry
+    name: Final Year Appearing Candidate Entry
+    description: Final Year Appearing Candidate Entry.
+    cues: []
+  - id: multiple_degree_entry_issue
+    name: Multiple Degree Entry Issue
+    description: Multiple Degree Entry Issue.
+    cues: []
+  - id: appearing_option_missing_in_dropdown
+    name: Appearing Option Missing in Dropdown
+    description: Appearing Option Missing in Dropdown.
+    cues: []
+  - id: board_roll_number_digit_length_rejected
+    name: Board Roll Number Digit Length Rejected
+    description: Board Roll Number Digit Length Rejected.
+    cues: []
+  - id: out_of_state_nios_qualification_not_listed
+    name: Out-of-State / NIOS Qualification Not Listed
+    description: Out-of-State / NIOS Qualification Not Listed.
+    cues: []
+  - id: graduation_field_mandatory_but_not_applicable
+    name: Graduation Field Mandatory but Not Applicable
+    description: Graduation Field Mandatory but Not Applicable.
+    cues: []
+  - id: paper_i_eligibility_query
+    name: Paper I Eligibility Query
+    description: Paper I Eligibility Query.
+    cues: []
+  - id: paper_ii_eligibility_query
+    name: Paper II Eligibility Query
+    description: Paper II Eligibility Query.
+    cues: []
+  - id: subject_group_combination_selection
+    name: Subject Group / Combination Selection
+    description: Subject Group / Combination Selection.
+    cues: []
+  - id: qualification_status_passed_appearing
+    name: Qualification Status (Passed / Appearing)
+    description: Qualification Status (Passed / Appearing).
+    cues: []
+  - id: b_ed_appearing_candidate_eligibility
+    name: B.Ed Appearing Candidate Eligibility
+    description: B.Ed Appearing Candidate Eligibility.
+    cues: []
+  - id: d_el_ed_btc_jbt_eligibility_query
+    name: D.El.Ed / BTC / JBT Eligibility Query
+    description: D.El.Ed / BTC / JBT Eligibility Query.
+    cues: []
+  - id: age_limit_eligibility_query
+    name: Age Limit Eligibility Query
+    description: Age Limit Eligibility Query.
+    cues: []
+  - id: in_service_teacher_without_graduation_eligibility
+    name: In-Service Teacher Without Graduation Eligibility
+    description: In-Service Teacher Without Graduation Eligibility.
+    cues: []
+  - id: scribe_eligibility_criteria_query
+    name: Scribe Eligibility Criteria Query
+    description: Scribe Eligibility Criteria Query.
+    cues: []
+  - id: scribe_qualification_education_limit
+    name: Scribe Qualification / Education Limit
+    description: Scribe Qualification / Education Limit.
+    cues: []
+- id: fees_and_payment
+  name: Fees & Payment
+  description: Application fee, fee exemption, payment methods, failed/pending payment, transaction status, refund, payment
+    receipt.
+  sub_issues:
+  - id: fee_amount_query
+    name: Fee Amount Query
+    description: Fee Amount Query.
+    cues: []
+  - id: category_wise_fee_query
+    name: Category-wise Fee Query
+    description: Category-wise Fee Query.
+    cues: []
+  - id: both_papers_fee_query
+    name: Both Papers Fee Query
+    description: Both Papers Fee Query.
+    cues: []
+  - id: payment_gateway_method_query
+    name: Payment Gateway / Method Query
+    description: Payment Gateway / Method Query.
+    cues: []
+  - id: net_banking_upi_debit_card_issue
+    name: Net Banking / UPI / Debit Card Issue
+    description: Net Banking / UPI / Debit Card Issue.
+    cues: []
+  - id: challan_payment_query
+    name: Challan Payment Query
+    description: Challan Payment Query.
+    cues: []
+  - id: payment_pending_processing_status
+    name: Payment Pending / Processing Status
+    description: Payment Pending / Processing Status.
+    cues: []
+  - id: money_debited_but_application_incomplete
+    name: Money Debited but Application Incomplete
+    description: Money Debited but Application Incomplete.
+    cues: []
+  - id: duplicate_payment_risk
+    name: Duplicate Payment Risk
+    description: Duplicate Payment Risk.
+    cues: []
+  - id: duplicate_payment_refund_query
+    name: Duplicate Payment Refund Query
+    description: Duplicate Payment Refund Query.
+    cues: []
+  - id: payment_reconciliation_request
+    name: Payment Reconciliation Request
+    description: Payment Reconciliation Request.
+    cues: []
+  - id: application_status_showing_paid_confirmation
+    name: Application Status Showing PAID Confirmation
+    description: Application Status Showing PAID Confirmation.
+    cues: []
+  - id: fee_receipt_challan_download_issue
+    name: Fee Receipt / Challan Download Issue
+    description: Fee Receipt / Challan Download Issue.
+    cues: []
+  - id: fee_waiver_for_reserved_category_query
+    name: Fee Waiver for Reserved Category Query
+    description: Fee Waiver for Reserved Category Query.
+    cues: []
+  - id: re_payment_required_after_amendment
+    name: Re-payment Required After Amendment
+    description: Re-payment Required After Amendment.
+    cues: []
+- id: identity_and_documents
+  name: Identity & Documents
+  description: Aadhaar, ID proof, photo, signature, certificates, document upload, document format/size, name/DOB mismatch,
+    verification.
+  sub_issues:
+  - id: aadhaar_otp_not_received
+    name: Aadhaar OTP Not Received
+    description: Aadhaar OTP Not Received.
+    cues: []
+  - id: aadhaar_number_not_accepted
+    name: Aadhaar Number Not Accepted
+    description: Aadhaar Number Not Accepted.
+    cues: []
+  - id: aadhaar_mismatch
+    name: Aadhaar Mismatch
+    description: Aadhaar Mismatch.
+    cues: []
+  - id: name_dob_mismatch_across_documents
+    name: Name / DOB Mismatch Across Documents
+    description: Name / DOB Mismatch Across Documents.
+    cues: []
+  - id: identity_proof_selection_query
+    name: Identity Proof Selection Query
+    description: Identity Proof Selection Query.
+    cues: []
+  - id: live_photo_face_match_failure
+    name: Live Photo / Face Match Failure
+    description: Live Photo / Face Match Failure.
+    cues: []
+  - id: manual_aadhaar_verification_request
+    name: Manual Aadhaar Verification Request
+    description: Manual Aadhaar Verification Request.
+    cues: []
+  - id: photo_clicked_during_verification_issue
+    name: Photo Clicked During Verification Issue
+    description: Photo Clicked During Verification Issue.
+    cues: []
+  - id: aadhaar_linked_mobile_not_available
+    name: Aadhaar Linked Mobile Not Available
+    description: Aadhaar Linked Mobile Not Available.
+    cues: []
+  - id: name_prefix_mismatch_km_kumari
+    name: Name Prefix Mismatch (KM / Kumari)
+    description: Name Prefix Mismatch (KM / Kumari).
+    cues: []
+  - id: post_marriage_surname_mismatch_in_ekyc
+    name: Post-Marriage Surname Mismatch in eKYC
+    description: Post-Marriage Surname Mismatch in eKYC.
+    cues: []
+  - id: wrong_id_type_used_at_registration
+    name: Wrong ID Type Used at Registration
+    description: Wrong ID Type Used at Registration.
+    cues: []
+  - id: ews_certificate_format_validity_query
+    name: EWS Certificate Format / Validity Query
+    description: EWS Certificate Format / Validity Query.
+    cues: []
+  - id: category_certificate_date_validity_query
+    name: Category Certificate Date Validity Query
+    description: Category Certificate Date Validity Query.
+    cues: []
+  - id: photograph_upload_issue
+    name: Photograph Upload Issue
+    description: Photograph Upload Issue.
+    cues: []
+  - id: signature_upload_issue
+    name: Signature Upload Issue
+    description: Signature Upload Issue.
+    cues: []
+  - id: photo_identity_proof_upload
+    name: Photo Identity Proof Upload
+    description: Photo Identity Proof Upload.
+    cues: []
+  - id: academic_certificate_upload
+    name: Academic Certificate Upload
+    description: Academic Certificate Upload.
+    cues: []
+  - id: category_caste_certificate_upload
+    name: Category / Caste Certificate Upload
+    description: Category / Caste Certificate Upload.
+    cues: []
+  - id: domicile_residency_certificate_upload
+    name: Domicile / Residency Certificate Upload
+    description: Domicile / Residency Certificate Upload.
+    cues: []
+  - id: handwritten_declaration_upload_issue
+    name: Handwritten Declaration Upload Issue
+    description: Handwritten Declaration Upload Issue.
+    cues: []
+  - id: file_size_format_requirement
+    name: File Size / Format Requirement
+    description: File Size / Format Requirement.
+    cues: []
+  - id: file_too_large_error
+    name: File Too Large Error
+    description: File Too Large Error.
+    cues: []
+  - id: blurry_unreadable_document_rejection
+    name: Blurry / Unreadable Document Rejection
+    description: Blurry / Unreadable Document Rejection.
+    cues: []
+  - id: document_preview_not_showing
+    name: Document Preview Not Showing
+    description: Document Preview Not Showing.
+    cues: []
+  - id: photo_background_color_requirement
+    name: Photo Background Color Requirement
+    description: Photo Background Color Requirement.
+    cues: []
+  - id: photo_dimensions_not_accepted
+    name: Photo Dimensions Not Accepted
+    description: Photo Dimensions Not Accepted.
+    cues: []
+  - id: upload_button_not_working
+    name: Upload Button Not Working
+    description: Upload Button Not Working.
+    cues: []
+  - id: wrong_person_s_document_uploaded
+    name: Wrong Person's Document Uploaded
+    description: Wrong Person's Document Uploaded.
+    cues: []
+  - id: handwritten_declaration_language_requirement
+    name: Handwritten Declaration Language Requirement
+    description: Handwritten Declaration Language Requirement.
+    cues: []
+  - id: scribe_documents_and_declaration_required
+    name: Scribe Documents & Declaration Required
+    description: Scribe Documents & Declaration Required.
+    cues: []
+  - id: scribe_declaration_form_submission
+    name: Scribe Declaration Form Submission
+    description: Scribe Declaration Form Submission.
+    cues: []
+  - id: medical_certificate_for_pwd_requirement
+    name: Medical Certificate for PwD Requirement
+    description: Medical Certificate for PwD Requirement.
+    cues: []
+  - id: disability_certificate_format_query
+    name: Disability Certificate Format Query
+    description: Disability Certificate Format Query.
+    cues: []
+- id: general_queries
+  name: General Queries
+  description: Exam dates, admit card, exam centre, city intimation, syllabus, exam pattern, instructions, recruitment/exam
+    process, queries not covered above.
+  sub_issues:
+  - id: important_dates_and_schedule_query
+    name: Important Dates & Schedule Query
+    description: Important Dates & Schedule Query.
+    cues: []
+  - id: exam_pattern_and_structure_query
+    name: Exam Pattern & Structure Query
+    description: Exam Pattern & Structure Query.
+    cues: []
+  - id: number_of_questions_total_marks
+    name: Number of Questions / Total Marks
+    description: Number of Questions / Total Marks.
+    cues: []
+  - id: qualifying_marks_cut_off_query
+    name: Qualifying Marks / Cut-off Query
+    description: Qualifying Marks / Cut-off Query.
+    cues: []
+  - id: negative_marking_query
+    name: Negative Marking Query
+    description: Negative Marking Query.
+    cues: []
+  - id: exam_language_medium_query
+    name: Exam Language / Medium Query
+    description: Exam Language / Medium Query.
+    cues: []
+  - id: question_paper_language_options
+    name: Question Paper Language Options
+    description: Question Paper Language Options.
+    cues: []
+  - id: exam_duration_query
+    name: Exam Duration Query
+    description: Exam Duration Query.
+    cues: []
+  - id: normalisation_multi_shift_query
+    name: Normalisation / Multi-Shift Query
+    description: Normalisation / Multi-Shift Query.
+    cues: []
+  - id: tet_validity_period_query
+    name: TET Validity Period Query
+    description: TET Validity Period Query.
+    cues: []
+  - id: syllabus_query
+    name: Syllabus Query
+    description: Syllabus Query.
+    cues: []
+  - id: previous_year_paper_query
+    name: Previous Year Paper Query
+    description: Previous Year Paper Query.
+    cues: []
+  - id: admit_card_release_date_query
+    name: Admit Card Release Date Query
+    description: Admit Card Release Date Query.
+    cues: []
+  - id: admit_card_download_process
+    name: Admit Card Download Process
+    description: Admit Card Download Process.
+    cues: []
+  - id: admit_card_not_downloading_available
+    name: Admit Card Not Downloading / Available
+    description: Admit Card Not Downloading / Available.
+    cues: []
+  - id: wrong_details_on_admit_card
+    name: Wrong Details on Admit Card
+    description: Wrong Details on Admit Card.
+    cues: []
+  - id: exam_centre_date_time_query
+    name: Exam Centre / Date / Time Query
+    description: Exam Centre / Date / Time Query.
+    cues: []
+  - id: exam_centre_change_request
+    name: Exam Centre Change Request
+    description: Exam Centre Change Request.
+    cues: []
+  - id: tet_pass_certificate_download
+    name: TET Pass Certificate Download
+    description: TET Pass Certificate Download.
+    cues: []
+  - id: tet_certificate_validity_query
+    name: TET Certificate Validity Query
+    description: TET Certificate Validity Query.
+    cues: []
+  - id: digilocker_certificate_query
+    name: DigiLocker Certificate Query
+    description: DigiLocker Certificate Query.
+    cues: []
+  - id: photo_mismatch_on_admit_card
+    name: Photo Mismatch on Admit Card
+    description: Photo Mismatch on Admit Card.
+    cues: []
+  - id: category_error_on_certificate
+    name: Category Error on Certificate
+    description: Category Error on Certificate.
+    cues: []
+  - id: duplicate_certificate_marksheet_query
+    name: Duplicate Certificate / Marksheet Query
+    description: Duplicate Certificate / Marksheet Query.
+    cues: []
+  - id: how_to_request_a_scribe
+    name: How to Request a Scribe
+    description: How to Request a Scribe.
+    cues: []
+  - id: scribe_arrangement_process
+    name: Scribe Arrangement Process
+    description: Scribe Arrangement Process.
+    cues: []
+  - id: compensatory_time_30_minutes_query
+    name: Compensatory Time (30 Minutes) Query
+    description: Compensatory Time (30 Minutes) Query.
+    cues: []
+  - id: result_declaration_date_query
+    name: Result Declaration Date Query
+    description: Result Declaration Date Query.
+    cues: []
+  - id: result_check_process
+    name: Result Check Process
+    description: Result Check Process.
+    cues: []
+  - id: merit_list_query
+    name: Merit List Query
+    description: Merit List Query.
+    cues: []
+  - id: cut_off_marks_query
+    name: Cut-off Marks Query
+    description: Cut-off Marks Query.
+    cues: []
+  - id: rank_score_discrepancy
+    name: Rank / Score Discrepancy
+    description: Rank / Score Discrepancy.
+    cues: []
+  - id: district_allocation_query
+    name: District Allocation Query
+    description: District Allocation Query.
+    cues: []
+  - id: selection_process_after_tet
+    name: Selection Process After TET
+    description: Selection Process After TET.
+    cues: []
+  - id: waiting_list_query
+    name: Waiting List Query
+    description: Waiting List Query.
+    cues: []
+  - id: application_mode_query
+    name: Application Mode Query
+    description: Application Mode Query.
+    cues: []
+  - id: notification_advertisement_query
+    name: Notification / Advertisement Query
+    description: Notification / Advertisement Query.
+    cues: []
+  - id: helpline_timing_query
+    name: Helpline Timing Query
+    description: Helpline Timing Query.
+    cues: []
+  - id: appointment_job_guarantee_query
+    name: Appointment / Job Guarantee Query
+    description: Appointment / Job Guarantee Query.
+    cues: []
+  - id: transfer_to_another_department
+    name: Transfer to Another Department
+    description: Transfer to Another Department.
+    cues: []
+  - id: call_back_request
+    name: Call Back Request
+    description: Call Back Request.
+    cues: []
+  - id: unrelated_wrong_call
+    name: Unrelated / Wrong Call
+    description: Unrelated / Wrong Call.
+    cues: []
+  - id: repeated_call_follow_up
+    name: Repeated Call / Follow-up
+    description: Repeated Call / Follow-up.
+    cues: []
+  - id: complaint_against_portal_process
+    name: Complaint Against Portal / Process
+    description: Complaint Against Portal / Process.
+    cues: []
+- id: unclassified
+  name: Unclassified
+  description: Only when the call is understandable but fits none of the 196 sub-categories.
+  sub_issues:
+  - id: not_classified
+    name: Not Classified
+    description: Understandable call matching nothing above; describe it in the summary.
+    cues: []
