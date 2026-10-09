@@ -47,6 +47,7 @@ os.environ.setdefault("CALLAI_LLM_RETRY_S", "300")      # a dead llama-server fa
 RETRIEVAL = "data/otr/pool_transcripts.jsonl,data/otr/pool_human_labels.csv,6"   # the measured recipe
 MIN_WORDS = 20                                   # fewer words: "Audio Unclear" (greetings, dropped calls)
 SPECIAL = ("Audio Unclear", "Recording Unavailable")
+REVIEW_CONF = float(os.environ.get("OTR_REVIEW_CONF", "0.4"))   # below this, needs_review = true
 
 QA_SYSTEM = (
     "You are a quality analyst for the UPESSC One Time Registration (OTR) helpline in Uttar Pradesh. Calls are in "
@@ -103,6 +104,18 @@ class OTRPipeline:
         self.score_cal = json.loads(cal.read_text(encoding="utf-8")) if cal.exists() else None
         lang = CODE / "models" / "language_clf.pkl"           # Hindi / Hinglish the way Gemini labels it
         self.lang_clf = pickle.loads(lang.read_bytes()) if lang.exists() else None
+        gpath = CODE / "models" / "gemini_cls.pkl"            # category / sub-category trained on Gemini's labels
+        self.gcls = None
+        if gpath.exists():
+            from callai.gemini_cls import GeminiClassifier
+            self.gcls = GeminiClassifier.load(gpath)
+        else:
+            print("WARNING: code/models/gemini_cls.pkl not found - categories fall back to the older LLM categoriser "
+                  "(about 35% sub-category agreement with Gemini instead of 53%). Copy it from CallAI_OTR_portal.zip; "
+                  "see MODELS.md.", file=sys.stderr, flush=True)
+        tax = yaml.safe_load((CODE / "products/otr/taxonomy.yaml").read_text(encoding="utf-8"))
+        self.cat_id = {i["name"]: i["id"] for i in tax["issues"]}
+        self.sub_id = {s["name"]: s["id"] for i in tax["issues"] for s in i["sub_issues"]}
 
     # ---------------------------------------------------------------- audio -> segments
     def _silero(self):
@@ -210,6 +223,8 @@ class OTRPipeline:
         os.environ.setdefault("CALLAI_LLM_PARALLEL", str(SLOTS))
         from callai.llm import make_llm
         self.llm = make_llm("llama")
+        if self.gcls is not None:                     # categories come from the Gemini-trained classifier
+            return
         cwd = os.getcwd()
         os.chdir(CODE)                                # product files and the retrieval spec are relative to code/
         try:
@@ -252,17 +267,29 @@ class OTRPipeline:
             enc._model_name, enc._model = "BAAI/bge-m3", None
             enc._cached_encode([r["dialogue"] for r in talk])
             enc._model = None
-            seg_rows = [{"file": r["file"], "dialogue": r["dialogue"], "duration_s": r["duration_s"]} for r in talk]
-            cwd = os.getcwd()
-            os.chdir(CODE)
-            try:
-                self.pipe.segregate(seg_rows)
-            except Exception as e:  # noqa: BLE001
-                raise RuntimeError(f"LLM failed: {e!r}" + self._llama_log_tail()) from e
-            finally:
-                os.chdir(cwd)
-            for r, s in zip(talk, seg_rows):
-                r["segregation"] = s.get("segregation") or {}
+            if self.gcls is not None:
+                E = np.vstack([np.load(ExamplePool.CACHE_DIR / f"{ExamplePool._row_key(r['dialogue'])}.npy") for r in talk])
+                mu = None
+                if "muril" in self.gcls.models and (CODE / "models" / "gemini_muril").exists():
+                    from callai.gemini_cls import muril_scores
+                    mu = muril_scores(CODE / "models" / "gemini_muril", [r["dialogue"] for r in talk], self.gcls.labels, self.dev)
+                for r, p in zip(talk, self.gcls.predict([r["dialogue"] for r in talk], E.astype(np.float32), mu)):
+                    r["segregation"] = {"issue_name": p["cat"], "sub_issue_name": p["sub"],
+                                        "issue": self.cat_id.get(p["cat"], ""), "sub_issue": self.sub_id.get(p["sub"], ""),
+                                        "confidence": p["confidence"], "needs_review": p["confidence"] < REVIEW_CONF,
+                                        "alternatives": [c for c, _ in p["top"][1:3]]}
+            else:
+                seg_rows = [{"file": r["file"], "dialogue": r["dialogue"], "duration_s": r["duration_s"]} for r in talk]
+                cwd = os.getcwd()
+                os.chdir(CODE)
+                try:
+                    self.pipe.segregate(seg_rows)
+                except Exception as e:  # noqa: BLE001
+                    raise RuntimeError(f"LLM failed: {e!r}" + self._llama_log_tail()) from e
+                finally:
+                    os.chdir(cwd)
+                for r, s in zip(talk, seg_rows):
+                    r["segregation"] = s.get("segregation") or {}
             try:
                 replies = self.llm.chat_batch([self._qa_messages(r, r["segregation"].get("sub_issue", "")) for r in talk],
                                               max_new_tokens=400, json_schema=QA_SCHEMA)
@@ -326,6 +353,7 @@ class OTRPipeline:
             # not portal columns: kept for review and audit
             "category_id": seg.get("issue", ""), "sub_category_id": seg.get("sub_issue", ""),
             "confidence": seg.get("confidence", ""), "needs_review": seg.get("needs_review", ""),
+            "alternatives": seg.get("alternatives", []),
             "score_items": dict(zip(("greeting", "understanding", "correctness", "next_steps", "closing"), items)),
             "agent_score_raw": max(1, sum(items)) if qa else ""})
         return base

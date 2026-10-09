@@ -45,3 +45,6 @@ venv/
 # --- Secrets ---
 .env
 .env.*
+
+# --- Category classifier: 127 MB (over GitHub's 100 MB limit) and built from caller transcripts; ships in the zip ---
+code/models/gemini_cls.pkl
