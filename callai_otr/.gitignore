@@ -1,0 +1,11 @@
+# trained models and data are NOT in git (caller data / file size): copy them from CallAI_OTR_portal.zip
+models/
+code/models/*.pkl
+code/models/*.json
+code/data/
+code/out/
+llama/
+hf/
+work/
+logs/
+__pycache__/

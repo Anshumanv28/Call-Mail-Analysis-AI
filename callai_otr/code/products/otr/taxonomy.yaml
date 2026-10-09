@@ -1,0 +1,2735 @@
+issues:
+- id: registration_and_portal
+  name: Registration & Portal
+  description: Registration, login, OTP, password, portal navigation, application form, technical issues, submission,
+    application status, correction window.
+  sub_issues:
+  - id: fresh_registration_query
+    name: Fresh Registration Query
+    description: 'Caller has not registered yet and asks how to create a new OTR — which portal, what details and
+      documents are needed, whether a fresh OTR is required for this exam (Super TET, PGT, TGT, UPTET vacancy).
+      NOT: already has an OTR and asks whether a second one is needed -> use duplicate_registration_concern; asks
+      whether one OTR covers several exams -> use otr_vs_exam_application_confusion; asks how to fill the exam form
+      once OTR exists -> use how_to_apply_for_exam_after_otr.'
+    cues:
+    - naya OTR kaise banayein
+    - registration karna hai, process bata dijiye
+    - pehli baar apply kar raha hoon
+    - OTR banane ke liye kya kya chahiye
+    - Super TET ke liye naya OTR karna padega
+    - nayi registration ki website kaun si hai
+    - registration kahan se start hota hai
+  - id: duplicate_registration_concern
+    name: Duplicate Registration Concern
+    description: 'Caller already has an OTR (often an old UPTET one) and is worried about making or having made
+      a second one — two OTR IDs created by accident, system says already registered, or asks whether a duplicate
+      OTR with the same Aadhaar/details is allowed. NOT: only asking whether the existing OTR is valid for a different
+      exam or how OTR relates to the exam form -> use otr_vs_exam_application_confusion; already has two live accounts
+      and asks which one to use or how to deactivate one -> use multiple_otr_accounts_issue.'
+    cues:
+    - do OTR ban gaye galti se
+    - dobara OTR banaye to already registered aa raha hai
+    - purana UPTET ka OTR chal nahi raha, naya banana padega kya
+    - same Aadhaar se dusra OTR ban jayega
+    - ek hi naam se do registration ho gaya
+    - naya OTR banaun ya purana hi use karun
+    - duplicate registration ho gayi hai
+  - id: otr_vs_exam_application_confusion
+    name: OTR vs Exam Application Confusion
+    description: 'Caller does not understand the difference between the one-time OTR profile and the exam-specific
+      application form — asks whether one OTR works for multiple exams or both subjects, whether the old OTR is
+      still valid for a new exam, or says OTR is done but the exam still shows not registered. NOT: worried about
+      having created or needing a second OTR -> use duplicate_registration_concern; asks the steps to fill the exam
+      form after OTR -> use how_to_apply_for_exam_after_otr.'
+    cues:
+    - OTR ho gaya hai, form alag se bharna hota hai kya
+    - ek OTR se do exam apply ho jayenge
+    - purana OTR is exam me valid hai ya nahi
+    - OTR kar liya par PGT bol raha hai registered nahi ho
+    - OTR aur application form me kya antar hai
+    - Super TET ke liye alag OTR chahiye
+    - do subject ke liye ek hi OTR chalega
+  - id: resume_incomplete_application
+    name: Resume Incomplete Application
+    description: 'Caller had started the OTR or exam form, left it part-filled (refresh, closed browser, dropped
+      connection) and asks how to log back in and continue from where it stopped, or says the form is stuck and
+      not moving ahead. NOT: a section refuses to save when clicking save/continue -> use application_form_section_not_saving;
+      logged out mid-form by inactivity -> use session_timeout_issue.'
+    cues:
+    - form adha bhar gaya tha, aage kaise badhaun
+    - refresh ho gaya, data bhar dobara bharna padega
+    - incomplete form dikha raha hai
+    - wahi se continue kaise karun
+    - form beech me chhoot gaya
+    - application aage nahi badh raha
+    - draft save tha, ab kahan milega
+  - id: offline_application_query
+    name: Offline Application Query
+    description: 'Caller asks whether the form can be filled on paper or submitted offline — by post, at a district
+      office or a cyber cafe/Jan Seva Kendra — instead of on the portal, or where to get a printed form. NOT: asking
+      the general mode/steps of applying online -> use application_mode_query.'
+    cues:
+    - offline form bhar sakte hain kya
+    - hard copy kahan jama karni hai
+    - post se bhejna hoga
+    - jan seva kendra se ho jayega
+    - office jaakar form de sakte hain
+    - sirf online hi hota hai kya
+    - printed form kahan milega
+  - id: portal_not_loading_technical_error
+    name: Portal Not Loading / Technical Error
+    description: 'Caller cannot get the website or a page to open at all, or hits a generic technical failure —
+      site down, blank page, server error, page hangs, options/dropdowns simply not rendering, works on no device.
+      NOT: the form opens but a section refuses to save -> use application_form_section_not_saving; submit/create-account
+      errors on submission -> use registration_form_submission_error; final submit/lock hangs -> use otr_final_submit_button_issue.'
+    cues:
+    - website khul hi nahi rahi
+    - site down hai subah se
+    - server error aa raha hai
+    - page blank aa raha hai
+    - do-teen mobile me try kiya, nahi chala
+    - portal me option hi load nahi ho raha
+    - site slow hai, hang ho jati hai
+    - technical problem aa rahi hai portal me
+  - id: registration_form_submission_error
+    name: Registration Form Submission Error
+    description: 'Caller fills the registration/OTR form but submission itself throws an error or fails — create
+      account button does nothing, page refreshes back, server/connectivity error on submit, a mandatory field will
+      not accept a valid value so the form cannot be submitted, status stays in progress. NOT: form already submitted
+      and caller now wants a field changed -> use how_to_edit_saved_otr_data; the final review-and-lock step hangs
+      -> use otr_final_submit_button_issue; whole site will not open -> use portal_not_loading_technical_error.'
+    cues:
+    - submit karne par error aa raha hai
+    - create account button kaam nahi kar raha
+    - page refresh ho jata hai submit pe
+    - registration submit hi nahi ho raha
+    - mandatory field accept nahi kar raha
+    - in progress hi dikha raha hai
+    - server error aa jata hai form bharte waqt
+  - id: multiple_otr_accounts_issue
+    name: Multiple OTR Accounts Issue
+    description: 'Caller already has two or more OTR accounts/IDs live and asks which one to use going forward,
+      whether the second one is valid, how to deactivate or merge the first, or which OTR the admit card will come
+      from. NOT: only afraid of creating a duplicate or told already registered -> use duplicate_registration_concern;
+      asks whether one OTR covers several exams -> use otr_vs_exam_application_confusion.'
+    cues:
+    - do OTR ID hai, kaunsa use karun
+    - pehla OTR band karwana hai
+    - dusra OTR valid rahega kya
+    - admit card kis OTR se aayega
+    - do account ban gaye, merge ho jayenge
+    - purana OTR deactivate kaise ho
+    - dono OTR me details alag hai
+  - id: otr_id_not_received_after_registration
+    name: OTR ID Not Received After Registration
+    description: 'Caller completed registration but never got the OTR ID/number — no SMS or email with it, or the
+      portal now says OTR not found / already registered so they can neither recover nor re-register. NOT: caller
+      once knew the OTR ID and has simply forgotten or lost it -> use otr_id_forgotten_recovery; expecting the registration
+      acknowledgement mail/message generally -> use registration_confirmation_not_received.'
+    cues:
+    - OTR number aaya hi nahi
+    - registration ho gaya par ID nahi mili
+    - OTR not found bata raha hai
+    - already registered bol raha hai par ID nahi hai
+    - message me OTR ID nahi aaya
+    - registration ke baad kuch nahi mila
+    - ID generate hui hai ya nahi pata nahi
+  - id: registration_confirmation_not_received
+    name: Registration Confirmation Not Received
+    description: 'Caller wants the confirmation of registration itself — acknowledgement SMS or email, login credentials/roll
+      number and password — which never arrived, and asks whether the registration actually went through. NOT: the
+      OTR ID number specifically is missing -> use otr_id_not_received_after_registration; the OTR profile lock/submission
+      acknowledgement is missing -> use otr_submission_confirmation_not_received; correction-window acknowledgement
+      missing -> use amendment_confirmation_not_received.'
+    cues:
+    - confirmation mail nahi aaya
+    - registration ka message nahi mila
+    - pata nahi registration hua ya nahi
+    - roll number aur password nahi aaya
+    - koi acknowledgement nahi mila
+    - mail check kiya, spam me bhi nahi hai
+    - registered hua hai to confirm kar dijiye
+  - id: apply_otr_link_not_visible_on_portal
+    name: Apply / OTR Link Not Visible on Portal
+    description: 'Caller is on the portal but the link/tile they need is not there — the Apply or OTR link, or the
+      particular post''s form (PGT, TGT, Primary, Assistant Professor, Special TET) is not appearing, or an option
+      like optional subject is not visible on the landing page. NOT: the whole site fails to open -> use portal_not_loading_technical_error;
+      a dropdown inside an opened form has no values -> use district_state_dropdown_issue.'
+    cues:
+    - apply ka link dikh nahi raha
+    - PGT ka form option nahi aa raha
+    - primary teacher ka form kahan hai
+    - OTR ka button nahi mil raha portal par
+    - exam ka naam list me nahi hai
+    - apply now option gayab hai
+    - link kahan se milega, dhundh nahi paa raha
+  - id: mobile_otp_not_received
+    name: Mobile OTP Not Received
+    description: 'Caller is not receiving the OTP SMS on their mobile during registration, login or verification
+      — no message at all, on a particular operator, or repeatedly for days. NOT: OTP arrives but is refused or
+      the OTP login errors out -> use otp_login_not_working; OTP arrives after it has lapsed -> use otp_expired_before_use;
+      OTP goes to an old number -> use otp_coming_on_wrong_number; it is the Aadhaar eKYC OTP -> use aadhaar_otp_not_received.'
+    cues:
+    - OTP nahi aa raha mobile par
+    - message hi nahi aata
+    - OTP ka intezaar kar raha hoon, kuch nahi aaya
+    - resend kiya phir bhi OTP nahi aaya
+    - kai din se OTP nahi aa raha
+    - SIM change kiya tab bhi nahi
+    - mobile verify nahi ho pa raha OTP ke bina
+  - id: email_otp_not_received
+    name: Email OTP Not Received
+    description: 'Caller is not getting the OTP/verification mail on their email, or it lands but the email verification
+      step fails with a service error, so the email cannot be verified. NOT: the mobile SMS OTP is missing -> use
+      mobile_otp_not_received; wants to change the email address in the profile -> use mobile_email_change_in_profile.'
+    cues:
+    - email par OTP nahi aaya
+    - Gmail me mail nahi aa raha
+    - mail OTP aa gaya par verify nahi ho raha
+    - email verification fail ho raha hai
+    - spam me bhi check kiya, nahi hai
+    - service unavailable aa raha hai email verify pe
+    - email verify kaise karun OTP ke bina
+  - id: otp_expired_before_use
+    name: OTP Expired Before Use
+    description: 'Caller receives the OTP but it lapses before it can be used — arrives late, timer runs out, or
+      entering it says OTP expired/invalid, forcing repeated resends. NOT: no OTP arrives at all -> use mobile_otp_not_received
+      or email_otp_not_received; the OTP login page itself errors -> use otp_login_not_working.'
+    cues:
+    - OTP expire ho jata hai
+    - OTP der se aata hai, tab tak time khatam
+    - OTP invalid ya expired bata raha hai
+    - timer khatam ho jata hai
+    - har baar resend karna padta hai
+    - OTP dalne se pehle hi expire
+    - kitni der me OTP dalna hota hai
+  - id: wrong_otp_entered_multiple_times
+    name: Wrong OTP Entered Multiple Times
+    description: 'Caller entered the OTP incorrectly several times and now asks about the consequence — attempts
+      exhausted, resend blocked, or told to try later. NOT: the account is locked after failed password logins ->
+      use too_many_failed_login_attempts or account_locked_blocked; OTP never arrives -> use mobile_otp_not_received.'
+    cues:
+    - galat OTP kai baar daal diya
+    - attempt khatam ho gaye
+    - ab OTP resend nahi ho raha
+    - block ho gaya OTP galat dalne se
+    - kitne baar try kar sakte hain
+    - thodi der baad try kijiye aa raha hai
+    - galti se galat OTP dal diya, ab kya karun
+  - id: password_forgotten_reset
+    name: Password Forgotten / Reset
+    description: 'Caller has forgotten their portal password (or the security-question answer) and wants to reset
+      it, or the forgot-password/reset flow itself is not working. NOT: the OTR ID/username is what is forgotten
+      -> use otr_id_forgotten_recovery; account is blocked after failed attempts -> use account_locked_blocked;
+      no OTP arrives for the reset -> use mobile_otp_not_received.'
+    cues:
+    - password bhool gaya hoon
+    - password reset kaise karun
+    - forgot password kaam nahi kar raha
+    - security question ka answer yaad nahi
+    - naya password ban hi nahi raha
+    - login credentials match nahi kar rahe
+    - purane OTR ka password reset nahi ho raha
+  - id: captcha_not_loading_unclear
+    name: CAPTCHA Not Loading / Unclear
+    description: 'The captcha / security code box is blank, not loading or unreadable, so the caller cannot submit
+      the login, registration or certificate-download page. NOT: the whole page fails to open -> use portal_not_loading_technical_error.'
+    cues:
+    - captcha dikh nahi raha
+    - security code blank aa raha hai
+    - captcha samajh nahi aa raha
+    - code padha nahi ja raha
+    - captcha refresh karne par bhi nahi aata
+    - captcha galat bata raha hai
+    - certificate page pe captcha load nahi ho raha
+  - id: account_recovery_query
+    name: Account Recovery Query
+    description: 'Caller has lost access to the account as a whole and asks how to recover it — which recovery option
+      exists, or says the account-recovery option is not visible on the OTR portal. NOT: only the password is forgotten
+      -> use password_forgotten_reset; only the OTR ID is forgotten -> use otr_id_forgotten_recovery; the registered
+      mobile is out of reach -> use registered_mobile_not_accessible.'
+    cues:
+    - account recover kaise karun
+    - recovery ka option dikh nahi raha
+    - account wapas kaise milega
+    - sab details bhool gaya hoon
+    - account access khatam ho gaya
+    - recovery ke liye kya karna hoga
+    - purana account wapas chahiye
+  - id: otp_coming_on_wrong_number
+    name: OTP Coming on Wrong Number
+    description: 'The OTP is being delivered to a number the caller no longer uses or that belongs to someone else
+      (cyber cafe, relative, old SIM), so they cannot complete verification. NOT: no OTP is delivered anywhere ->
+      use mobile_otp_not_received; caller simply wants the registered number changed in the profile -> use mobile_email_change_in_profile;
+      the registered number is theirs but unavailable -> use registered_mobile_not_accessible.'
+    cues:
+    - OTP dusre number par ja raha hai
+    - cyber cafe wale ka number lag gaya tha
+    - purane number par OTP aa raha hai
+    - wo number band ho gaya hai
+    - bhai ke number par OTP jata hai
+    - galat number register ho gaya hai
+    - mere number par OTP nahi, kisi aur ke par
+  - id: category_change_after_form_submission
+    name: Category Change After Form Submission
+    description: 'Caller has already submitted/locked the OTR or exam form (often paid too) and reports the category
+      or reservation flag is wrong — wrong caste, EWS/OBC wrongly chosen, disability shown as No — and asks how
+      to change it now or whether the category option can still be picked. NOT: asking which category they are eligible
+      for -> use ews_category, obc_category_and_creamy_layer or sc_st_category; asking specifically whether the
+      correction window will permit category edits and how -> use category_correction_after_submission; the certificate
+      format or date is the issue -> use ews_certificate_format_validity_query or category_certificate_date_validity_query.'
+    cues:
+    - category galat bhar gayi hai, form lock ho gaya
+    - OBC ki jagah SC ho gaya
+    - EWS select nahi hua tha, ab change karna hai
+    - divyang ka option No aa raha hai, Yes karna hai
+    - fees 1000 lag gayi, category badalni hai
+    - submit ke baad category change ho sakti hai
+    - caste galat hai OTR me, sudhar kaise hoga
+  - id: permanent_address_entry_issue
+    name: Permanent Address Entry Issue
+    description: 'Caller is filling the permanent address / domicile part of the profile and asks what to enter
+      or cannot enter it — married woman unsure whether to use parents'' or husband''s address, UP residency or
+      domicile status field, a mandatory address-side field like tehsil telephone not available. NOT: form already
+      submitted and the address must be corrected -> use address_correction_after_submission; the state/district
+      dropdown has no values -> use district_state_dropdown_issue; asking whether they qualify for UP reservation
+      -> use up_residency_and_reservation_eligibility.'
+    cues:
+    - permanent address me kya bharna hai
+    - shaadi ke baad maike ka address ya sasural ka
+    - domicile status kaise bharein
+    - UP residency ka option kaise select karun
+    - sthayi pata bhar nahi paa raha
+    - tehsil ka telephone number maang raha hai
+    - pati ka address dalna hai kya
+  - id: correspondence_address_entry_issue
+    name: Correspondence Address Entry Issue
+    description: 'Caller asks what to fill in the correspondence/present address, whether it can differ from the
+      permanent address or how to copy it, or cannot fill that block. NOT: the permanent address block -> use permanent_address_entry_issue;
+      correcting address after submission -> use address_correction_after_submission.'
+    cues:
+    - correspondence address alag dal sakte hain
+    - patra vyavhar ka pata kaun sa bharein
+    - same as above ka option hai kya
+    - abhi ka address different hai
+    - correspondence address bhar nahi raha
+    - kis address par letter aayega
+    - dono address ek hi dalna hai kya
+  - id: district_state_dropdown_issue
+    name: District / State Dropdown Issue
+    description: 'A dropdown in the form has no values or is missing the caller''s option — district or state not
+      listed, Balak/Balika varg or second-language choice not appearing, category or post dropdown blank, so the
+      field cannot be selected. NOT: the form section refuses to save -> use application_form_section_not_saving;
+      board/university missing from its dropdown -> use board_university_not_in_dropdown; the appearing/passed option
+      missing -> use appearing_option_missing_in_dropdown; already submitted and the missing option must now be
+      fixed -> use what_fields_can_be_corrected.'
+    cues:
+    - district ka option aa hi nahi raha
+    - dropdown khali hai
+    - balika varg ka option nahi dikh raha
+    - list me mera zila nahi hai
+    - state select nahi ho raha
+    - second language ka option missing hai
+    - dropdown click karne par kuch nahi aata
+  - id: village_ward_tehsil_not_found
+    name: Village / Ward / Tehsil Not Found
+    description: 'Caller''s village, ward, block or tehsil is not present in the address dropdown or is not accepted,
+      so the address cannot be completed. NOT: the district/state level dropdown is blank -> use district_state_dropdown_issue;
+      the pincode is refused -> use pincode_not_accepted.'
+    cues:
+    - gaon ka naam list me nahi hai
+    - tehsil nahi mil raha dropdown me
+    - ward ka option nahi aa raha
+    - block select nahi ho raha
+    - mera gram panchayat nahi dikh raha
+    - kaun sa nazdeeki gaon chunein
+    - village field khali hi reh jata hai
+  - id: pincode_not_accepted
+    name: Pincode Not Accepted
+    description: 'The portal rejects the caller''s pincode as invalid or does not match it to their district, blocking
+      the address section. NOT: the village/tehsil is missing from the list -> use village_ward_tehsil_not_found.'
+    cues:
+    - pincode accept nahi kar raha
+    - pin code invalid bata raha hai
+    - mera pincode district se match nahi ho raha
+    - Amethi ka pincode nahi le raha
+    - 6 digit dala phir bhi error
+    - pincode dalne pe aage nahi badh raha
+    - sahi pincode hai par galat bata raha hai
+  - id: personal_details_correction_request
+    name: Personal Details Correction Request
+    description: 'Caller has filled and saved/submitted the OTR and wants a personal detail fixed generally — parent
+      or spouse name, domicile status, basic details filled wrongly in a hurry — and asks whether it can be edited
+      or a second OTR made. Use this when the request spans personal fields or the field is not covered by a specific
+      sub-category. NOT: name or DOB specifically -> use name_dob_correction_after_submission; father/husband name
+      at the entry stage -> use father_husband_name_entry_issue; category -> use category_change_after_form_submission;
+      photo or signature -> use photo_signature_amendment; asking which fields are editable at all -> use what_fields_can_be_corrected.'
+    cues:
+    - personal details galat bhar gayi hain
+    - basic details change ho sakti hain kya
+    - jaldi me galat bhar diya, sudhar jayega
+    - domicile No ho gaya hai galti se
+    - mummy papa ka naam theek karwana hai
+    - update kar raha hoon par reflect nahi hota
+    - dusra OTR banana padega isko theek karne ke liye
+  - id: date_of_birth_entry_issue
+    name: Date of Birth Entry Issue
+    description: 'Caller is entering the date of birth and hits a problem — the field will not take their DOB, wrong
+      format, DOB shown differently from the document, or a wrong DOB typed while filling that they want fixed before
+      locking. NOT: form already submitted/locked and DOB must be corrected -> use name_dob_correction_after_submission;
+      DOB differs between Aadhaar and marksheet -> use name_dob_mismatch_across_documents; DOB refused at login
+      -> use login_method_query.'
+    cues:
+    - date of birth galat aa rahi hai
+    - DOB accept nahi kar raha
+    - janm tithi kaise bharein
+    - DOB ka format kya hai
+    - Aadhaar wali DOB aa rahi hai marksheet wali nahi
+    - DOB me saal galat pad gaya
+    - date of birth field edit nahi ho raha
+  - id: gender_nationality_entry_issue
+    name: Gender / Nationality Entry Issue
+    description: 'Caller is filling gender or nationality and the value is wrong or the choice is not available
+      — male picked instead of female, Balak/Balika varg or boys/girls-school option missing or vanished while filling,
+      gender field locked. NOT: already submitted and gender must be changed through the correction route -> use
+      what_fields_can_be_corrected or personal_details_correction_request; a dropdown generally has no values ->
+      use district_state_dropdown_issue.'
+    cues:
+    - gender galat select ho gaya
+    - male ki jagah female ho gaya hai
+    - balak balika varg ka option nahi aa raha
+    - female ka option hi nahi dikh raha
+    - gender field change nahi ho raha
+    - nationality me kya bharein
+    - option bharte bharte gayab ho gaya
+  - id: twin_information_query
+    name: Twin Information Query
+    description: Caller asks about the twin/sibling declaration field — whether to mark twin, what to enter when
+      two siblings have the same date of birth, or how twins apply separately.
+    cues:
+    - twin ka option kya hai
+    - jumwa bachche hain, kya bharein
+    - dono ki DOB same hai
+    - twin wala column bharna zaroori hai
+    - bhai behan dono apply kar rahe hain
+    - twin information me yes karna hai kya
+    - same date of birth par error aa raha hai
+  - id: father_husband_name_entry_issue
+    name: Father / Husband Name Entry Issue
+    description: 'Caller is entering or has just saved the father''s, mother''s or husband''s name and it is wrong
+      or not accepted — spelling/typo, missing space, a dot or initial not allowed, mismatch with Aadhaar — and
+      asks how to enter or fix it. NOT: form locked and the caller is asking about the correction-window route for
+      these names -> use personal_details_correction_request or name_dob_correction_after_submission; names differ
+      between documents for eKYC -> use name_dob_mismatch_across_documents.'
+    cues:
+    - pita ka naam galat bhar gaya
+    - father name me spelling galat hai
+    - husband ka naam theek karna hai
+    - naam me space nahi aa raha
+    - dot accept nahi kar raha naam me
+    - Aadhaar me father name alag hai
+    - mata ka naam galat pad gaya hai
+  - id: mobile_email_change_in_profile
+    name: Mobile / Email Change in Profile
+    description: 'Caller wants to change or correct the registered mobile number or email in the OTR profile — typo
+      in the email, number already registered error, or verification of the new contact failing. NOT: OTP not arriving
+      on the existing contact -> use mobile_otp_not_received or email_otp_not_received; OTP going to somebody else''s
+      number -> use otp_coming_on_wrong_number; registered number no longer in hand and access is the problem ->
+      use registered_mobile_not_accessible.'
+    cues:
+    - email ID galat ho gayi hai, change karni hai
+    - mobile number badalna hai OTR me
+    - number already registered bata raha hai
+    - email me spelling galat hai
+    - naya number update kaise karun
+    - email change ka option nahi mil raha
+    - mobile verify nahi ho raha naye number par
+  - id: marital_status_field_query
+    name: Marital Status Field Query
+    description: 'Caller asks what to select in the marital status field or says it is not updating/saving — what
+      to pick after marriage, whether spouse details become mandatory. NOT: the surname changed after marriage and
+      eKYC fails -> use post_marriage_surname_mismatch_in_ekyc; the address to use after marriage -> use permanent_address_entry_issue.'
+    cues:
+    - marital status me kya bharein
+    - shaadi ho gayi hai, married select karun
+    - marital status update nahi ho raha
+    - unmarried dala tha, ab married karna hai
+    - pati ka naam mandatory ho gaya
+    - marital status ka option save nahi hota
+    - vaivahik sthiti ka column
+  - id: preview_and_edit_before_otr_completion
+    name: Preview & Edit Before OTR Completion
+    description: 'Caller is at the preview/review step before the OTR is finally locked and asks how to go back
+      and edit an entry, or is stuck on the review screen and cannot get back to a section. NOT: OTR already locked/submitted
+      and now needs editing -> use how_to_edit_saved_otr_data or otr_profile_locked_after_submission; data is missing
+      or wrong in the preview/printout of an already submitted form -> use preview_section_data_missing_or_wrong;
+      the lock button itself hangs -> use otr_final_submit_button_issue.'
+    cues:
+    - preview me galti dikh rahi hai, wapas jaakar theek karna hai
+    - lock karne se pehle edit kar sakte hain
+    - edit ka option kahan hai preview me
+    - review page par atak gaya hoon
+    - previous button kaam nahi kar raha
+    - submit se pehle change karna hai
+    - abhi lock nahi kiya, badal sakta hoon na
+  - id: otr_profile_locked_after_submission
+    name: OTR Profile Locked After Submission
+    description: 'Caller reports the OTR profile is locked after submission and therefore nothing can be edited
+      or uploaded — asks why it locked, whether it can be unlocked, and what the options are now. NOT: asking the
+      practical steps to edit a specific saved field -> use how_to_edit_saved_otr_data; asking which fields the
+      correction window will allow -> use what_fields_can_be_corrected; the correction window is over -> use correction_window_already_closed.'
+    cues:
+    - OTR lock ho gaya hai
+    - profile locked bata raha hai, kuch edit nahi ho raha
+    - unlock ho sakta hai kya
+    - lock hone ke baad certificate upload nahi ho raha
+    - review and lock kar diya tha, ab kya karun
+    - lock khulwana hai
+    - locked profile me option hi nahi aa raha
+  - id: complete_otr_profile_step_query
+    name: Complete OTR Profile Step Query
+    description: 'Portal tells the caller to complete the OTR profile, or they ask which steps/sections are still
+      pending and how to finish it — profile completion erroring on a section, changes made but profile still shown
+      incomplete. NOT: the exam form after OTR -> use how_to_apply_for_exam_after_otr; a section will not save ->
+      use application_form_section_not_saving; part-filled form to be resumed -> use resume_incomplete_application.'
+    cues:
+    - complete your OTR profile aa raha hai
+    - profile complete kaise karun
+    - kaun kaun sa step baaki hai
+    - profile completion pe error aa raha hai
+    - sab bhar diya phir bhi incomplete dikha raha hai
+    - OTR profile 100 percent nahi ho raha
+    - aage ka step kya hai OTR me
+  - id: otr_submission_confirmation_not_received
+    name: OTR Submission Confirmation Not Received
+    description: 'Caller has submitted/locked the OTR but got no acknowledgement of that submission — no mail or
+      SMS, no submitted status shown — and wants confirmation it went through. NOT: the registration-stage confirmation
+      -> use registration_confirmation_not_received; the OTR ID itself never came -> use otr_id_not_received_after_registration;
+      cannot download the submitted form -> use print_download_otr_form.'
+    cues:
+    - OTR submit ka confirmation nahi aaya
+    - lock ho gaya par mail nahi mila
+    - acknowledgement nahi mila submission ka
+    - submitted status dikha hi nahi raha
+    - pata nahi final submit hua ya nahi
+    - koi message nahi aaya submit ke baad
+    - confirm kar dijiye OTR jama ho gaya hai
+  - id: preview_section_data_missing_or_wrong
+    name: Preview Section Data Missing or Wrong
+    description: 'The preview/printout does open but its CONTENT is wrong or incomplete — a whole section or column
+      (E, F, TET/BTC block, qualification rows) is missing, the photo does not appear, or an OTR correction is not
+      reflected in the form/PDF. NOT: the preview or PDF will not open or download at all -> use print_download_otr_form;
+      caller wants to change a field they filled wrongly -> use how_to_edit_saved_otr_data or the field''s correction
+      sub-category.'
+    cues:
+    - printout me F column gayab hai
+    - final form me section missing hai
+    - PDF me qualification ki detail nahi aa rahi
+    - photo print me nahi dikh raha
+    - OTR me theek kiya par form me purana hi dikh raha hai
+    - form khul raha hai par beech ka hissa nahi hai
+    - preview me aadhi detail hi aa rahi hai
+  - id: how_to_edit_saved_otr_data
+    name: How to Edit Saved OTR Data
+    description: 'Caller has already saved/submitted the OTR or the form and asks HOW to change a field now — which
+      route, whether the correction window or a mail will do it, why an OTR edit is not reflecting in the locked
+      form. This is the intent sub-category for wanting an edit after submission, whatever the field''s topic (marks,
+      roll number, discipline, subject, certificate). NOT: submission itself is failing with an error -> use registration_form_submission_error;
+      only asking which fields are editable -> use what_fields_can_be_corrected; asking the window''s date -> use
+      amendment_window_opening_date_query; the specific field has its own correction id (name/DOB, category, address,
+      photo/signature, subject) -> use that one.'
+    cues:
+    - submit ke baad kaise edit karun
+    - save ho gaya hai, ab change ho sakta hai
+    - marks galat bhar gaye, theek kaise karun
+    - roll number galat dal diya, lock ho gaya
+    - edit karne ka process bata dijiye
+    - OTR me update kiya par form me nahi aa raha
+    - correction window me hoga ya mail karna padega
+  - id: otr_final_submit_button_issue
+    name: OTR Final Submit Button Issue
+    description: 'The final submit / review-and-lock / proceed-to-preview action does not work — button unresponsive,
+      system hangs, stays on review-and-lock in progress, times out at the last step. NOT: an earlier section will
+      not save -> use application_form_section_not_saving; the registration form throws a submission error -> use
+      registration_form_submission_error; session logs out mid-way -> use session_timeout_issue.'
+    cues:
+    - final submit ka button kaam nahi kar raha
+    - review and lock in progress par atka hai
+    - proceed to preview click karne par kuch nahi hota
+    - lock hi nahi ho raha form
+    - final submission pe hang ho jata hai
+    - submit dabaya, ghumta rehta hai
+    - last step se aage nahi badh raha
+  - id: print_download_otr_form
+    name: Print / Download OTR Form
+    description: 'Caller asks how to take the printout of the OTR/application or cannot get the file at all — the
+      PDF does not open, download does not start, the confirmation page or receipt will not generate. NOT: the file
+      opens but sections/columns/photo are missing inside it -> use preview_section_data_missing_or_wrong; the fee
+      receipt or challan specifically -> use fee_receipt_challan_download_issue; the admit card -> use admit_card_not_downloading_available.'
+    cues:
+    - form download nahi ho raha
+    - printout nikal hi nahi raha
+    - PDF khul nahi raha
+    - print kaise nikalein form ka
+    - payment ke baad receipt aur form nahi khul raha
+    - download click karne par kuch nahi hota
+    - confirmation page download nahi ho raha
+  - id: both_papers_application_query
+    name: Both Papers Application Query
+    description: 'Caller asks whether they can apply for both papers/levels (primary and upper primary) or two subjects,
+      and how — one form or two, one OTR or separate, will the exams clash. NOT: asking the fee for both papers
+      -> use both_papers_fee_query; asking eligibility for a paper -> use paper_i_eligibility_query or paper_ii_eligibility_query;
+      wrong level already submitted -> use wrong_exam_level_selected_primary_vs_junior.'
+    cues:
+    - dono paper bhar sakte hain kya
+    - primary aur junior dono apply karna hai
+    - do subject ke liye do form bharne honge
+    - ek hi OTR se dono ho jayega
+    - dono ka exam same din hoga kya
+    - upper primary bhi bharna hai, kaise
+    - do application ek saath chalega
+  - id: practising_government_teacher_details_entry
+    name: Practising Government Teacher Details Entry
+    description: 'An in-service government teacher is filling the service block and asks what to enter — HRMS/Manav
+      Sampada code, organisation/department, date of joining (including after promotion) — or the fields are missing.
+      NOT: asking whether an in-service teacher without graduation is eligible -> use in_service_teacher_without_graduation_eligibility.'
+    cues:
+    - sarkari teacher hoon, service detail kahan bharein
+    - HRMS number maang raha hai
+    - Manav Sampada code kya dalein
+    - date of joining kaun si dalein, promotion ke baad ki
+    - organisation me kya likhein
+    - government job ka column nahi aa raha
+    - karyarat adhyapak ka option kahan hai
+  - id: exam_centre_preference_entry
+    name: Exam Centre Preference Entry
+    description: 'Caller is filling the centre/district or school-type preference in the form and asks how to give
+      the preference order, or the centre selection option is not available. NOT: asking where the centre actually
+      is or its date/time -> use exam_centre_date_time_query; wanting the allotted centre changed -> use exam_centre_change_request.'
+    cues:
+    - exam centre ka preference kaise bharein
+    - centre choose karne ka option nahi aa raha
+    - preference order kis hisaab se dalein
+    - kitne district chun sakte hain
+    - pehli choice kaun si dalein
+    - school type ka preference bharna hai
+    - centre select karne ka column nahi hai
+  - id: application_form_section_not_saving
+    name: Application Form Section Not Saving
+    description: 'A section of the form will not save or let the caller proceed — Save & Continue does nothing,
+      entry is lost, a character limit or validation blocks it, a whole section (education, subject) does not appear
+      so the step cannot be completed. NOT: the final lock/submit step -> use otr_final_submit_button_issue; the
+      registration form''s submit error -> use registration_form_submission_error; resuming a part-filled form later
+      -> use resume_incomplete_application.'
+    cues:
+    - save and continue kaam nahi kar raha
+    - section save nahi ho raha
+    - bhar ke save karta hoon, data gayab ho jata hai
+    - aage nahi badh raha form
+    - education wala section dikh nahi raha
+    - subject select karke save nahi hota
+    - character limit se aage type nahi ho raha
+  - id: how_to_apply_for_exam_after_otr
+    name: How to Apply for Exam After OTR
+    description: 'OTR is complete and the caller asks the next step — how and where to fill the actual exam application,
+      pay and submit it. NOT: confused about whether OTR itself counts as the application or whether one OTR covers
+      many exams -> use otr_vs_exam_application_confusion; the exam''s link is not on the portal -> use apply_otr_link_not_visible_on_portal.'
+    cues:
+    - OTR ho gaya, ab aage kya karna hai
+    - form kaise bharein OTR ke baad
+    - apply karne ka process bata dijiye
+    - OTR complete hai par form nahi bhar paa raha
+    - exam ke liye alag se apply karna hota hai kaise
+    - next step kya hai
+    - OTR ke baad fees kab bharni hai
+  - id: login_method_query
+    name: Login Method Query
+    description: 'Caller asks how to log in or their login is refused — which credentials to use (OTR ID, roll number,
+      DOB, password), invalid details error, roll-number/DOB mismatch on a result or certificate page. NOT: the
+      OTR ID is forgotten -> use otr_id_forgotten_recovery; password forgotten -> use password_forgotten_reset;
+      the OTP route errors -> use otp_login_not_working; account blocked -> use account_locked_blocked.'
+    cues:
+    - login kaise karein
+    - kaun si ID se login hoga
+    - invalid details bata raha hai login pe
+    - roll number aur DOB match nahi kar raha
+    - login ho hi nahi raha
+    - OTR ID se login karna hai ya roll number se
+    - result ke liye login kaise karun
+  - id: otr_id_forgotten_recovery
+    name: OTR ID Forgotten / Recovery
+    description: 'Caller once had the OTR ID, registration number or old exam roll number and has forgotten or lost
+      it, and asks how to retrieve it. NOT: the ID was never issued/received after registering -> use otr_id_not_received_after_registration;
+      the password is what is lost -> use password_forgotten_reset; the whole account is inaccessible -> use account_recovery_query.'
+    cues:
+    - OTR ID bhool gaya hoon
+    - roll number kho gaya hai
+    - purana UPTET ka roll number chahiye
+    - registration number kaise pata karun
+    - admit card gum ho gaya, roll number nahi pata
+    - ID recover karne ka tarika
+    - OTR number kahin likha nahi hai
+  - id: otp_login_not_working
+    name: OTP Login Not Working
+    description: 'Caller is using the OTP route to log in; the OTP is received but the login fails — server unavailable,
+      something went wrong, submit not accepted after entering the OTP. NOT: no OTP arrives at all -> use mobile_otp_not_received
+      or email_otp_not_received; OTP lapses before use -> use otp_expired_before_use; credentials-based login refused
+      -> use login_method_query.'
+    cues:
+    - OTP se login nahi ho raha
+    - OTP dal diya par submit accept nahi kar raha
+    - server unavailable aa raha hai OTP login pe
+    - something went wrong dikha raha hai
+    - OTP sahi hai phir bhi login fail
+    - OTP wala login option kaam nahi kar raha
+    - OTP verify hone ke baad bhi andar nahi ja raha
+  - id: account_locked_blocked
+    name: Account Locked / Blocked
+    description: 'Caller''s login account is locked, blocked or disabled and they ask how to get it opened. NOT:
+      the OTR profile is locked because the form was submitted -> use otr_profile_locked_after_submission; locked
+      specifically by repeated wrong passwords -> use too_many_failed_login_attempts.'
+    cues:
+    - account block ho gaya hai
+    - login locked bata raha hai
+    - account suspend dikha raha hai
+    - kaise unblock hoga account
+    - andar jaane hi nahi de raha, blocked likha hai
+    - account band kar diya gaya hai
+    - kitni der baad khulega account
+  - id: too_many_failed_login_attempts
+    name: Too Many Failed Login Attempts
+    description: 'Caller tried the password too many times and is now temporarily barred — attempts exhausted, told
+      to try after some time — and asks how long or how to reset. NOT: the account is blocked for another reason
+      -> use account_locked_blocked; password simply forgotten -> use password_forgotten_reset; wrong OTP repeatedly
+      -> use wrong_otp_entered_multiple_times.'
+    cues:
+    - bahut baar galat password dal diya
+    - attempt khatam ho gaye login ke
+    - try again later aa raha hai
+    - kitni der baad login kar sakta hoon
+    - maximum attempt exceed bata raha hai
+    - galat password se lock ho gaya
+    - ab kaise login karun, attempts over hai
+  - id: registered_mobile_not_accessible
+    name: Registered Mobile Not Accessible
+    description: 'The mobile number registered on the OTR is no longer usable — SIM lost, number closed, phone with
+      someone else — so the caller cannot receive OTPs or log in, and asks how to proceed. NOT: the OTP goes to
+      a wrong/third-party number -> use otp_coming_on_wrong_number; only wants the number updated in a working account
+      -> use mobile_email_change_in_profile; no OTP arrives on a number they still hold -> use mobile_otp_not_received.'
+    cues:
+    - registered number band ho gaya hai
+    - SIM kho gaya hai, OTP kaise aayega
+    - wo number ab mere paas nahi hai
+    - purana number nahi chal raha, login kaise karun
+    - number kisi aur ke paas chala gaya
+    - bina us number ke login ho sakta hai
+    - registered mobile access nahi hai
+  - id: login_with_new_device_issue
+    name: Login with New Device Issue
+    description: 'Caller cannot log in from a different phone, laptop or browser although the same credentials work
+      elsewhere, or asks whether the account is tied to one device. NOT: the site fails to open on every device
+      -> use portal_not_loading_technical_error; credentials refused generally -> use login_method_query.'
+    cues:
+    - naye mobile se login nahi ho raha
+    - laptop se nahi khul raha, phone se khulta hai
+    - dusre device me login hota hai kya
+    - cyber cafe se login nahi ho raha
+    - browser badla to login fail
+    - ek hi device se chalega kya
+    - device change karne par error aa raha hai
+  - id: session_timeout_issue
+    name: Session Timeout Issue
+    description: 'Caller is logged out in the middle of filling or uploading because the session expires, and the
+      work has to be started again. NOT: the page/site does not open at all -> use portal_not_loading_technical_error;
+      resuming a part-filled form afterwards -> use resume_incomplete_application; the final submit hangs -> use
+      otr_final_submit_button_issue.'
+    cues:
+    - session expire ho jata hai
+    - beech me logout ho jata hai
+    - upload karte waqt session timeout aa gaya
+    - thodi der me hi apne aap nikal deta hai
+    - session timed out likha aa raha hai
+    - dobara login karna padta hai har baar
+    - time out ho jane se data chala gaya
+  - id: amendment_window_opening_date_query
+    name: Amendment Window Opening Date Query
+    description: 'Caller only wants to know WHEN the correction/amendment window opens or closes — dates, whether
+      it has started, till when it stays open (often together with a quick check of whether a field will be editable).
+      NOT: asking which fields are editable -> use what_fields_can_be_corrected; asking the steps to make the correction
+      -> use amendment_process_step_by_step_query; window already over -> use correction_window_already_closed;
+      general exam schedule -> use important_dates_and_schedule_query.'
+    cues:
+    - correction window kab khulegi
+    - sansodhan ki date kya hai
+    - correction kab se shuru hoga
+    - window abhi khuli hai ya nahi
+    - kab tak correction kar sakte hain
+    - edit window ki tarikh bata dijiye
+    - notice kab aayega correction ka
+  - id: what_fields_can_be_corrected
+    name: What Fields Can Be Corrected
+    description: 'Caller asks WHICH fields can be edited in the correction window — is this particular entry (marks,
+      year, certificate number, balak/balika, category, special reservation) among the editable ones, or are basic
+      details permanently frozen. NOT: asking the window''s dates -> use amendment_window_opening_date_query; asking
+      the step-by-step process -> use amendment_process_step_by_step_query; asking how to edit a saved field generally
+      -> use how_to_edit_saved_otr_data; the field has its own correction id (name/DOB, category, address, subject,
+      photo/signature) -> use that one.'
+    cues:
+    - kaun kaun se field correct ho sakte hain
+    - ye column edit hoga ya nahi
+    - marks bhi change ho sakte hain correction me
+    - basic details bilkul nahi badlengi
+    - certificate number aur date editable hai
+    - balak balika theek ho payega correction window me
+    - kitni cheezein sudhar sakte hain
+  - id: amendment_process_step_by_step_query
+    name: Amendment Process Step-by-Step Query
+    description: 'Caller accepts that a correction is possible and asks HOW to do it step by step — where to log
+      in, which menu, whether unlocking, a fresh payment or a mail is needed to add or update an entry. NOT: only
+      the dates -> use amendment_window_opening_date_query; only which fields -> use what_fields_can_be_corrected;
+      asking whether a saved field can be edited at all -> use how_to_edit_saved_otr_data; extra fee after amendment
+      -> use re_payment_required_after_amendment.'
+    cues:
+    - correction kaise karna hai, step bata dijiye
+    - kahan se edit karenge correction window me
+    - login karke kahan jaana hoga
+    - PH ka option add karne ka process kya hai
+    - correction ke liye dobara fees lagegi kya
+    - unlock karwane ke liye kya karna hoga
+    - mail karna hoga ya portal se hi ho jayega
+  - id: correction_window_already_closed
+    name: Correction Window Already Closed
+    description: 'Caller missed the correction window or the form is locked with the window over, and asks what
+      can still be done about the wrong entry or wrong document. NOT: asking when the window opens -> use amendment_window_opening_date_query;
+      the profile is simply locked and the window status is not the point -> use otr_profile_locked_after_submission;
+      wants to scrap the form instead -> use form_cancellation_withdrawal_request.'
+    cues:
+    - correction window nikal gayi
+    - ab last date khatam ho gayi hai, kya karun
+    - window band ho gayi, galti reh gayi
+    - der ho gayi correction me
+    - ab koi rasta hai kya
+    - form lock hai aur correction bhi khatam
+    - correction ka time miss ho gaya
+  - id: photo_signature_amendment
+    name: Photo / Signature Amendment
+    description: 'Form is already submitted/locked and the photo or signature is wrong — swapped slots, someone
+      else''s or a wrong image uploaded, partially uploaded, replaced but the download still shows the old one —
+      and the caller asks how to change it. NOT: the upload is failing at the first attempt (size, dimensions, button)
+      -> use photograph_upload_issue, signature_upload_issue, photo_dimensions_not_accepted or upload_button_not_working;
+      the photo is missing from the printout -> use preview_section_data_missing_or_wrong; wrong photo on the admit
+      card -> use photo_mismatch_on_admit_card.'
+    cues:
+    - photo ki jagah signature lag gaya hai
+    - signature ki jagah photo upload ho gaya
+    - form lock hai, photo badalna hai
+    - galat signature chala gaya, correction ho jayega
+    - signature change kiya par download me purana hi aa raha hai
+    - photo dusre ka lag gaya hai
+    - submit ke baad photo change ho sakti hai
+  - id: name_dob_correction_after_submission
+    name: Name / DOB Correction After Submission
+    description: 'Caller has already submitted/locked the OTR or form and the name (own, father''s, mother''s, husband''s,
+      surname after marriage) or the date of birth is wrong, and asks how it can be corrected — often told basic
+      details cannot change and a fresh OTR on another ID is the only route. NOT: the error is being made while
+      entering, before locking -> use date_of_birth_entry_issue or father_husband_name_entry_issue; the values differ
+      between Aadhaar and other documents for verification -> use name_dob_mismatch_across_documents; surname mismatch
+      blocking eKYC -> use post_marriage_surname_mismatch_in_ekyc.'
+    cues:
+    - submit ke baad naam galat nikla
+    - DOB galat save ho gayi hai, sudhar jayegi
+    - surname galat hai locked OTR me
+    - mummy ka naam spelling galat lock ho gaya
+    - shaadi ke baad surname badla hai, form me purana hai
+    - basic detail change nahi ho rahi, kya karun
+    - naya OTR PAN se banana padega kya naam ke liye
+  - id: category_correction_after_submission
+    name: Category Correction After Submission
+    description: 'Caller has submitted/locked (usually paid) and asks whether and how the wrong category or reservation
+      entry will be corrected through the correction window — category column vanished after submit, OBC instead
+      of SC, General instead of EWS, freedom-fighter dependent showing None, OTR edit not reflecting. NOT: reporting
+      the wrong category and asking to change it immediately after submission -> use category_change_after_form_submission;
+      asking which category they belong to -> use the eligibility category ids (ews_category, obc_category_and_creamy_layer,
+      sc_st_category); certificate format/date questions -> use ews_certificate_format_validity_query or category_certificate_date_validity_query.'
+    cues:
+    - category correction window me theek hogi kya
+    - submitted form me OBC ki jagah SC karna hai
+    - General ho gaya EWS ki jagah
+    - category ka column submit ke baad gayab ho gaya
+    - fees bhar di, ab category sudharni hai
+    - OTR me category badli par form me nahi aayi
+    - freedom fighter ka option None dikha raha hai
+  - id: subject_paper_change_after_submission
+    name: Subject / Paper Change After Submission
+    description: 'Caller has submitted the application with the wrong subject, paper or college/post preference
+      and wants it changed. NOT: the level primary vs junior is what is wrong -> use wrong_exam_level_selected_primary_vs_junior;
+      asking which subject combination they are eligible for -> use subject_group_combination_selection; the subject
+      dropdown will not save while filling -> use application_form_section_not_saving; wants to abandon the form
+      entirely -> use form_cancellation_withdrawal_request.'
+    cues:
+    - galat subject select ho gaya hai form me
+    - subject change karna hai submit ke baad
+    - Education ki jagah English chala gaya
+    - paper galat chun liya
+    - fees bhar di, subject badal sakte hain
+    - college preference galat lag gayi
+    - registered subject accept nahi kar raha
+  - id: address_correction_after_submission
+    name: Address Correction After Submission
+    description: 'Caller has submitted/locked and the address or domicile entry is wrong — wrong city or district,
+      domicile marked incorrectly — and asks how to correct it. NOT: still filling the address and unsure what to
+      enter -> use permanent_address_entry_issue or correspondence_address_entry_issue; asking whether they qualify
+      for UP reservation -> use up_residency_and_reservation_eligibility.'
+    cues:
+    - address galat bhar gaya, form lock ho gaya
+    - Kanpur ki jagah Fatehpur dalna tha
+    - domicile galat ho gaya hai submit ke baad
+    - pata sudharna hai correction window me
+    - district galat chala gaya form me
+    - address change ho sakta hai ab
+    - UP ka domicile No ho gaya galti se
+  - id: amendment_confirmation_not_received
+    name: Amendment Confirmation Not Received
+    description: 'Caller made a correction in the amendment window but got no acknowledgement and cannot tell whether
+      it was saved — no mail/SMS, old value still showing. NOT: the submission confirmation of the OTR -> use otr_submission_confirmation_not_received;
+      the corrected value missing from the printout -> use preview_section_data_missing_or_wrong.'
+    cues:
+    - correction kar diya par confirmation nahi aaya
+    - edit ka mail nahi mila
+    - pata nahi correction save hua ya nahi
+    - purana hi data dikha raha hai correction ke baad
+    - amendment ka acknowledgement chahiye
+    - correction submit hua hai confirm kar dijiye
+    - koi message nahi aaya sudhaar ke baad
+  - id: wrong_exam_level_selected_primary_vs_junior
+    name: Wrong Exam Level Selected (Primary vs Junior)
+    description: 'Caller applied for the wrong level — primary instead of upper primary/junior or the reverse —
+      often locked and paid, and asks how to switch. NOT: asking which level they are eligible for -> use paper_i_eligibility_query
+      or paper_ii_eligibility_query; asking to apply for both levels -> use both_papers_application_query; only
+      the subject is wrong -> use subject_paper_change_after_submission.'
+    cues:
+    - primary ki jagah upper primary bharna tha
+    - junior level galat select ho gaya
+    - level galat chun liya, lock ho gaya
+    - fees bhar di par exam level galat hai
+    - paper 1 ki jagah paper 2 bhar diya
+    - level change ho sakta hai kya
+    - galat level ka form bhar gaya hai
+  - id: form_cancellation_withdrawal_request
+    name: Form Cancellation / Withdrawal Request
+    description: 'Caller wants the submitted OTR or application cancelled, withdrawn or deleted so they can start
+      afresh, or asks whether filing a second form for the same post is allowed and what happens to the earlier
+      form and fee; also callers who sent a cancellation request and now want it withdrawn. NOT: only wants a field
+      corrected -> use how_to_edit_saved_otr_data or the field''s correction id; worried about a duplicate registration
+      -> use duplicate_registration_concern; asking for a refund -> use duplicate_payment_refund_query.'
+    cues:
+    - form cancel karwana hai
+    - application withdraw kar sakte hain
+    - OTR delete karwana hai, naya banana hai
+    - dobara form bhar sakte hain same subject ka
+    - purana form cancel hoga to fees ka kya
+    - cancellation ka mail bhej diya tha, wapas lena hai
+    - form hata dijiye, naye se bharunga
+- id: eligibility_and_qualifications
+  name: Eligibility & Qualifications
+  description: Age, educational qualification, degree, subject eligibility, experience, reservation eligibility,
+    percentage/marks criteria.
+  sub_issues:
+  - id: general_category_query
+    name: General Category Query
+    description: 'Caller asks a general, open-ended eligibility question about who can apply - whether they qualify
+      at all for the exam or post, whether a reserved-category candidate may apply on a general/UR seat, or a broad
+      "kya main eligible hoon" clarification that is not tied to one specific caste, disability, age or degree rule.
+      NOT: a specific reserved category or certificate question -> use `obc_category_and_creamy_layer`, `sc_st_category`,
+      `ews_category` or `divyang_pwd_ph_category`; NOT: eligibility decided by degree or subject -> use `paper_i_eligibility_query`,
+      `paper_ii_eligibility_query` or `graduation_subject_stream_entry`.'
+    cues:
+    - main eligible hoon ya nahi
+    - eligibility criteria bata dijiye
+    - reserved category se general seat par apply kar sakte hain
+    - kaun apply kar sakta hai is exam mein
+    - mujhe eligibility clear karni hai
+    - widow ladies ke liye kya niyam hai
+    - general category me form bhar sakta hoon
+    - पात्रता के बारे में जानकारी चाहिए
+  - id: obc_category_and_creamy_layer
+    name: OBC Category & Creamy Layer
+    description: 'Caller is an OBC candidate asking which category option to choose in the form - OBC creamy layer
+      vs non-creamy layer, whether an out-of-UP OBC candidate gets OBC benefit, or says they picked the wrong creamy-layer
+      option. NOT: questions only about the non-creamy-layer certificate itself (who issues it, whose income, is
+      it acceptable) -> use `obc_non_creamy_layer_certificate_query`; NOT: the form is already submitted/locked
+      and the category must be changed -> use `category_change_after_form_submission` or `category_correction_after_submission`;
+      NOT: certificate issue date / validity period -> use `category_certificate_date_validity_query`.'
+    cues:
+    - OBC creamy layer galat select ho gaya
+    - non creamy layer wala option kaun sa hai
+    - main OBC hoon dusre state se, benefit milega
+    - OBC me apply karun ya general me
+    - creamy layer ka matlab kya hai
+    - patni ka OBC certificate lagega ya pita ka
+    - OBC category select karte time confusion
+    - OBC ka option form me nahi dikh raha
+  - id: obc_non_creamy_layer_certificate_query
+    name: OBC Non-Creamy Layer Certificate Query
+    description: 'Caller asks specifically about the OBC non-creamy-layer certificate as a document - is my certificate
+      acceptable, whose certificate applies (father''s vs husband''s for a married woman), name/address on the certificate,
+      certificate issued outside UP. NOT: which category option to tick in the form or creamy-layer selection mistakes
+      -> use `obc_category_and_creamy_layer`; NOT: the exact issue-date window or expiry rule of a category certificate
+      -> use `category_certificate_date_validity_query`; NOT: uploading the certificate file -> use `category_caste_certificate_upload`.'
+    cues:
+    - non creamy layer certificate chalega ya nahi
+    - OBC certificate kitne purana valid hai
+    - shaadi ke baad pita ka caste certificate lagega
+    - certificate me address dusra hai, problem hogi
+    - OBC certificate UP ke bahar ka banaya hai
+    - naya certificate banwana padega kya
+    - certificate me naam thoda alag hai
+    - जाति प्रमाण पत्र मान्य होगा या नहीं
+  - id: sc_st_category
+    name: SC / ST Category
+    description: 'Caller is an SC or ST candidate asking about claiming SC/ST category in the OTR / application
+      - whether an SC/ST certificate issued in another state is valid for UP reservation, which category to select,
+      or that their category is showing wrongly. NOT: which SC/ST sub-caste or sub-category to pick from the list
+      -> use `sc_st_sub_category_clarification`; NOT: the certificate''s date or format validity -> use `category_certificate_date_validity_query`;
+      NOT: form already submitted and category must be changed -> use `category_correction_after_submission`.'
+    cues:
+    - main SC hoon, kya category select karun
+    - dusre state ka SC certificate valid hai
+    - ST category ka benefit milega UP me
+    - certificate me category galat likhi hai
+    - SC ka option select nahi ho raha
+    - shaadi ke baad SC certificate kaam karega
+    - category SC dikha raha hai lekin
+    - अनुसूचित जाति का प्रमाण पत्र मान्य है क्या
+  - id: sc_st_sub_category_clarification
+    name: SC / ST Sub-Category Clarification
+    description: 'Caller needs help choosing the correct SC/ST sub-caste or sub-category entry from the portal list
+      - their caste name is not in the dropdown, or two similar caste names appear and they do not know which matches
+      their certificate. NOT: general SC/ST reservation or certificate-state questions -> use `sc_st_category`.'
+    cues:
+    - meri jaati list me nahi mil rahi
+    - sub caste kaun sa select karun
+    - certificate me jaati ka naam alag hai
+    - do naam mil rahe hain dropdown me
+    - SC ke andar sub category kya chunni hai
+    - jaati ka spelling match nahi ho raha
+    - उप जाति का विकल्प नहीं दिख रहा
+  - id: ews_category
+    name: EWS Category
+    description: 'Caller asks whether they can claim EWS and how to select it - am I EWS eligible, should I apply
+      as EWS or general, whose income/certificate counts (e.g. a married woman''s father vs husband), EWS option
+      not selectable. NOT: the EWS certificate''s format, issuing authority, financial year or expiry -> use `ews_certificate_format_validity_query`;
+      NOT: the form is already submitted and EWS has to be added/removed -> use `category_correction_after_submission`.'
+    cues:
+    - EWS me apply kar sakta hoon ya nahi
+    - EWS ka benefit milega kya
+    - EWS select karna chahiye ya general
+    - shaadi ke baad EWS certificate kiske naam se
+    - EWS ka option nahi aa raha form me
+    - EWS aur general me kya farak hai
+    - main EWS eligible hoon income ke hisaab se
+    - ईडब्ल्यूएस में आवेदन कर सकते हैं
+  - id: divyang_pwd_ph_category
+    name: Divyang / PwD / PH Category
+    description: 'Caller is a Divyang / PwD / PH candidate asking how to claim the PH category and its reservation
+      or benefits, or reports that the Divyang / PH category option is missing or was selected wrongly in the OTR.
+      NOT: choosing the specific disability type or entering the disability percentage -> use `disability_type_and_percentage_query`;
+      NOT: the medical / disability certificate document -> use `medical_certificate_for_pwd_requirement` or `disability_certificate_format_query`;
+      NOT: PH status must be changed after the form was locked -> use `category_correction_after_submission`; NOT:
+      scribe or extra time -> use `scribe_eligibility_criteria_query` or `compensatory_time_30_minutes_query`.'
+    cues:
+    - divyang category ka option nahi dikh raha
+    - PH category kaise select karein
+    - form lock ho gaya, PH add karna hai
+    - divyang ko kitna reservation milta hai
+    - PwD ka column hi nahi aa raha
+    - galat PwD category select ho gayi
+    - handicapped candidate ke liye kya process hai
+    - दिव्यांग श्रेणी का विकल्प नहीं आ रहा
+  - id: disability_type_and_percentage_query
+    name: Disability Type & Percentage Query
+    description: 'Caller asks which disability type / sub-category code to pick (OL, OA, OAL, locomotor, cerebral
+      palsy, thalassemia, low vision, etc.) or what disability percentage is required or how to enter it - typically
+      their exact disability type is not in the dropdown. NOT: general PH category claim or the PH option itself
+      missing -> use `divyang_pwd_ph_category`; NOT: the disability certificate''s format or issuing authority ->
+      use `disability_certificate_format_query`.'
+    cues:
+    - OL ka option nahi mil raha list me
+    - OAL sub category missing hai
+    - kitna percent disability chahiye
+    - thalassemia ka option nahi hai form me
+    - locomotor disability kaha select karun
+    - cerebral palsy category nahi dikh rahi
+    - meri disability type list me nahi hai
+    - disability percentage kaise bharein
+  - id: dependent_freedom_fighter_category
+    name: Dependent Freedom Fighter Category
+    description: 'Caller claims the Dependent Freedom Fighter (swatantrata sangram senani aashrit) reservation and
+      asks whether they are eligible, how to select it in the form, or which relationship/document is needed. NOT:
+      the certificate upload itself -> use `category_caste_certificate_upload`.'
+    cues:
+    - swatantrata senani aashrit ka option
+    - freedom fighter dependent me apply karna hai
+    - senani aashrit ko reservation milta hai kya
+    - pota poti ko benefit milega
+    - DFF ka column kaha hai form me
+    - kaun sa certificate lagega senani aashrit ka
+    - स्वतंत्रता सेनानी आश्रित कोटा
+  - id: ex_army_ex_serviceman_category
+    name: Ex-Army / Ex-Serviceman Category
+    description: 'Caller is an ex-serviceman (or dependent) asking about the ex-army quota - whether the reservation
+      applies, that there is no ex-serviceman column in the form, or which discharge/service document proves it.
+      NOT: how many years of age relaxation are allowed or the age-relaxation option itself -> use `age_relaxation_query`.'
+    cues:
+    - ex serviceman ka column nahi hai form me
+    - army se retire hua hoon, reservation milega
+    - bhutpurva sainik ko chhoot kitni hai
+    - discharge book lagani padegi kya
+    - ex army ka option kaha select karun
+    - sena se aane walon ke liye kya niyam
+    - भूतपूर्व सैनिक आरक्षण
+  - id: age_relaxation_query
+    name: Age Relaxation Query
+    description: 'Caller asks how much upper-age relaxation their group gets (reserved category, PH, ex-serviceman,
+      Shiksha Mitra, state employee) or which age-relaxation option to tick / what document to attach; also includes
+      saying they left it blank or chose it wrongly. NOT: the plain minimum/maximum age for the exam -> use `age_limit_eligibility_query`;
+      NOT: a wrong date of birth that needs fixing -> use `date_of_birth_entry_issue` or `name_dob_correction_after_submission`.'
+    cues:
+    - age relaxation kitni milegi
+    - age relaxation ka option galat select ho gaya
+    - chhoot ke liye kaun sa document lagega
+    - shiksha mitra ko umar me chhoot hai kya
+    - ex serviceman age relaxation certificate
+    - relaxation ka option select nahi kiya tha
+    - OBC ko kitne saal ki chhoot hai
+    - आयु में छूट का विकल्प
+  - id: up_residency_and_reservation_eligibility
+    name: UP Residency & Reservation Eligibility
+    description: 'Caller from outside UP (or married outside UP) asks whether they can apply and whether UP reservation
+      applies to them - domicile requirement, non-UP candidates being treated as general, whose domicile/caste certificate
+      counts after marriage, or domicile status showing wrongly in the OTR. NOT: purely the caste certificate''s
+      acceptability -> use `obc_non_creamy_layer_certificate_query` or `sc_st_category`; NOT: the domicile certificate
+      file upload -> use `domicile_residency_certificate_upload`.'
+    cues:
+    - main dusre state se hoon, apply kar sakta hoon
+    - UP ka mool niwas zaroori hai kya
+    - shaadi UP me hui hai, domicile milega
+    - bahar ke candidate ko reservation milega ya general
+    - domicile status galat feed ho gaya OTR me
+    - pita ka certificate dusre state ka hai
+    - Delhi me rehti hoon, UP ka OBC lagega
+    - अन्य राज्य के अभ्यर्थी की पात्रता
+  - id: education_details_entry_in_otr
+    name: Education Details Entry in OTR
+    description: 'Caller needs help filling the education / qualification section of the OTR in general - which
+      row or qualification to add (NET, SLET, M.Ed, PhD, PG), which number to type as marksheet / certificate /
+      roll number, university name spelling, or a qualification option missing from that section. NOT: a specific
+      degree''s own sub-category -> use `b_ed_d_el_ed_qualification_entry`, `graduation_subject_stream_entry`, `training_qualification_entry`,
+      `marks_percentage_entry_issue` or `year_of_passing_entry_issue`; NOT: a wrongly added row that must be deleted
+      -> use `wrong_education_row_added`; NOT: the education section not saving or the form already locked -> use
+      `application_form_section_not_saving` or `how_to_edit_saved_otr_data`.'
+    cues:
+    - education detail kaise bharein OTR me
+    - marksheet number me kya daalna hai
+    - roll number mandatory aa raha hai
+    - NET ka option nahi mil raha
+    - M.Ed ka row kaise add karun
+    - university ka naam galat type ho gaya
+    - certificate number marksheet pe nahi hai
+    - 10th ki detail bharne me dikkat
+  - id: wrong_education_row_added
+    name: Wrong Education Row Added
+    description: 'Caller has added a wrong or duplicate education / qualification row in the OTR and wants to delete
+      or replace it. NOT: they only need help adding the right row -> use `education_details_entry_in_otr`; NOT:
+      the form is already finally submitted / locked -> use `how_to_edit_saved_otr_data` or `what_fields_can_be_corrected`.'
+    cues:
+    - galat qualification row add ho gayi
+    - ek entry delete karni hai education me
+    - do baar same degree add ho gayi
+    - wrong row hata kaise sakte hain
+    - galti se PG ki jagah graduation daal diya
+    - row edit karne ka option nahi mil raha
+    - गलत पंक्ति हट जाएगी क्या
+  - id: board_university_not_in_dropdown
+    name: Board / University Not in Dropdown
+    description: 'Caller cannot find their board or university name in the portal dropdown while entering a qualification
+      and asks what to select or how to add it. NOT: the qualification / degree itself is missing from the list
+      -> use `education_details_entry_in_otr` or `out_of_state_nios_qualification_not_listed`; NOT: the subject
+      or stream missing -> use `graduation_subject_stream_entry`.'
+    cues:
+    - board ka naam list me nahi hai
+    - university dropdown me nahi mil rahi
+    - TET board kaun sa select karein
+    - mera vishwavidyalaya option me nahi hai
+    - other option select karun kya
+    - board select kiye bina aage nahi badh raha
+    - बोर्ड का नाम सूची में नहीं है
+  - id: b_ed_d_el_ed_qualification_entry
+    name: B.Ed / D.El.Ed Qualification Entry
+    description: 'Caller is entering a teacher-training degree (B.Ed, D.El.Ed, B.El.Ed, B.L.Ed, BTC, M.Ed) in the
+      form and the right option is missing, or asks which of the look-alike options to choose and whether to give
+      the degree or the marksheet details. NOT: whether that degree makes them eligible for the post/paper -> use
+      `b_ed_appearing_candidate_eligibility`, `d_el_ed_btc_jbt_eligibility_query`, `paper_i_eligibility_query` or
+      `paper_ii_eligibility_query`; NOT: training/other qualification like NET, Shiksha Mitra training -> use `training_qualification_entry`;
+      NOT: uploading the certificate file -> use `academic_certificate_upload`.'
+    cues:
+    - B.Ed ka option nahi aa raha form me
+    - D.El.Ed option visible nahi hai
+    - B.El.Ed ka choice list me nahi hai
+    - degree daalein ya marksheet ki detail
+    - B.L.Ed kaha select karun
+    - M.Ed ki entry kaise karein
+    - BTC ko kaun se option me bharein
+    - बीएड का विकल्प नहीं मिल रहा
+  - id: graduation_subject_stream_entry
+    name: Graduation Subject / Stream Entry
+    description: 'Caller is entering graduation / post-graduation subject or stream and the portal does not list
+      their subject or specialization, or marks them not eligible for that subject (e.g. MA History, Applied Economics,
+      Botany specialization). NOT: choosing the subject group or combination for the exam/post -> use `subject_group_combination_selection`;
+      NOT: the board/university name missing -> use `board_university_not_in_dropdown`; NOT: subject must be changed
+      after submission -> use `subject_paper_change_after_submission`.'
+    cues:
+    - mera subject list me nahi hai
+    - PG ka vishay match nahi ho raha
+    - MA History daal rahe hain to not eligible aa raha
+    - specialization ka option nahi mil raha
+    - graduation stream kaun sa select karein
+    - subject select karne par error aa raha hai
+    - applied economics ka option nahi hai
+    - स्नातक का विषय नहीं दिख रहा
+  - id: training_qualification_entry
+    name: Training Qualification Entry
+    description: 'Caller is filling the training / professional qualification part - NET, SLET, D.El.Ed, Shiksha
+      Mitra training, special training - and asks which option to select, what to enter when the marksheet or certificate
+      has not arrived, or where the training details go. NOT: B.Ed / D.El.Ed degree option missing from the degree
+      list -> use `b_ed_d_el_ed_qualification_entry`; NOT: whether the training qualifies them for the post -> use
+      `d_el_ed_btc_jbt_eligibility_query` or `paper_i_eligibility_query`; NOT: pending result / appearing status
+      -> use `appearing_passed_status_query`.'
+    cues:
+    - training qualification me kya bharein
+    - NET ka certificate kaha lagega
+    - D.El.Ed ki marksheet nahi aayi hai
+    - SLET ka option missing hai
+    - shiksha mitra training kaise bharein
+    - training ki detail zaroori hai kya
+    - special TET ka joining date bharna hai
+    - प्रशिक्षण योग्यता कहाँ भरें
+  - id: marks_percentage_entry_issue
+    name: Marks / Percentage Entry Issue
+    description: 'Caller cannot enter marks correctly - total/obtained marks not accepted, no option for a grade-based
+      marksheet, percentage mismatch, or confusion over which number is the marksheet number vs roll number in the
+      marks row. NOT: converting CGPA/grade points to a percentage -> use `cgpa_to_percentage_conversion_query`;
+      NOT: year of passing -> use `year_of_passing_entry_issue`; NOT: marks must be corrected after submission ->
+      use `how_to_edit_saved_otr_data`.'
+    cues:
+    - marks enter nahi ho rahe hain
+    - percentage galat calculate ho raha hai
+    - grade system ka option nahi hai
+    - marksheet number aur roll number me confusion
+    - PG ke marks bharne me dikkat
+    - total marks kya daalein
+    - number daalte hi error aa raha hai
+    - अंक भरने में समस्या
+  - id: cgpa_to_percentage_conversion_query
+    name: CGPA to Percentage Conversion Query
+    description: 'Caller has a CGPA / grade-point marksheet and asks how to convert it to a percentage for the form,
+      or which multiplying factor / formula the portal accepts. NOT: marks simply not being accepted or the grade
+      option missing -> use `marks_percentage_entry_issue`.'
+    cues:
+    - CGPA ko percentage me kaise badlein
+    - grade point ko marks me convert karna hai
+    - kitne se multiply karein CGPA ko
+    - marksheet me sirf grade diya hai
+    - percentage nikalne ka formula bata dijiye
+    - SGPA se percentage kaise banegi
+    - सीजीपीए को प्रतिशत में कैसे बदलें
+  - id: year_of_passing_entry_issue
+    name: Year of Passing Entry Issue
+    description: 'Caller cannot enter the year / session of passing - the year is not in the list, the portal gives
+      an invalid-session error, they entered the wrong year, or they are unsure which year to write when the result
+      or final marksheet came later. NOT: the candidate has not passed yet and is appearing -> use `appearing_passed_status_query`
+      or `final_year_appearing_candidate_entry`; NOT: the year needs changing after the form was locked -> use `what_fields_can_be_corrected`
+      or `how_to_edit_saved_otr_data`.'
+    cues:
+    - passing year galat bhar gaya hai
+    - invalid session ka error aa raha hai
+    - 2026 ka year accept nahi kar raha
+    - kaun sa saal daalein result ka
+    - D.El.Ed ka passing year kya likhein
+    - year of passing ka option nahi mil raha
+    - correction window me year theek hoga kya
+    - उत्तीर्ण वर्ष में गलती हो गई
+  - id: appearing_passed_status_query
+    name: Appearing / Passed Status Query
+    description: 'Caller''s certificate, marksheet or scorecard has not yet arrived (or only a provisional / internet
+      copy exists) and asks whether to mark themselves passed or appearing and what to submit meanwhile. NOT: specifically
+      a final-year student entering final-year details -> use `final_year_appearing_candidate_entry`; NOT: the appearing
+      option itself missing from the dropdown -> use `appearing_option_missing_in_dropdown`; NOT: the portal is
+      showing the wrong qualification status -> use `qualification_status_passed_appearing`.'
+    cues:
+    - marksheet abhi tak nahi mili hai
+    - appearing select karein ya passed
+    - internet copy chalegi kya
+    - NET certificate nahi aaya hai abhi
+    - provisional marksheet se apply kar sakte hain
+    - result pending hai, kya bharein
+    - scorecard upload kar dein
+    - परिणाम अभी नहीं आया है
+  - id: final_year_appearing_candidate_entry
+    name: Final Year Appearing Candidate Entry
+    description: 'Caller is in the final year / final semester of a degree and asks how to fill that qualification
+      row - what marks, year or document to give when results are not yet uploaded. NOT: a general appearing-vs-passed
+      doubt or a missing certificate for a completed course -> use `appearing_passed_status_query`; NOT: the appearing
+      option not present in the dropdown -> use `appearing_option_missing_in_dropdown`.'
+    cues:
+    - final year me hoon, kaise bharein
+    - last semester ka result nahi aaya
+    - appearing candidate ki entry kaise hogi
+    - B.Ed final year wale apply kar sakte hain
+    - online marksheet lagani padegi kya
+    - marks ki jagah kya daalein final year me
+    - अंतिम वर्ष के अभ्यर्थी की प्रविष्टि
+  - id: multiple_degree_entry_issue
+    name: Multiple Degree Entry Issue
+    description: 'Caller has more than one degree of the same level (two graduations, double PG, degree and training
+      in the same year) and cannot add the second one, or asks which one to enter and whether both count for eligibility.
+      NOT: one wrongly added row that must be removed -> use `wrong_education_row_added`; NOT: choosing among subjects
+      for the post -> use `subject_group_combination_selection`.'
+    cues:
+    - do graduation hain, dono kaise add karein
+    - double PG ki entry nahi ho rahi
+    - second degree add karne ka option nahi
+    - graduation aur JBT same year ka hai
+    - dono subject se apply kar sakte hain
+    - kaun si degree daalein do me se
+    - multiple degree ki entry kaise karein
+  - id: appearing_option_missing_in_dropdown
+    name: Appearing Option Missing in Dropdown
+    description: 'Caller says the portal''s status dropdown offers only passed / completed and there is no "appearing"
+      or "result awaited" choice, so they cannot proceed. NOT: a general doubt about which status applies to them
+      -> use `appearing_passed_status_query` or `qualification_status_passed_appearing`.'
+    cues:
+    - appearing ka option hi nahi hai
+    - sirf passed dikha raha hai dropdown me
+    - result awaited ka choice nahi mil raha
+    - status me appearing select nahi ho raha
+    - dropdown me option missing hai
+    - appearing na hone se aage nahi badh raha
+    - अपीयरिंग का विकल्प नहीं है
+  - id: board_roll_number_digit_length_rejected
+    name: Board Roll Number Digit Length Rejected
+    description: 'Caller''s board roll number / enrolment number is rejected by the field - too few or too many
+      digits, roll-number-not-found error, or the number on an updated result does not match what the portal expects.
+      NOT: not knowing which number on the marksheet to use -> use `education_details_entry_in_otr`; NOT: marks
+      values not accepted -> use `marks_percentage_entry_issue`.'
+    cues:
+    - roll number accept nahi kar raha
+    - roll number not found aa raha hai
+    - digit kam pad rahe hain roll number me
+    - zero lagana padega aage
+    - roll number match nahi ho raha result se
+    - enrollment number daalein ya roll number
+    - रोल नंबर स्वीकार नहीं हो रहा
+  - id: out_of_state_nios_qualification_not_listed
+    name: Out-of-State / NIOS Qualification Not Listed
+    description: 'Caller holds a qualification from NIOS or from another state / body (other-state SET, ICAR NET,
+      distance-mode D.El.Ed) and asks whether UP accepts it and how to enter it when it is not listed in the portal.
+      NOT: only the board/university name missing while the qualification exists -> use `board_university_not_in_dropdown`;
+      NOT: general out-of-UP residency and reservation -> use `up_residency_and_reservation_eligibility`.'
+    cues:
+    - NIOS se D.El.Ed kiya hai, valid hai
+    - dusre state ka SET yahan chalega
+    - ICAR NET manya hai kya
+    - meri qualification list me nahi hai
+    - West Bengal SET se apply kar sakte hain
+    - distance se kiya hai, accept hoga
+    - out of state degree ka option nahi hai
+  - id: graduation_field_mandatory_but_not_applicable
+    name: Graduation Field Mandatory but Not Applicable
+    description: 'Portal insists on graduation details / marksheet although the caller has no separate graduation
+      (B.El.Ed or integrated course, graduation still running, post needs only intermediate plus training) and they
+      cannot move ahead or are shown not eligible. NOT: graduation subject or stream missing from the list -> use
+      `graduation_subject_stream_entry`; NOT: they have graduation but the marks are not accepted -> use `marks_percentage_entry_issue`.'
+    cues:
+    - graduation ka column mandatory aa raha hai
+    - B.El.Ed kiya hai, alag graduation nahi hai
+    - graduation chal rahi hai, kya bharein
+    - graduation marksheet maang raha hai portal
+    - bina graduation aage nahi badh raha
+    - qualification bharne ke baad not eligible aa raha
+    - स्नातक की जानकारी अनिवार्य दिख रही है
+  - id: paper_i_eligibility_query
+    name: Paper I Eligibility Query
+    description: 'Caller asks whether they are eligible for Paper I / primary level (classes 1-5) - with their degree
+      or training, as a female candidate for balak varg, for physical education, or whether they can take both papers.
+      NOT: upper primary / junior level eligibility -> use `paper_ii_eligibility_query`; NOT: applying to and paying
+      for both papers in the form -> use `both_papers_application_query` or `both_papers_fee_query`; NOT: the wrong
+      level was chosen and the form is submitted -> use `wrong_exam_level_selected_primary_vs_junior`.'
+    cues:
+    - primary level ke liye eligible hoon kya
+    - paper 1 ke liye kya qualification chahiye
+    - ladkiyan balak varg me apply kar sakti hain
+    - dono paper de sakte hain kya
+    - class 1 se 5 ke liye kaun eligible hai
+    - physical education wale primary me aa sakte hain
+    - प्राथमिक स्तर की पात्रता
+  - id: paper_ii_eligibility_query
+    name: Paper II Eligibility Query
+    description: 'Caller asks whether they qualify for Paper II / upper primary or junior level (classes 6-8) and
+      higher posts - with their graduation plus training, as an existing primary teacher, or with an out-of-state
+      qualification. NOT: primary level -> use `paper_i_eligibility_query`; NOT: which subject group to select once
+      eligible -> use `subject_group_combination_selection`; NOT: wrong level already submitted -> use `wrong_exam_level_selected_primary_vs_junior`.'
+    cues:
+    - junior level ke liye eligible hoon
+    - upper primary me apply kar sakta hoon
+    - paper 2 ki qualification kya hai
+    - primary teacher junior ke liye apply kar sakta hai
+    - class 6 se 8 ke liye kya chahiye
+    - PGT ke liye main eligible hoon kya
+    - junior TET ki eligibility bataiye
+  - id: subject_group_combination_selection
+    name: Subject Group / Combination Selection
+    description: 'Caller is choosing the subject group / combination or balak-balika varg in the form and the option
+      they need is missing, or the portal shows not eligible for the combination they pick (e.g. combined History
+      as ancient/medieval/modern, social science group, second language Sanskrit/English/Urdu). NOT: entering the
+      subject of their own degree -> use `graduation_subject_stream_entry`; NOT: changing the subject after submission
+      -> use `subject_paper_change_after_submission`; NOT: the language of the question paper -> use `question_paper_language_options`
+      or `exam_language_medium_query`.'
+    cues:
+    - subject combination kaun sa select karun
+    - History me ancient medieval modern alag alag aa raha hai
+    - second language ka option select nahi ho raha
+    - balak varg ya balika varg kya chunein
+    - subject select karne par not eligible aa raha
+    - social science group ka kya matlab hai
+    - mera subject group hi nahi dikh raha
+    - विषय समूह का चयन
+  - id: qualification_status_passed_appearing
+    name: Qualification Status (Passed / Appearing)
+    description: 'Portal shows the caller''s qualification status wrongly - marked appearing / fail / not eligible
+      although they have passed, or the status flag does not match their uploaded result - and they ask how to fix
+      the status. NOT: the caller genuinely awaiting a result or certificate -> use `appearing_passed_status_query`;
+      NOT: the appearing option missing from the dropdown -> use `appearing_option_missing_in_dropdown`; NOT: the
+      status must be edited after final submission -> use `how_to_edit_saved_otr_data`.'
+    cues:
+    - status appearing dikha raha hai lekin pass hoon
+    - not eligible aa raha hai qualification bharne ke baad
+    - D.El.Ed pass hai par fail dikha raha hai
+    - qualification status galat show ho raha hai
+    - result match nahi kar raha portal se
+    - certificate ki jagah result lagaya hai
+    - स्थिति गलत दिख रही है
+  - id: b_ed_appearing_candidate_eligibility
+    name: B.Ed Appearing Candidate Eligibility
+    description: 'Caller is a B.Ed (or NIOS D.El.Ed) candidate whose course or result is still pending and asks
+      whether an appearing B.Ed candidate may apply at all, and whether B.Ed is accepted for the primary level or
+      a particular subject. NOT: how to fill the B.Ed row / missing B.Ed option -> use `b_ed_d_el_ed_qualification_entry`;
+      NOT: a general appearing-status doubt for other degrees -> use `appearing_passed_status_query`.'
+    cues:
+    - B.Ed appearing hoon, apply kar sakta hoon
+    - B.Ed ka result pending hai
+    - B.Ed se primary me apply kar sakte hain
+    - NIOS D.El.Ed valid hai kya
+    - B.Ed sab subject ke liye zaroori hai
+    - abhi B.Ed chal rahi hai, form bhar sakta hoon
+    - बीएड अपीयरिंग अभ्यर्थी की पात्रता
+  - id: d_el_ed_btc_jbt_eligibility_query
+    name: D.El.Ed / BTC / JBT Eligibility Query
+    description: 'Caller holds D.El.Ed / BTC / JBT and asks which posts or levels they are eligible for and which
+      of the confusing D.El.Ed options in the form matches their course. NOT: purely entering the training row or
+      a missing D.El.Ed option -> use `training_qualification_entry` or `b_ed_d_el_ed_qualification_entry`; NOT:
+      result still awaited -> use `appearing_passed_status_query`.'
+    cues:
+    - D.El.Ed se kaun kaun se post ke liye eligible hoon
+    - BTC wale junior me apply kar sakte hain
+    - D.El.Ed ke bahut option hain, kaun sa select karun
+    - JBT manya hai kya UP me
+    - dono post ke liye D.El.Ed chalegi
+    - D.El.Ed option me confusion hai
+    - डीएलएड की पात्रता
+  - id: age_limit_eligibility_query
+    name: Age Limit Eligibility Query
+    description: 'Caller asks the minimum / maximum age for the post or says the form is blocking them because of
+      age or shows an age criterion different from the notification. NOT: extra years of relaxation for a category
+      or the relaxation option in the form -> use `age_relaxation_query`; NOT: a wrongly entered date of birth ->
+      use `date_of_birth_entry_issue`.'
+    cues:
+    - age limit kitni hai is post ke liye
+    - meri umar zyada ho gayi hai kya
+    - minimum age kya honi chahiye
+    - age ki wajah se form submit nahi ho raha
+    - notification me age alag likhi hai
+    - 35 saal ke baad apply kar sakte hain
+    - अधिकतम आयु सीमा क्या है
+  - id: in_service_teacher_without_graduation_eligibility
+    name: In-Service Teacher Without Graduation Eligibility
+    description: 'Caller is a serving teacher - Shiksha Mitra, anudeshak, private or aided school teacher - asking
+      whether their service makes them eligible (often for Special TET) without graduation, and what service details
+      the form needs: date of joining, Manav Sampada code, NOC. NOT: the graduation field being mandatory as a technical
+      blocker -> use `graduation_field_mandatory_but_not_applicable`; NOT: entering employer details in the application
+      -> use `practising_government_teacher_details_entry`; NOT: age relaxation for Shiksha Mitra -> use `age_relaxation_query`.'
+    cues:
+    - shiksha mitra hoon, special TET de sakta hoon
+    - private school teacher eligible hai kya
+    - manav sampada code kya daalein
+    - NOC lagegi kya form me
+    - joining date kaun si bharni hai
+    - graduation nahi hai, service hai, apply kar sakte hain
+    - anudeshak ke liye kya niyam hai
+    - सेवारत शिक्षक की पात्रता
+  - id: scribe_eligibility_criteria_query
+    name: Scribe Eligibility Criteria Query
+    description: 'Caller asks who is entitled to a scribe (which disability type / percentage, benchmark disability)
+      and whether they themselves qualify for one. NOT: how to request or arrange the scribe -> use `how_to_request_a_scribe`
+      or `scribe_arrangement_process`; NOT: the scribe''s own education limit -> use `scribe_qualification_education_limit`;
+      NOT: extra time -> use `compensatory_time_30_minutes_query`.'
+    cues:
+    - scribe kise milta hai
+    - mujhe lekhak mil sakta hai kya
+    - kitni disability par scribe allowed hai
+    - divyang ko writer milega ya nahi
+    - scribe ke liye kya criteria hai
+    - blind candidate ko scribe milta hai
+    - श्रुतिलेखक की पात्रता
+  - id: scribe_qualification_education_limit
+    name: Scribe Qualification / Education Limit
+    description: 'Caller asks what the scribe (writer) themselves must satisfy - maximum education allowed, age,
+      whether a relative or same-subject person can be the scribe. NOT: whether the candidate is entitled to a scribe
+      -> use `scribe_eligibility_criteria_query`; NOT: the scribe''s documents or declaration form -> use `scribe_documents_and_declaration_required`
+      or `scribe_declaration_form_submission`.'
+    cues:
+    - scribe ki qualification kya honi chahiye
+    - lekhak kitna padha hua ho sakta hai
+    - scribe ki umar kitni honi chahiye
+    - rishtedar ko scribe bana sakte hain
+    - scribe usi subject ka ho sakta hai kya
+    - writer ke liye education limit kya hai
+    - श्रुतिलेखक की योग्यता सीमा
+- id: fees_and_payment
+  name: Fees & Payment
+  description: Application fee, fee exemption, payment methods, failed/pending payment, transaction status, refund,
+    payment receipt.
+  sub_issues:
+  - id: fee_amount_query
+    name: Fee Amount Query
+    description: 'Caller asks how much the application fee is, or says the amount the portal is showing / has charged
+      is wrong (for example the PwD or disability concession was not applied, or a higher amount than the notification
+      was deducted). Also covers confusion about OTR fee versus exam fee. NOT: a breakdown of what each category
+      pays -> use `category_wise_fee_query`; NOT "is my category fully exempt" -> use `fee_waiver_for_reserved_category_query`;
+      NOT money already deducted with status stuck -> use `payment_pending_processing_status`.'
+    cues:
+    - fees kitni hai
+    - form ki fees kitni lagegi
+    - galat amount show ho raha hai
+    - divyang hone ke baad bhi poori fees mang raha hai
+    - PwD ki chhoot nahi lagi
+    - OTR ki fees alag hai ya exam ki
+    - notification me kam fees likhi thi
+    - 1500 kaat liye jabki kam honi chahiye
+  - id: category_wise_fee_query
+    name: Category-wise Fee Query
+    description: 'Caller asks what fee applies to their specific reservation category (General / OBC / SC / ST /
+      EWS / PwD, or a candidate from another state) or wants the category-wise fee list. NOT: "I should not pay
+      at all, my category is exempt" -> use `fee_waiver_for_reserved_category_query`; NOT am-I-eligible-for- this-category
+      questions -> use the eligibility sub-categories such as `sc_st_category` or `ews_category`.'
+    cues:
+    - SC wale ki fees kitni hai
+    - OBC ke liye kitna dena hoga
+    - general category ki fees kya hai
+    - EWS ki fees general jaisi hai kya
+    - divyang candidate ki fees kitni
+    - doosre rajya ka PWD hoon fees kitni
+    - category wise fees list bata dijiye
+  - id: both_papers_fee_query
+    name: Both Papers Fee Query
+    description: 'Caller is applying for both Paper I (primary) and Paper II (junior) and asks what the combined
+      fee is or whether they must pay separately for each paper. NOT: how to apply for both papers or where to select
+      them -> use `both_papers_application_query`.'
+    cues:
+    - dono paper ki fees kitni hogi
+    - primary aur junior dono bhara hai fees
+    - do baar fees deni padegi kya
+    - ek hi payment me dono paper ho jayenge
+    - paper 1 aur paper 2 ka total kitna
+    - dono ke liye alag alag challan banega
+  - id: payment_gateway_method_query
+    name: Payment Gateway / Method Query
+    description: 'Caller asks which payment options the portal supports or complains that only limited options appear
+      on the payment page (for example no UPI, only card, no bank listed). NOT: an option is visible but the transaction
+      fails -> use `net_banking_upi_debit_card_issue`; NOT offline bank challan questions -> use `challan_payment_query`.'
+    cues:
+    - payment ke kaun kaun se option hain
+    - UPI ka option nahi dikh raha
+    - sirf card ka option aa raha hai
+    - mera bank list me nahi hai
+    - Paytm se kar sakte hain kya
+    - payment gateway me options kam hain
+    - kaise payment karna hai bataiye
+  - id: net_banking_upi_debit_card_issue
+    name: Net Banking / UPI / Debit Card Issue
+    description: 'Caller''s payment attempt fails or gets stuck at the gateway while using a specific instrument
+      - net banking not processing, UPI request declining, debit/credit card rejected, page hanging or transaction
+      failing before money is taken. NOT: money was actually debited and the portal has not updated -> use `payment_pending_processing_status`
+      or `money_debited_but_application_incomplete`; NOT which methods exist -> use `payment_gateway_method_query`.'
+    cues:
+    - net banking se payment ho nahi raha
+    - UPI me failed aa raha hai
+    - debit card accept nahi kar raha
+    - transaction failed likh kar aa jata hai
+    - payment page hang ho jata hai
+    - bank ka page khulta hi nahi
+    - OTP dene ke baad fail ho gaya
+    - paise kate nahi par payment fail
+  - id: challan_payment_query
+    name: Challan Payment Query
+    description: 'Caller wants to pay the fee offline through a bank challan - how to generate the challan, which
+      bank to deposit it in, by when, and what to do after depositing so the portal shows the payment. NOT: challan
+      generated but cannot be downloaded/printed -> use `fee_receipt_challan_download_issue`; NOT challan deposited
+      and status still unpaid -> use `payment_pending_processing_status`.'
+    cues:
+    - challan kaise banega
+    - bank me jama karna hai kya
+    - e-challan ka option kahan hai
+    - challan kis bank me jama hoga
+    - challan se fees jama kar sakte hain
+    - challan ki last date kya hai
+    - challan jama kiya aage kya karna hai
+  - id: payment_pending_processing_status
+    name: Payment Pending / Processing Status
+    description: 'Money has left the caller''s account but the portal still shows the fee as pending / processing
+      / not updated, and the caller wants to know the status and how long to wait. Use this when the complaint is
+      about the payment status itself. NOT: the application record explicitly shows "incomplete" or asks for payment
+      again, blocking further steps -> use `money_debited_but_application_incomplete`; NOT the caller paid twice
+      and wants money back -> use `duplicate_payment_refund_query`.'
+    cues:
+    - paise kat gaye par status pending dikha raha hai
+    - payment successful hua par portal pe update nahi
+    - UPI se paid hai lekin pending show ho raha
+    - kal paisa kata aaj tak update nahi hua
+    - kitne din me update hoga
+    - PhonePe se debit ho gaya portal fee due bata raha
+    - dashboard par payment nahi dikh raha
+    - 20 minute pehle paid kiya hai status check kar dijiye
+  - id: money_debited_but_application_incomplete
+    name: Money Debited but Application Incomplete
+    description: 'Fee was debited but the application itself still shows incomplete / "pay fee" / fee due, so the
+      caller cannot finish or submit the form and is being asked to pay again. Emphasis is on the blocked, incomplete
+      application, not only on the status label. NOT: application is otherwise fine and only the payment status
+      is lagging -> use `payment_pending_processing_status`; NOT the caller already paid a second time and wants
+      the extra money back -> use `duplicate_payment_refund_query`; NOT asking whether it is safe to pay again ->
+      use `duplicate_payment_risk`.'
+    cues:
+    - paise kat gaye par form incomplete hai
+    - 1500 de diya phir bhi pay fees ka option aa raha hai
+    - application status incomplete bata raha hai
+    - fees due dikha raha hai payment ke baad
+    - form aage badh nahi raha payment ke baad
+    - submit nahi ho raha fees kat chuki hai
+    - dobara payment mang raha hai
+    - fee debit ho gayi status update nahi hua form adhoora hai
+  - id: duplicate_payment_risk
+    name: Duplicate Payment Risk
+    description: 'Caller has not yet paid a second time and is asking whether it is safe to pay again after a failed
+      or unreflected transaction - will the money be deducted twice, will two applications be created, should they
+      wait instead. NOT: the second payment has already gone through and they want money back -> use `duplicate_payment_refund_query`;
+      NOT worry about having two registrations/OTR IDs -> use `duplicate_registration_concern`.'
+    cues:
+    - dobara payment karun ya nahi
+    - do baar paisa kat jayega kya
+    - phir se pay karne me dikkat hogi
+    - pehla payment reflect nahi hua ab kya karun
+    - dobara bharne se do form ban jayenge kya
+    - wait karun ya dobara pay kar doon
+    - double payment ho jayega to
+  - id: duplicate_payment_refund_query
+    name: Duplicate Payment Refund Query
+    description: 'Caller has paid the fee twice (or paid again after a failed attempt) and asks how to get the extra
+      amount refunded and in how many days it will come back. NOT: still deciding whether to pay again -> use `duplicate_payment_risk`;
+      NOT a single payment whose status has not updated -> use `payment_pending_processing_status`.'
+    cues:
+    - do baar fees kat gayi hai refund kaise milega
+    - double payment ho gaya paisa wapas chahiye
+    - refund kitne din me aayega
+    - failed payment ka paisa wapas nahi aaya
+    - UPI se do baar pay kiya ek reflect nahi hua
+    - extra paisa refund kar dijiye
+    - refund ka process kya hai
+  - id: payment_reconciliation_request
+    name: Payment Reconciliation Request
+    description: 'Caller asks the helpline/backend to trace and match a specific transaction against their application
+      - offering transaction/UTR/reference id, bank statement or screenshot - so the successful payment is mapped
+      to their OTR and the record corrected. Typically a follow-up when waiting has not helped. NOT: a first-time
+      status enquiry -> use `payment_pending_processing_status`; NOT asking for money back -> use `duplicate_payment_refund_query`.'
+    cues:
+    - transaction ID de raha hoon check kar lijiye
+    - UTR number se mila lijiye
+    - bank statement bhej doon
+    - payment successful hai record me chadha dijiye
+    - screenshot mail kar diya hai verify kijiye
+    - manually update kar dijiye payment
+    - bahut din ho gaye ab entry kara dijiye
+  - id: application_status_showing_paid_confirmation
+    name: Application Status Showing PAID Confirmation
+    description: 'Payment has gone through and the caller wants confirmation that the fee/application is properly
+      recorded and what the status text means (for example "paid", "review in progress", or only one paid entry
+      with no details), and whether anything more is needed. NOT: status still shows pending or unpaid -> use `payment_pending_processing_status`;
+      NOT cannot download the receipt -> use `fee_receipt_challan_download_issue`.'
+    cues:
+    - paid dikha raha hai ab sab theek hai na
+    - review in progress likha hai matlab kya
+    - form reject ho jayega kya
+    - my application me paid ke aage detail nahi dikh rahi
+    - payment confirm hai ya nahi bata dijiye
+    - aur kuch karna baaki hai kya
+    - status paid hai form complete maan lein
+  - id: fee_receipt_challan_download_issue
+    name: Fee Receipt / Challan Download Issue
+    description: 'Caller has paid but cannot get the proof - the receipt / payment slip / challan does not open,
+      does not download or prints blank - and asks where to find it or to have it re-sent. NOT: how to pay by challan
+      in the first place -> use `challan_payment_query`; NOT the OTR/application form PDF itself -> use `print_download_otr_form`.'
+    cues:
+    - fees ki receipt kahan se milegi
+    - receipt download nahi ho rahi
+    - payment slip nahi khul rahi
+    - challan ka print nahi nikal raha
+    - receipt blank aa rahi hai
+    - payment ka proof chahiye
+    - receipt mail par bhej dijiye
+  - id: fee_waiver_for_reserved_category_query
+    name: Fee Waiver for Reserved Category Query
+    description: 'Caller asks whether their category (SC / ST / PwD-Divyang / ex-serviceman / female / EWS) is exempt
+      from the fee or gets a concession, and what document is needed to claim it. NOT: what the payable amount for
+      each category is -> use `category_wise_fee_query`; NOT a concession the portal failed to apply after they
+      were already charged -> use `fee_amount_query`.'
+    cues:
+    - meri category me fees maaf hai kya
+    - divyang ko fees deni padti hai
+    - SC ST ko chhoot milti hai
+    - fees me koi concession hai
+    - free me form bhar sakte hain kya
+    - certificate lagane par fees maaf hogi
+    - ex-serviceman ko fees lagti hai
+  - id: re_payment_required_after_amendment
+    name: Re-payment Required After Amendment
+    description: 'After editing or correcting a submitted form the caller asks whether a fee has to be paid again,
+      or the portal is demanding a new payment because of the change (for example a category change raising the
+      amount). NOT: the original payment simply never reflected -> use `money_debited_but_application_incomplete`;
+      NOT what can be corrected or how to correct -> use `what_fields_can_be_corrected` or `amendment_process_step_by_step_query`.'
+    cues:
+    - correction ke baad dobara fees deni hogi
+    - sanshodhan karne par payment phir se lagega
+    - category badal di ab extra fees mang raha hai
+    - amendment ke liye fees kitni hai
+    - form edit kiya to payment ka option aa gaya
+    - antar ki rashi jama karni hogi kya
+    - correction free hai ya paid
+- id: identity_and_documents
+  name: Identity & Documents
+  description: Aadhaar, ID proof, photo, signature, certificates, document upload, document format/size, name/DOB
+    mismatch, verification.
+  sub_issues:
+  - id: aadhaar_otp_not_received
+    name: Aadhaar OTP Not Received
+    description: 'Caller is doing Aadhaar eKYC in OTR and the Aadhaar OTP never arrives on the Aadhaar-linked mobile,
+      or the OTP attempt limit is exceeded so verification cannot be completed. NOT: the portal''s own registration/login
+      OTP -> use `mobile_otp_not_received`; NOT: the Aadhaar-linked SIM is closed or not with the caller -> use
+      `aadhaar_linked_mobile_not_available`; NOT: OTP arrives but eKYC then fails on name/father''s name -> use
+      `aadhaar_mismatch`.'
+    cues:
+    - Aadhaar ka OTP nahi aa raha
+    - eKYC ka OTP nahi aaya
+    - Aadhaar verify karne ka OTP kab aayega
+    - OTP limit exceeded aa raha hai
+    - Aadhaar OTP ki limit khatam ho gayi
+    - aadhaar verification OTP fail ho raha hai
+    - आधार ओटीपी नहीं आ रहा
+  - id: aadhaar_number_not_accepted
+    name: Aadhaar Number Not Accepted
+    description: 'The Aadhaar number itself is rejected: the field will not take the digits, the portal says Aadhaar
+      is not verifying/invalid, or the caller asks whether Aadhaar (or PAN) is compulsory for OTR. NOT: Aadhaar
+      is read but the details do not match -> use `aadhaar_mismatch`; NOT: OTP problem -> use `aadhaar_otp_not_received`;
+      NOT: asking which ID proof to pick -> use `identity_proof_selection_query`.'
+    cues:
+    - Aadhaar number accept nahi kar raha
+    - Aadhaar card verify nahi ho raha
+    - Aadhaar number galat bata raha hai
+    - Aadhaar ka column bhar nahi raha
+    - Aadhaar zaroori hai ya PAN se ho jayega
+    - invalid Aadhaar likh ke aa raha hai
+  - id: aadhaar_mismatch
+    name: Aadhaar Mismatch
+    description: 'Aadhaar eKYC completes but the Aadhaar data does not match what the caller filled in OTR - name
+      spelling, father''s name missing or different, surname absent in Aadhaar, DOB different - so verification
+      is blocked and the caller asks about the mismatch declaration checkbox or an Aadhaar correction receipt. NOT:
+      the mismatch is because the surname changed after marriage -> use `post_marriage_surname_mismatch_in_ekyc`;
+      NOT: it is the KM/Kumari prefix -> use `name_prefix_mismatch_km_kumari`; NOT: the difference is between two
+      non-Aadhaar documents -> use `name_dob_mismatch_across_documents`; NOT: form already submitted and the OTR
+      name/DOB must now be changed -> use `name_dob_correction_after_submission`.'
+    cues:
+    - Aadhaar se details match nahi kar rahi
+    - Aadhaar me pita ka naam nahi hai
+    - Aadhaar me surname nahi hai marksheet me hai
+    - naam ki spelling Aadhaar me alag hai
+    - mismatch wala checkbox tick karna hai kya
+    - Aadhaar correction ki receipt lagani hogi
+    - आधार से नाम मैच नहीं हो रहा
+  - id: name_dob_mismatch_across_documents
+    name: Name / DOB Mismatch Across Documents
+    description: 'Caller''s name, father''s name or date of birth differs between documents (Aadhaar vs 10th marksheet
+      vs caste certificate vs PAN vs degree) and asks which one to enter, whether the difference is acceptable,
+      or which document to upload. NOT: the difference arises from marriage / surname change -> use `post_marriage_surname_mismatch_in_ekyc`;
+      NOT: the Aadhaar eKYC step itself is erroring -> use `aadhaar_mismatch`; NOT: only the KM/Kumari prefix differs
+      -> use `name_prefix_mismatch_km_kumari`; NOT: the form is already submitted and the name/DOB must be corrected
+      -> use `name_dob_correction_after_submission`.'
+    cues:
+    - documents me naam alag alag hai
+    - 10th ki marksheet me naam dusra hai
+    - date of birth dono me alag hai
+    - caste certificate me pita ka naam galat hai
+    - kaun sa naam bharna hai
+    - PAN aur Aadhaar me naam match nahi
+    - दस्तावेजों में नाम अलग है
+  - id: identity_proof_selection_query
+    name: Identity Proof Selection Query
+    description: 'Caller asks which identity proof to select in OTR - Aadhaar, PAN, voter ID, driving licence -
+      or whether different ID proofs can be used in different places. NOT: uploading the ID file -> use `photo_identity_proof_upload`;
+      NOT: a wrong ID was already used and must be changed -> use `wrong_id_type_used_at_registration`.'
+    cues:
+    - kaun sa identity proof lagana hai
+    - Aadhaar de ya PAN de
+    - voter card chalega kya
+    - dusra ID proof de sakte hain
+    - identity proof me kya select karein
+  - id: live_photo_face_match_failure
+    name: Live Photo / Face Match Failure
+    description: 'The live photo / face capture step in OTR will not go through: the camera does not capture, the
+      portal keeps saying the photo does not match or does not meet standards, or a medical reason (damaged eye,
+      squint) makes the face match fail, so the caller cannot submit. NOT: a photo was captured but came out wrong
+      (mirrored, ears hidden, objects in background) and the caller wants a retake -> use `photo_clicked_during_verification_issue`;
+      NOT: only the background colour rule is being asked -> use `photo_background_color_requirement`; NOT: uploading
+      a photo file -> use `photograph_upload_issue`.'
+    cues:
+    - live photo capture nahi ho raha
+    - live photo match nahi kar raha
+    - photo submit hi nahi ho rahi
+    - aankh kharab hai isliye photo nahi le raha
+    - kai din se live photo atka hua hai
+    - face match fail ho raha hai
+    - लाइव फोटो नहीं खिंच रही
+  - id: manual_aadhaar_verification_request
+    name: Manual Aadhaar Verification Request
+    description: 'Because eKYC cannot succeed, the caller asks for verification to be done manually/offline by the
+      office - send documents by email or post, get the Aadhaar verified from the back end. NOT: the OTP itself
+      is not arriving -> use `aadhaar_otp_not_received`; NOT: only a mismatch declaration is needed -> use `aadhaar_mismatch`.'
+    cues:
+    - manually verify kara dijiye
+    - offline verification ho sakta hai
+    - documents mail kar dun verify ke liye
+    - aap apni taraf se verify kar dijiye
+    - kisi tarah Aadhaar verify kara do
+  - id: photo_clicked_during_verification_issue
+    name: Photo Clicked During Verification Issue
+    description: 'A live photo was captured during verification but the captured image is unacceptable - mirrored
+      left-right, one side or the ears not visible, earbuds/earphones on, face reddish, calendar / green wall /
+      shop notices in the background - and the caller asks how to retake or delete it. NOT: the capture never succeeds
+      or face match keeps failing -> use `live_photo_face_match_failure`; NOT: a general question about the required
+      background colour -> use `photo_background_color_requirement`.'
+    cues:
+    - live photo ulti aa gayi hai
+    - photo me kaan nahi dikh rahe
+    - earphone lage hue photo click ho gayi
+    - background me calendar aa gaya
+    - photo dobara kaise khinche
+    - clicked photo galat aa gayi hai badalni hai
+  - id: aadhaar_linked_mobile_not_available
+    name: Aadhaar Linked Mobile Not Available
+    description: 'The mobile number linked to Aadhaar is closed, lost or with someone else, so the Aadhaar eKYC
+      OTP can never be received; caller asks for an alternative. NOT: the number works but the OTP is not arriving
+      -> use `aadhaar_otp_not_received`; NOT: the portal-registered mobile is inaccessible -> use `registered_mobile_not_accessible`.'
+    cues:
+    - Aadhaar se linked number band ho gaya hai
+    - jo number Aadhaar me hai wo mere paas nahi
+    - purana number chalu nahi hai OTP kaise aayega
+    - Aadhaar me dusra number linked hai
+    - number link nahi hai Aadhaar se
+  - id: name_prefix_mismatch_km_kumari
+    name: Name Prefix Mismatch (KM / Kumari)
+    description: 'The prefix KM / Kumari / Smt appears in some documents (usually the high-school marksheet or degrees)
+      but not in Aadhaar, or the other way round, so the name does not match during registration or eKYC. NOT: the
+      mismatch is a surname change after marriage -> use `post_marriage_surname_mismatch_in_ekyc`; NOT: a general
+      name/DOB difference with no prefix involved -> use `name_dob_mismatch_across_documents`; NOT: form already
+      submitted and the name must be corrected -> use `name_dob_correction_after_submission`.'
+    cues:
+    - marksheet me Kumari likha hai Aadhaar me nahi
+    - KM lagane se naam match nahi kar raha
+    - Kumari prefix hata dun kya
+    - high school me KM hai Aadhaar me nahi hai
+    - prefix ki wajah se mismatch aa raha hai
+    - कुमारी लिखा है आधार में नहीं
+  - id: post_marriage_surname_mismatch_in_ekyc
+    name: Post-Marriage Surname Mismatch in eKYC
+    description: 'A married woman''s surname (or father''s name replaced by husband''s name) changed after marriage,
+      so Aadhaar / eKYC verification errors out against her old documents, and she asks which name to use, whether
+      to tick the mismatch declaration, or which document proves the change. Always prefer this over `name_dob_mismatch_across_documents`
+      and `aadhaar_mismatch` whenever marriage is the stated reason. NOT: certificate-side questions after marriage
+      (father''s side vs husband''s side caste/EWS certificate) -> use `category_caste_certificate_upload` or `ews_certificate_format_validity_query`.'
+    cues:
+    - shaadi ke baad surname change ho gaya
+    - Aadhaar me pati ka naam hai documents me pita ka
+    - marriage ke baad naam match nahi kar raha
+    - shaadi ke baad Aadhaar update karaya hai
+    - husband ka naam option me nahi aa raha
+    - eKYC error aa raha hai shaadi ke karan
+  - id: wrong_id_type_used_at_registration
+    name: Wrong ID Type Used at Registration
+    description: 'Caller registered using one ID type (e.g. PAN) but wanted or needs another (e.g. Aadhaar), or
+      used a different ID than in the rest of the documents, and asks how to change the ID type. NOT: asking which
+      ID to pick before registering -> use `identity_proof_selection_query`; NOT: the ID number is simply rejected
+      -> use `aadhaar_number_not_accepted`.'
+    cues:
+    - galat ID se registration kar diya
+    - PAN se register kar diya Aadhaar lagana tha
+    - ID type badal sakte hain
+    - dusre identity proof se form bhar diya
+    - ID proof change karna hai
+  - id: ews_certificate_format_validity_query
+    name: EWS Certificate Format / Validity Query
+    description: 'Questions about the EWS certificate document itself - which financial year it must be of, whether
+      a certificate made now or dated earlier is still valid, the required proforma/format (Government of India,
+      English), and whether a married woman''s EWS certificate from the father''s side is acceptable. NOT: am I
+      EWS / which category should I take -> use `ews_category`; NOT: caste/OBC/SC certificate validity -> use `category_certificate_date_validity_query`;
+      NOT: how to upload it -> use `category_caste_certificate_upload`; NOT: form submitted and category must be
+      changed -> use `category_correction_after_submission`.'
+    cues:
+    - EWS certificate kitne saal tak valid hai
+    - EWS 2025-26 ka banwana padega
+    - April ka bana EWS certificate chalega
+    - EWS certificate ka format kaun sa hai
+    - shaadi ke baad EWS pita ki taraf se banega
+    - abhi EWS certificate banwaun to chalega
+  - id: category_certificate_date_validity_query
+    name: Category Certificate Date Validity Query
+    description: 'Questions about how old a caste / OBC / SC / ST category certificate may be and whether an existing
+      one (2015, 2016, 2018 etc.) is still valid, including a married woman''s certificate issued from her father''s
+      side and the required proforma date. NOT: the EWS certificate specifically -> use `ews_certificate_format_validity_query`;
+      NOT: whether the caller belongs to / is eligible for the category -> use `obc_category_and_creamy_layer`,
+      `sc_st_category` or `ews_category`; NOT: upload mechanics or the contact-number field on the certificate ->
+      use `category_caste_certificate_upload`.'
+    cues:
+    - purana caste certificate chalega kya
+    - 2018 ka jaati praman patra valid hai
+    - caste certificate kitne saal purana valid hota hai
+    - shaadi ke baad caste certificate pita ki taraf se hi hai
+    - OBC certificate ki validity kitni hai
+    - naya banwana padega ya purana chalega
+  - id: photograph_upload_issue
+    name: Photograph Upload Issue
+    description: 'Problems with the photograph that is uploaded or stored in OTR - wrong or old photo uploaded,
+      photo not appearing on the final print/form, photo cannot be replaced. NOT: the live capture step failing
+      -> use `live_photo_face_match_failure` or `photo_clicked_during_verification_issue`; NOT: background colour
+      -> use `photo_background_color_requirement`; NOT: pixel size/dimension rejection -> use `photo_dimensions_not_accepted`;
+      NOT: file size/format rules -> use `file_size_format_requirement`; NOT: form already submitted/locked and
+      the photo must be amended -> use `photo_signature_amendment`.'
+    cues:
+    - galat photo upload ho gayi hai
+    - photo print me nahi aa rahi
+    - photo change karna hai OTR me
+    - purani Aadhaar wali photo lag gayi
+    - photo upload nahi ho rahi
+    - फोटो बदलनी है
+  - id: signature_upload_issue
+    name: Signature Upload Issue
+    description: 'Problems with the signature image - wrong or someone else''s signature uploaded, photo uploaded
+      in the signature box, signature blurring or erroring on upload, signature not showing on the form. NOT: form
+      already submitted/locked and the caller is asking for the amendment window to fix photo/signature -> use `photo_signature_amendment`;
+      NOT: general size/format limits -> use `file_size_format_requirement`.'
+    cues:
+    - signature galat upload ho gaya
+    - signature ki jagah photo lag gayi
+    - signature upload me error aa raha hai
+    - signature blur ho ja raha hai
+    - hastakshar badalna hai
+    - signature form me dikh nahi raha
+  - id: photo_identity_proof_upload
+    name: Photo Identity Proof Upload
+    description: 'Caller asks which photo identity proof document to upload and how (Aadhaar copy, PAN, voter ID),
+      or reports that the ID proof upload is not going through. NOT: only choosing the ID type for verification
+      -> use `identity_proof_selection_query`; NOT: a wrong ID type used at registration -> use `wrong_id_type_used_at_registration`.'
+    cues:
+    - identity proof kaun sa upload karna hai
+    - Aadhaar ki copy upload karni hai kya
+    - ID proof upload kaise karein
+    - photo ID ka document lagana hai
+    - dusra ID proof upload kar sakte hain
+  - id: academic_certificate_upload
+    name: Academic Certificate Upload
+    description: 'Which academic document to upload and how - marksheet vs degree vs certificate, scorecard vs certificate,
+      provisional or photocopy acceptable, CTET/TET/NET certificate number field, which year''s marksheet - and
+      fixing a wrong academic document that was uploaded. NOT: the upload button/column is missing or gives a server
+      error, i.e. a technical failure -> use `upload_button_not_working`; NOT: size/format limits -> use `file_size_format_requirement`;
+      NOT: entering marks or qualification rows -> use `education_details_entry_in_otr` or `marks_percentage_entry_issue`.'
+    cues:
+    - marksheet upload karni hai ya degree
+    - scorecard upload kar diya certificate mangta hai
+    - photocopy chalegi kya
+    - B.Ed ka certificate number kahan bharein
+    - galat marksheet upload ho gayi
+    - sabhi saal ki marksheet lagani hai kya
+    - certificate abhi mila nahi hai kya upload karun
+  - id: category_caste_certificate_upload
+    name: Category / Caste Certificate Upload
+    description: 'Uploading the caste / category certificate and the fields around it - whose telephone number goes
+      in the contact field (Tehsildar / Lekhpal), father''s side vs husband''s side certificate for a married woman,
+      the SC/OBC proforma, wrong certificate uploaded. NOT: how old the certificate may be / its date validity ->
+      use `category_certificate_date_validity_query`; NOT: the EWS certificate''s format or validity -> use `ews_certificate_format_validity_query`;
+      NOT: whether the caller qualifies for the category -> use the eligibility category ids; NOT: category already
+      submitted and must be changed -> use `category_correction_after_submission`.'
+    cues:
+    - caste certificate me telephone number kiska bharna hai
+    - jaati praman patra upload karna hai
+    - Tehsildar ka number dalna hai kya
+    - shaadi ke baad caste certificate kiski taraf se
+    - galat certificate upload ho gaya
+    - SC ka proforma kahan se milega
+  - id: domicile_residency_certificate_upload
+    name: Domicile / Residency Certificate Upload
+    description: 'Whether a domicile / residency (niwas) certificate is required and how to upload it, whose district/address
+      it should show, and after marriage whether it must be from the father''s or husband''s place. NOT: eligibility
+      for UP reservation as a resident -> use `up_residency_and_reservation_eligibility`; NOT: the address fields
+      in the form -> use `permanent_address_entry_issue`.'
+    cues:
+    - domicile certificate lagana zaroori hai
+    - niwas praman patra upload karna hai kya
+    - shaadi ke baad domicile kahan ka banega
+    - domicile me pati ka pata hai
+    - residency certificate chahiye ya nahi
+  - id: handwritten_declaration_upload_issue
+    name: Handwritten Declaration Upload Issue
+    description: 'The handwritten declaration / self-declaration / undertaking - what text to write, whether it
+      needs a signature, what a PwD candidate must write, and the upload not going through or its details missing.
+      NOT: which language or pen to use -> use `handwritten_declaration_language_requirement`; NOT: the scribe declaration
+      -> use `scribe_declaration_form_submission`; NOT: the upload button/server failing generally -> use `upload_button_not_working`.'
+    cues:
+    - handwritten declaration kya likhna hai
+    - declaration me signature bhi karna hai
+    - swaghoshna patra upload nahi ho raha
+    - handwritten undertaking kaise banayein
+    - affidavit upload karna hai kya
+    - declaration ki jankari nahi mil rahi
+  - id: file_size_format_requirement
+    name: File Size / Format Requirement
+    description: 'Caller asks for the allowed file size, dimensions and format (JPG/PDF, 20-200 KB) for uploads,
+      or reports that the portal''s limit conflicts with the advertisement / makes the document blurry. NOT: a specific
+      "file too large" rejection while uploading -> use `file_too_large_error`; NOT: the document being rejected
+      as unreadable -> use `blurry_unreadable_document_rejection`; NOT: photo pixel dimensions rejected -> use `photo_dimensions_not_accepted`.'
+    cues:
+    - file kitni KB ki honi chahiye
+    - PDF me upload karna hai ya JPG
+    - 20 se 200 KB me marksheet blur ho jati hai
+    - vigyapan me size alag likha hai portal me alag
+    - document ka size kitna allowed hai
+  - id: file_too_large_error
+    name: File Too Large Error
+    description: 'While uploading, the portal rejects the file saying it exceeds the maximum size, and the caller
+      asks how to compress or proceed. NOT: asking what the limits are in general -> use `file_size_format_requirement`;
+      NOT: the upload failing with a server error or a missing button -> use `upload_button_not_working`.'
+    cues:
+    - file size bada hai likh ke aa raha hai
+    - file too large error aa raha hai
+    - size kam kaise karein
+    - document bada hone se upload nahi ho raha
+    - compress karke bhi nahi ja raha
+  - id: blurry_unreadable_document_rejection
+    name: Blurry / Unreadable Document Rejection
+    description: 'The uploaded document is blurred or unreadable after compression and the caller fears or reports
+      rejection; asks how to upload a clear copy. NOT: the size/format limits themselves -> use `file_size_format_requirement`;
+      NOT: the photograph''s background or dimensions -> use `photo_background_color_requirement` or `photo_dimensions_not_accepted`.'
+    cues:
+    - document blur dikh raha hai
+    - marksheet saaf nahi aa rahi
+    - blur hone se reject ho jayega kya
+    - graduation ki marksheet dhundhli upload hui hai
+    - clear copy kaise upload karein
+  - id: document_preview_not_showing
+    name: Document Preview Not Showing
+    description: 'An uploaded document or the document preview does not display - the thumbnail/view link opens
+      nothing, or the preview section for uploads is missing, so the caller cannot check what was uploaded. NOT:
+      the preview or PDF opens but the data in it is wrong or missing -> use `preview_section_data_missing_or_wrong`;
+      NOT: the OTR form will not download or print at all -> use `print_download_otr_form`.'
+    cues:
+    - upload ki hui file dikh nahi rahi
+    - preview khul nahi raha
+    - print preview ka section hi nahi aa raha
+    - document view karne pe kuch nahi aata
+    - kaise pata chalega document laga hai ya nahi
+  - id: photo_background_color_requirement
+    name: Photo Background Color Requirement
+    description: 'Caller asks what background the photograph / live photo must have (plain white, light), or the
+      photo is rejected because the background is not plain. NOT: the captured photo shows objects like a calendar
+      or shop notices and a retake is wanted -> use `photo_clicked_during_verification_issue`; NOT: capture or face
+      match failing -> use `live_photo_face_match_failure`; NOT: pixel dimensions rejected -> use `photo_dimensions_not_accepted`.'
+    cues:
+    - photo ka background kaun sa hona chahiye
+    - safed background zaroori hai kya
+    - background plain nahi hai reject kar raha
+    - deewar ka rang background me aa raha hai
+    - background ki wajah se photo accept nahi ho rahi
+  - id: photo_dimensions_not_accepted
+    name: Photo Dimensions Not Accepted
+    description: 'The photo or signature is rejected on dimensions/resolution - wrong pixel size, face or ears not
+      covered properly in the frame, resolution requirement conflicting with the KB limit, image distorted by slow
+      internet capture. NOT: only the KB/format limits -> use `file_size_format_requirement`; NOT: background colour
+      -> use `photo_background_color_requirement`; NOT: the live capture step failing outright -> use `live_photo_face_match_failure`.'
+    cues:
+    - photo ka size pixel me kitna hona chahiye
+    - dimension galat bata raha hai
+    - photo me kaan nahi aa rahe frame me
+    - resolution zyada mange aur KB kam mange
+    - signature ka dimension accept nahi kar raha
+  - id: upload_button_not_working
+    name: Upload Button Not Working
+    description: 'A technical failure in the upload itself - the upload button or upload column does not appear,
+      clicking it does nothing, or submit returns a server / internet / "not yet saved" error, often for several
+      days. NOT: the caller is asking which document to upload or how -> use `academic_certificate_upload`, `category_caste_certificate_upload`
+      or `photo_identity_proof_upload`; NOT: the file is rejected for size/format -> use `file_too_large_error`
+      or `file_size_format_requirement`; NOT: the whole portal will not open -> use `portal_not_loading_technical_error`.'
+    cues:
+    - upload ka button kaam nahi kar raha
+    - upload ka column dikh hi nahi raha
+    - server error aa raha hai upload pe
+    - not yet saved dikha raha hai 3 din se
+    - marksheet upload ka option nahi aa raha
+    - internet error bata ke submit nahi ho raha
+  - id: wrong_person_s_document_uploaded
+    name: Wrong Person's Document Uploaded
+    description: 'Someone else''s document was uploaded by mistake - wife''s/relative''s caste certificate, another
+      candidate''s photo, signature or Aadhaar - and the caller wants it replaced, often after the form is locked.
+      NOT: the caller''s own but wrong-type document (scorecard instead of certificate) -> use `academic_certificate_upload`;
+      NOT: own wrong photo/signature -> use `photograph_upload_issue` or `signature_upload_issue`; NOT: the form
+      is locked and the caller is asking when the correction window opens -> use `amendment_window_opening_date_query`.'
+    cues:
+    - kisi aur ka document upload ho gaya
+    - patni ka certificate galti se lag gaya
+    - dusre candidate ki photo upload ho gayi
+    - galat aadmi ka Aadhaar chala gaya
+    - form lock ho gaya aur document galat hai
+  - id: handwritten_declaration_language_requirement
+    name: Handwritten Declaration Language Requirement
+    description: 'Caller asks in which language the handwritten declaration must be written (Hindi or English),
+      whether capital letters / a particular pen colour is required, and whether a signature must accompany it.
+      NOT: the declaration upload failing or what text to write -> use `handwritten_declaration_upload_issue`; NOT:
+      the exam question-paper medium -> use `exam_language_medium_query`.'
+    cues:
+    - declaration Hindi me likhein ya English me
+    - kaun se pen se likhna hai
+    - handwritten declaration ki bhasha kya hogi
+    - capital letters me likhna hai kya
+    - declaration ke saath signature bhi chahiye
+  - id: scribe_documents_and_declaration_required
+    name: Scribe Documents & Declaration Required
+    description: 'Caller asks which documents and declarations a candidate and the scribe must provide (scribe''s
+      ID, photo, qualification proof, declaration/undertaking). NOT: how to request or get a scribe arranged ->
+      use `how_to_request_a_scribe` or `scribe_arrangement_process`; NOT: who may act as a scribe / qualification
+      limits -> use `scribe_eligibility_criteria_query` or `scribe_qualification_education_limit`; NOT: submitting
+      the declaration form -> use `scribe_declaration_form_submission`.'
+    cues:
+    - scribe ke liye kaun kaun se document lagenge
+    - lekhak ka ID proof dena hoga
+    - scribe ka declaration form chahiye
+    - imlekhak ke documents kya kya
+    - scribe ki photo aur certificate lagana hai kya
+  - id: scribe_declaration_form_submission
+    name: Scribe Declaration Form Submission
+    description: 'Caller asks how, where and by when to submit the scribe declaration / undertaking form - upload
+      on the portal, or hand it over at the exam centre - and reports trouble submitting it. NOT: which documents
+      are needed at all -> use `scribe_documents_and_declaration_required`; NOT: the candidate''s own handwritten
+      declaration -> use `handwritten_declaration_upload_issue`.'
+    cues:
+    - scribe declaration form kahan jama karein
+    - lekhak ka form portal pe upload hoga ya centre pe
+    - scribe ka form submit nahi ho raha
+    - declaration form kab tak dena hai
+    - scribe form ka format kahan milega
+  - id: medical_certificate_for_pwd_requirement
+    name: Medical Certificate for PwD Requirement
+    description: 'Caller asks whether a medical certificate is needed for PwD benefits (scribe, compensatory time,
+      relaxation), which authority must issue it and what it must state. NOT: the disability certificate''s proforma/format
+      -> use `disability_certificate_format_query`; NOT: the disability type/percentage to enter -> use `disability_type_and_percentage_query`;
+      NOT: eligibility for the PwD category -> use `divyang_pwd_ph_category`.'
+    cues:
+    - medical certificate lagana padega kya
+    - CMO ka certificate chahiye
+    - medical board ka praman patra zaroori hai
+    - divyang ke liye medical certificate kaun banayega
+    - medical certificate me kya likha hona chahiye
+  - id: disability_certificate_format_query
+    name: Disability Certificate Format Query
+    description: 'Questions about the disability / handicap certificate document - which proforma or appendix format
+      is required, whether an existing government PwD certificate is acceptable - and about the OTR form not reflecting
+      disability (PwD status showing "No", disability option or multiple-disability option missing). NOT: what percentage
+      or type of disability qualifies -> use `disability_type_and_percentage_query`; NOT: whether the caller gets
+      PwD benefits -> use `divyang_pwd_ph_category`; NOT: a separate medical certificate requirement -> use `medical_certificate_for_pwd_requirement`.'
+    cues:
+    - divyang certificate ka format kaun sa hai
+    - Appendix 5 wala proforma chahiye kya
+    - purana handicap certificate chalega
+    - form me divyang No dikha raha hai
+    - disability ka option nahi aa raha
+    - multiple disability ka option missing hai
+- id: general_queries
+  name: General Queries
+  description: Exam dates, admit card, exam centre, city intimation, syllabus, exam pattern, instructions, recruitment/exam
+    process, queries not covered above.
+  sub_issues:
+  - id: important_dates_and_schedule_query
+    name: Important Dates & Schedule Query
+    description: 'Caller asks about the official calendar — when the application/OTR link opens, last date to apply,
+      whether the form is live right now, fee window, or when the exam itself is scheduled. NOT: what the advertisement/notification
+      says or whether it has been issued at all -> use `notification_advertisement_query`; admit card date -> use
+      `admit_card_release_date_query`; result date -> use `result_declaration_date_query`.'
+    cues:
+    - form kab se bharega
+    - last date kya hai
+    - link live hui ya nahi
+    - Super TET ka form kab aayega
+    - aavedan ki antim tithi
+    - exam kab hoga date bata do
+    - date extend hui hai kya
+  - id: exam_pattern_and_structure_query
+    name: Exam Pattern & Structure Query
+    description: 'Caller asks how the exam is structured — how many papers, which sections/subjects come in each
+      paper, objective vs written, Paper I vs Paper II structure. NOT: count of questions or marks -> use `number_of_questions_total_marks`;
+      time allowed -> use `exam_duration_query`; topics to study -> use `syllabus_query`; who can sit for a paper
+      -> use `paper_i_eligibility_query` / `paper_ii_eligibility_query`.'
+    cues:
+    - exam pattern kya hai
+    - kitne paper hote hain
+    - objective hai ya likhna padega
+    - paper ka structure batao
+    - kaun kaun se section aate hain
+    - Super TET ka pattern kaisa hai
+  - id: number_of_questions_total_marks
+    name: Number of Questions / Total Marks
+    description: 'Caller asks the number of questions, total marks, marks per question, or section-wise question/mark
+      split. NOT: marks needed to pass -> use `qualifying_marks_cut_off_query`; deduction for wrong answers -> use
+      `negative_marking_query`; overall paper structure -> use `exam_pattern_and_structure_query`.'
+    cues:
+    - kitne question aate hain
+    - total marks kitne hain
+    - 150 prashn hote hain kya
+    - ek question kitne number ka
+    - section wise marks batao
+    - poora paper kitne number ka hai
+  - id: qualifying_marks_cut_off_query
+    name: Qualifying Marks / Cut-off Query
+    description: 'Caller asks the minimum qualifying/passing marks or percentage required to be declared TET pass,
+      and the category-wise relaxation in that minimum. NOT: the actual cut-off that was declared for a past exam
+      or recruitment -> use `cut_off_marks_query`; merit list -> use `merit_list_query`.'
+    cues:
+    - pass hone ke liye kitne marks chahiye
+    - qualifying marks kitne hain
+    - 60 percent chahiye kya
+    - reserved category ko kitna number chahiye
+    - kitne number pe TET pass ho jata hai
+    - passing percentage batao
+  - id: negative_marking_query
+    name: Negative Marking Query
+    description: Caller asks whether wrong answers carry a penalty and how much is deducted, or whether unattempted
+      questions cost anything.
+    cues:
+    - negative marking hai kya
+    - galat answer pe number katega
+    - minus marking hoti hai
+    - one fourth katta hai kya
+    - chhod dene par number katta hai
+  - id: exam_language_medium_query
+    name: Exam Language / Medium Query
+    description: 'Caller asks in which medium the exam can be taken and how/where the medium is chosen (Hindi, English,
+      Urdu, Sanskrit medium). NOT: which languages the question booklet is printed in, or which language section
+      options exist inside the paper -> use `question_paper_language_options`; choosing a language subject/group
+      in the form -> use `subject_group_combination_selection`.'
+    cues:
+    - exam kis bhasha me hoga
+    - Hindi medium me de sakte hain
+    - medium kaise select karein
+    - English me exam hota hai kya
+    - Urdu medium ka option hai
+    - medium badal sakte hain
+  - id: question_paper_language_options
+    name: Question Paper Language Options
+    description: 'Caller asks about the question paper itself — is it bilingual, in which languages the booklet
+      is printed, and which language options (Hindi / English / Sanskrit / Urdu) appear as choices in the paper.
+      NOT: the medium in which the candidate will answer the exam -> use `exam_language_medium_query`.'
+    cues:
+    - question paper dono bhasha me aata hai
+    - paper bilingual hota hai
+    - prashn patra kis bhasha me hoga
+    - Sanskrit ka option paper me hai
+    - Hindi English dono me translation rehta hai
+  - id: exam_duration_query
+    name: Exam Duration Query
+    description: 'Caller asks how long the paper is — total hours/minutes allowed, per-paper timing, shift duration.
+      NOT: extra time for PwD candidates -> use `compensatory_time_30_minutes_query`; the shift/reporting time printed
+      for their own exam -> use `exam_centre_date_time_query`.'
+    cues:
+    - exam kitne ghante ka hai
+    - time kitna milega
+    - dhai ghante hote hain kya
+    - paper ka samay kitna
+    - ek shift kitne der ki hoti hai
+  - id: normalisation_multi_shift_query
+    name: Normalisation / Multi-Shift Query
+    description: 'Caller asks whether the exam runs in multiple shifts/days and how scores are normalised across
+      shifts. NOT: their own marks or rank looking wrong after normalisation -> use `rank_score_discrepancy`.'
+    cues:
+    - normalisation kaise hota hai
+    - do shift me exam hoga kya
+    - shift ke hisaab se number badalta hai
+    - normalised score kaise nikalta hai
+    - multi shift exam hai kya
+  - id: tet_validity_period_query
+    name: TET Validity Period Query
+    description: 'Caller asks for how long a TET qualification stays valid — is an old UPTET (2018 / 2019 / 2020
+      / 2022) certificate still usable, has validity become lifetime, is CTET accepted for UP recruitment or Super
+      TET. NOT: the certificate will not download or shows invalid details -> use `tet_pass_certificate_download`
+      / `tet_certificate_validity_query`.'
+    cues:
+    - UPTET 2018 ka certificate valid hai
+    - TET kitne saal valid rehta hai
+    - lifetime valid ho gaya kya
+    - CTET se UP me apply kar sakte hain
+    - 2019 wala TET Super TET me chalega
+    - validity khatam ho gayi kya
+  - id: syllabus_query
+    name: Syllabus Query
+    description: 'Caller asks for the syllabus — which topics/subjects come, where the syllabus PDF is on the portal,
+      or says the syllabus cannot be found. NOT: how the paper is divided -> use `exam_pattern_and_structure_query`;
+      old question papers -> use `previous_year_paper_query`.'
+    cues:
+    - syllabus kahan milega
+    - website pe syllabus nahi mil raha
+    - kaun kaun se topic aate hain
+    - syllabus ka PDF bhej dijiye
+    - paper one ka syllabus batao
+    - pathyakram kahan hai
+  - id: previous_year_paper_query
+    name: Previous Year Paper Query
+    description: Caller asks for past-year question papers, model/sample papers or answer keys, and where to get
+      them.
+    cues:
+    - purane paper kahan milenge
+    - previous year ka question paper chahiye
+    - model paper mil jayega
+    - pichle saal ka paper dekhna hai
+    - answer key kahan milegi
+  - id: admit_card_release_date_query
+    name: Admit Card Release Date Query
+    description: 'Caller asks when the admit card / city intimation will be released or when the download link will
+      open. NOT: link is open but download fails -> use `admit_card_not_downloading_available`; steps to download
+      -> use `admit_card_download_process`.'
+    cues:
+    - admit card kab aayega
+    - pravesh patra ki date kya hai
+    - admit card ki link kab khulegi
+    - exam se kitne din pehle admit card milta hai
+    - city slip kab aayegi
+  - id: admit_card_download_process
+    name: Admit Card Download Process
+    description: 'Caller asks how and from where to download the admit card, which credentials are needed (roll
+      number, OTR ID, DOB, password), or wants a lost admit card / forgotten roll number retrieved. NOT: they know
+      the process but the download errors out or the card is not available -> use `admit_card_not_downloading_available`;
+      TET pass certificate -> use `tet_pass_certificate_download`.'
+    cues:
+    - admit card kaise download karein
+    - admit card kho gaya dobara nikalna hai
+    - roll number bhool gaya kaise nikalein
+    - admit card kis site se milega
+    - login karke admit card kaise nikale
+    - OTR ID se admit card mil jayega
+  - id: admit_card_not_downloading_available
+    name: Admit Card Not Downloading / Available
+    description: 'Caller is trying to download the admit card but it fails — link/window closed, roll number or
+      DOB "not matching", details mismatch, blank page or error, card not showing at all. NOT: only asking the release
+      date -> use `admit_card_release_date_query`; asking the steps -> use `admit_card_download_process`; details
+      are printed wrong on a card that did download -> use `wrong_details_on_admit_card`.'
+    cues:
+    - admit card download nahi ho raha
+    - roll number aur DOB match nahi kar raha
+    - site band ho gayi admit card nahi mil raha
+    - admit card show hi nahi ho raha
+    - download pe error aa raha hai
+    - roll number galat bata raha hai
+  - id: wrong_details_on_admit_card
+    name: Wrong Details on Admit Card
+    description: 'Caller has the admit card but printed details are wrong — name, father''s/husband''s name, DOB,
+      category, gender, centre — including mismatch with DigiLocker/Aadhaar records, and asks how to get it corrected.
+      NOT: photo/signature wrong or missing -> use `photo_mismatch_on_admit_card`; wrong category on the result/certificate
+      -> use `category_error_on_certificate`; the caller actually wants the underlying OTR field corrected -> use
+      `name_dob_correction_after_submission` or `category_correction_after_submission`.'
+    cues:
+    - admit card pe naam galat hai
+    - pita ji ka naam galat chhapa hai
+    - DOB galat aa rahi admit card me
+    - husband ka naam DigiLocker se match nahi
+    - admit card me category galat hai
+    - detail sudhar kaise hogi
+  - id: exam_centre_date_time_query
+    name: Exam Centre / Date / Time Query
+    description: 'Caller asks about their own exam sitting — which centre/city has been allotted, how centres are
+      allotted, exam date, shift and reporting time, clash of dates when they applied for more than one subject/paper,
+      or whether the exam has been postponed. NOT: wants the centre changed -> use `exam_centre_change_request`;
+      filling the centre preference in the form -> use `exam_centre_preference_entry`.'
+    cues:
+    - centre kaunsa mila hai
+    - exam ki date aur shift batao
+    - do subject ka exam ek hi din hai
+    - exam postpone ho gaya kya
+    - reporting time kya hai
+    - city kab pata chalegi
+  - id: exam_centre_change_request
+    name: Exam Centre Change Request
+    description: 'Caller wants the allotted exam centre/city changed or asks whether a change is possible and how
+      the centre preference/selection process works after applying. NOT: only asking which centre was allotted or
+      the date/time -> use `exam_centre_date_time_query`; entering the preference while filling the form -> use
+      `exam_centre_preference_entry`; changing the centre preference through the correction window -> use `amendment_process_step_by_step_query`.'
+    cues:
+    - centre change ho sakta hai
+    - dusre district me centre chahiye
+    - centre ki preference kaise di jati hai
+    - ghar ke paas ka centre mil jayega
+    - city badalni hai
+    - centre badalne ka option hai kya
+  - id: tet_pass_certificate_download
+    name: TET Pass Certificate Download
+    description: 'Caller wants to download their UPTET/TET pass certificate or marksheet of a past year and cannot
+      — link not working, error on download, certificate not opening, told to contact the Aayog, or needs the old
+      roll number / OTR ID to fetch it. NOT: asks how many years the TET stays valid -> use `tet_validity_period_query`;
+      download shows "invalid details"/not qualified or the certificate''s own correctness is in question -> use
+      `tet_certificate_validity_query`; wrong category printed on it -> use `category_error_on_certificate`; duplicate/second
+      copy of a lost original -> use `duplicate_certificate_marksheet_query`.'
+    cues:
+    - TET certificate download nahi ho raha
+    - UPTET ka certificate kaise nikalein
+    - certificate download pe error aa raha hai
+    - purana TET certificate chahiye
+    - roll number kho gaya certificate nikalna hai
+    - Aayog se lena padega kya
+    - certificate ki link kaam nahi kar rahi
+  - id: tet_certificate_validity_query
+    name: TET Certificate Validity Query
+    description: 'Caller''s certificate attempt is rejected on the data itself — portal says invalid details, shows
+      "not qualified", or roll number / DOB / OMR details do not match the certificate record — or they ask whether
+      the certificate they hold is genuine and usable. NOT: plain download/link failure with correct details ->
+      use `tet_pass_certificate_download`; how many years a TET qualification remains valid -> use `tet_validity_period_query`;
+      marks/rank themselves look wrong -> use `rank_score_discrepancy`.'
+    cues:
+    - invalid details aa raha hai certificate me
+    - not qualified dikha raha hai
+    - OMR aur certificate me mismatch hai
+    - certificate valid hai ya nahi
+    - detail galat bata kar certificate nahi de raha
+    - record me naam nahi mil raha
+  - id: digilocker_certificate_query
+    name: DigiLocker Certificate Query
+    description: 'Caller asks about DigiLocker — whether the TET certificate/marksheet or degree is available there,
+      how to fetch it, and whether a DigiLocker copy (e.g. B.Ed) can be used for the portal. NOT: how or which academic
+      document to upload in the form -> use `academic_certificate_upload`; DigiLocker name mismatch printed on the
+      admit card -> use `wrong_details_on_admit_card`.'
+    cues:
+    - DigiLocker me certificate aayega kya
+    - DigiLocker se B.Ed ki marksheet laga sakte hain
+    - DigiLocker wali copy chalegi
+    - DigiLocker me TET certificate nahi dikh raha
+    - DigiLocker se kaise nikalein
+  - id: photo_mismatch_on_admit_card
+    name: Photo Mismatch on Admit Card
+    description: 'Caller reports the photo/signature on the admit card or certificate is missing, blank, unclear
+      or belongs to someone else, and asks what to do. NOT: other printed fields wrong -> use `wrong_details_on_admit_card`;
+      uploading or replacing the photo in the form -> use `photograph_upload_issue` or `photo_signature_amendment`.'
+    cues:
+    - admit card pe photo galat hai
+    - certificate pe photo nahi aaya
+    - photo kisi aur ki lag gayi hai
+    - photo blank aa raha hai admit card me
+    - signature nahi dikh raha card pe
+  - id: category_error_on_certificate
+    name: Category Error on Certificate
+    description: 'Caller reports their result / TET certificate has been issued under the wrong reservation category
+      and asks how it can be corrected. NOT: wrong category in the OTR form or wanting it changed there -> use `category_correction_after_submission`;
+      category wrong on the admit card -> use `wrong_details_on_admit_card`.'
+    cues:
+    - certificate pe category galat hai
+    - OBC ki jagah general aa gaya
+    - result galat category me nikla
+    - certificate me SC nahi dikha raha
+    - category sudhrwani hai certificate me
+  - id: duplicate_certificate_marksheet_query
+    name: Duplicate Certificate / Marksheet Query
+    description: 'Caller has lost or damaged the original certificate/marksheet and asks how to get a duplicate
+      or second copy, including retrieving the old roll number needed for it. NOT: the online certificate simply
+      will not download -> use `tet_pass_certificate_download`.'
+    cues:
+    - duplicate certificate kaise milega
+    - marksheet kho gayi dobara chahiye
+    - second copy mil jayegi kya
+    - original kharab ho gaya
+    - certificate ki copy dobara nikalni hai
+  - id: how_to_request_a_scribe
+    name: How to Request a Scribe
+    description: 'PwD/Divyang caller asks how to request a scribe (srutilekhak) — where the option is in the form,
+      what request has to be made and by when. NOT: who is allowed to act as scribe -> use `scribe_eligibility_criteria_query`;
+      papers/declaration to be submitted -> use `scribe_documents_and_declaration_required`; what happens at the
+      centre on exam day -> use `scribe_arrangement_process`.'
+    cues:
+    - scribe kaise maangna hai
+    - lekhak ke liye kahan apply karein
+    - form me scribe ka option kahan hai
+    - srutilekhak ki request kaise dein
+    - scribe ke liye kab tak bolna hoga
+  - id: scribe_arrangement_process
+    name: Scribe Arrangement Process
+    description: 'Caller asks how the scribe is actually arranged — whether the board provides one at the centre
+      or the candidate brings their own, exam-day reporting and verification steps. NOT: how to raise the request
+      -> use `how_to_request_a_scribe`; the scribe''s own eligibility/education limits -> use `scribe_eligibility_criteria_query`
+      / `scribe_qualification_education_limit`; declaration form to be filled and submitted -> use `scribe_declaration_form_submission`.'
+    cues:
+    - scribe board dega ya hum laayenge
+    - exam ke din lekhak kaise milega
+    - centre pe scribe ka arrangement hota hai
+    - apna writer la sakte hain kya
+    - scribe ko kab report karna hoga
+  - id: compensatory_time_30_minutes_query
+    name: Compensatory Time (30 Minutes) Query
+    description: 'PwD/Divyang caller asks about extra/compensatory time in the exam — how much (30 minutes, 20 minutes
+      per hour), who gets it and whether it has to be applied for. NOT: normal paper duration for everyone -> use
+      `exam_duration_query`.'
+    cues:
+    - 30 minute extra time milega
+    - compensatory time kitna hota hai
+    - divyang ko extra samay milta hai
+    - per hour 20 minute extra
+    - extra time ke liye kya karna padega
+  - id: result_declaration_date_query
+    name: Result Declaration Date Query
+    description: 'Caller asks when the result will be declared or re-released, including results that were withheld
+      or rejected earlier. NOT: how/where to check a declared result -> use `result_check_process`; marks or rank
+      look wrong -> use `rank_score_discrepancy`; cut-off -> use `cut_off_marks_query`.'
+    cues:
+    - result kab aayega
+    - parinam ki date kya hai
+    - result kab tak declare hoga
+    - rejected result dobara kab aayega
+    - abhi tak result nahi aaya
+  - id: result_check_process
+    name: Result Check Process
+    description: 'Caller asks how and where to check the result, which details are needed, or reports that the result
+      page does not open / shows nothing / their roll number and DOB "do not match", including results of older
+      UPTET years and not being able to see their own subject-wise scores. NOT: result not yet declared, asking
+      the date -> use `result_declaration_date_query`; marks or rank are visible but look wrong -> use `rank_score_discrepancy`;
+      downloading the pass certificate -> use `tet_pass_certificate_download`.'
+    cues:
+    - result kaise dekhein
+    - result khul nahi raha
+    - roll number aur DOB daal rahe hain result nahi aa raha
+    - apne number kaise dekhein
+    - 2016 ka result kahan milega
+    - result site pe show nahi ho raha
+    - marks dikhte hi nahi
+  - id: merit_list_query
+    name: Merit List Query
+    description: 'Caller asks about the merit list — when it comes, where to see it, how merit is prepared and how
+      to find their name in it. NOT: the declared cut-off number -> use `cut_off_marks_query`; waiting list -> use
+      `waiting_list_query`; steps after qualifying -> use `selection_process_after_tet`.'
+    cues:
+    - merit list kab aayegi
+    - merit list me naam kaise dekhein
+    - merit kaise banti hai
+    - merit list kahan se download karein
+    - merit me aa gaye kya
+  - id: cut_off_marks_query
+    name: Cut-off Marks Query
+    description: 'Caller asks what the actual cut-off was or is expected to be for a particular year, category or
+      post. NOT: the fixed minimum qualifying marks/percentage rule for passing TET -> use `qualifying_marks_cut_off_query`.'
+    cues:
+    - cut off kitni gayi
+    - OBC ki cut off kya thi
+    - is saal cut off kitni rahegi
+    - cut off list kahan milegi
+    - mere number se cut off nikal jayegi
+  - id: rank_score_discrepancy
+    name: Rank / Score Discrepancy
+    description: 'Caller has seen their result but the marks, rank or OMR details look wrong — score changed or
+      dropped after normalisation, answers marked on the OMR do not match what is shown, booklet/roll number recorded
+      wrongly, result issued under a different category — and they want it re-checked. NOT: result not opening at
+      all -> use `result_check_process`; only asking how normalisation works in general -> use `normalisation_multi_shift_query`;
+      wrong category on the certificate document itself -> use `category_error_on_certificate`.'
+    cues:
+    - number kam dikha rahe hain
+    - normalisation ke baad marks badal gaye
+    - OMR me jo bhara wo match nahi kar raha
+    - rank galat aayi hai
+    - mera score galat hai recheck karwana hai
+    - booklet number galat chadh gaya
+  - id: district_allocation_query
+    name: District Allocation Query
+    description: 'Caller asks how districts are allotted for posting/recruitment after selection, whether they can
+      choose a district and when allocation happens. NOT: exam centre district -> use `exam_centre_date_time_query`
+      or `exam_centre_change_request`.'
+    cues:
+    - district kaise allot hoga
+    - jila kab milega
+    - posting kis district me hogi
+    - district choice de sakte hain
+    - apne jile me hi milega kya
+  - id: selection_process_after_tet
+    name: Selection Process After TET
+    description: 'Caller asks what comes after qualifying the TET — Super TET / recruitment steps, counselling,
+      document verification, how the final selection works. NOT: whether a job is guaranteed or when the appointment
+      letter comes -> use `appointment_job_guarantee_query`; merit or waiting list mechanics -> use `merit_list_query`
+      / `waiting_list_query`.'
+    cues:
+    - TET ke baad kya hota hai
+    - TET pass ke baad naukri kaise milegi
+    - aage ki process kya hai
+    - counselling kab hogi
+    - Super TET dena padega kya
+    - verification kab hoga
+  - id: waiting_list_query
+    name: Waiting List Query
+    description: Caller asks about the waiting list — when it is released, whether their name is on it and whether
+      waiting-list candidates get selected.
+    cues:
+    - waiting list kab aayegi
+    - waiting list me naam hai kya
+    - waiting wale ko chance milega
+    - waiting list se selection hota hai
+    - waiting me kitne number pe hain
+  - id: application_mode_query
+    name: Application Mode Query
+    description: 'Caller asks in what manner the application is made — online or offline, one form or separate forms
+      for multiple subjects/papers, whether one OTR can be used for several applications, and whether a particular
+      option/category route is available in the form. NOT: specifically asking for an offline / paper form because
+      online is not possible -> use `offline_application_query`; step-by-step help to apply after completing OTR
+      -> use `how_to_apply_for_exam_after_otr`; applying for both papers and its mechanics -> use `both_papers_application_query`.'
+    cues:
+    - form online bharna hai ya offline
+    - ek OTR se do subject apply kar sakte hain
+    - apply karne ka tarika batao
+    - handicapped candidate kaise apply karega
+    - language paper ka option nahi dikh raha
+    - alag alag form bharna padega
+  - id: notification_advertisement_query
+    name: Notification / Advertisement Query
+    description: 'Caller asks about the official notification/advertisement — has it been issued for UPTET / Super
+      TET / TGT-PGT / assistant teacher recruitment, which board or authority conducts it, how many vacancies, what
+      the ad says about eligibility, age or birth-date limits, and where to read it or whom it lists as contact.
+      NOT: only the dates/last date of an already-announced form -> use `important_dates_and_schedule_query`; helpline
+      number and timings -> use `helpline_timing_query`; an exam this helpline does not handle at all -> use `unrelated_wrong_call`.'
+    cues:
+    - notification aa gayi kya
+    - vigyapan kahan milega
+    - kaun si board karati hai ye exam
+    - Super TET ka form nikla hai kya
+    - advertisement me kya likha hai
+    - kitni vacancy hai
+    - ad me birth date ka kya niyam hai
+  - id: helpline_timing_query
+    name: Helpline Timing Query
+    description: 'Caller asks about reaching the helpline itself — working hours, which number or official email
+      ID to use for which query, or reports that the number does not connect, is busy, is wrong or does not work.
+      NOT: asking the agent to ring them back -> use `call_back_request`; wanting to be put through to another office/department
+      -> use `transfer_to_another_department`; lodging a formal complaint about the helpline/portal -> use `complaint_against_portal_process`.'
+    cues:
+    - helpline ka time kya hai
+    - ye number nahi lag raha
+    - kis number pe baat karein
+    - official email ID bata dijiye
+    - helpline kab tak khula rehta hai
+    - number hamesha busy aata hai
+    - Sunday ko khula rehta hai
+  - id: appointment_job_guarantee_query
+    name: Appointment / Job Guarantee Query
+    description: 'Caller asks whether qualifying the TET guarantees a teaching job, when appointment/joining will
+      happen, and whether the certificate alone gets them posted. NOT: the recruitment steps that follow the TET
+      -> use `selection_process_after_tet`; district posting -> use `district_allocation_query`.'
+    cues:
+    - TET pass karne pe naukri milegi
+    - appointment kab hoga
+    - job ki guarantee hai kya
+    - niyukti kab milegi
+    - certificate se seedha posting ho jati hai
+  - id: transfer_to_another_department
+    name: Transfer to Another Department
+    description: 'Caller''s matter belongs to another office (Aayog, Pariksha Niyamak Adhikari, Basic Shiksha Parishad,
+      board, bank) and they ask to be transferred there or given that office''s contact, or ask to speak to a senior.
+      NOT: only asking helpline numbers/timings for this same helpline -> use `helpline_timing_query`; the call
+      subject is outside this helpline''s scope altogether -> use `unrelated_wrong_call`.'
+    cues:
+    - kis department me baat karni hogi
+    - Aayog me transfer kar dijiye
+    - ye Basic Shiksha ka matter hai kya
+    - dusre vibhag ka number de do
+    - kisi senior se baat karwa dijiye
+  - id: call_back_request
+    name: Call Back Request
+    description: 'Caller asks to be called back later, says they will call again, or the agent asks them to call
+      back because the audio is breaking/inaudible or the query could not be handled now; also callers who keep
+      asking for a number on which they can talk again and for how long a mailed query will take to be answered.
+      NOT: asking helpline hours or which number to dial -> use `helpline_timing_query`; a follow-up on an issue
+      already raised in an earlier call or mail -> use `repeated_call_follow_up`.'
+    cues:
+    - aap mujhe call kar lijiye
+    - main dobara call karun
+    - awaz nahi aa rahi phir call karta hun
+    - number de dijiye baad me baat karenge
+    - mail ka jawab kab tak aayega
+    - abhi network kharab hai baad me baat karein
+  - id: unrelated_wrong_call
+    name: Unrelated / Wrong Call
+    description: 'The call is not about the UP OTR portal at all, or is about an exam/scheme this helpline holds
+      no information on (other boards, Super TET vacancies, other departments'' forms), or is a wrong number, blank
+      or test call. NOT: the query is in scope but the caller is following up again -> use `repeated_call_follow_up`;
+      caller should be routed to a specific office -> use `transfer_to_another_department`; audio unusable and a
+      callback is agreed -> use `call_back_request`.'
+    cues:
+    - ye Super TET ka helpline hai kya
+    - galat number lag gaya
+    - hum dusre exam ke bare me pooch rahe the
+    - iski jaankari hamare paas nahi hai
+    - ye kisi aur board ka matter hai
+    - hello sunai de raha hai
+  - id: repeated_call_follow_up
+    name: Repeated Call / Follow-up
+    description: 'Caller has already called or emailed about the same issue and is following up on it — asking whether
+      their mail was received or acted on, why there is no reply yet, or repeating the same unresolved query; also
+      repeat calls where noise/no response means the query still cannot be captured. NOT: a first-time request to
+      be called back -> use `call_back_request`; a formal grievance about the portal or process -> use `complaint_against_portal_process`.'
+    cues:
+    - kal bhi call kiya tha
+    - mail bheja tha uska kya hua
+    - pehle bhi complaint ki thi
+    - abhi tak koi jawab nahi aaya
+    - dobara call kar raha hun same problem hai
+    - mail check kar liya aapne
+  - id: complaint_against_portal_process
+    name: Complaint Against Portal / Process
+    description: 'Caller is lodging a grievance about the portal, the exam process or the helpline itself — wrong
+      or invalid helpline number published, unfair rejection of a result or form, system fault causing them loss
+      — and asks where and how to register the complaint. NOT: a technical error they want fixed -> use `portal_not_loading_technical_error`;
+      only asking for correct numbers/timings -> use `helpline_timing_query`; chasing an earlier call or mail ->
+      use `repeated_call_follow_up`.'
+    cues:
+    - shikayat darj karani hai
+    - portal me hi galti hai
+    - helpline number hi galat diya hua hai
+    - result galat reject kar diya gaya
+    - kiski shikayat karein
+    - system ki galti se nuksan hua
+- id: unclassified
+  name: Unclassified
+  description: Only when the call is understandable but fits none of the 196 sub-categories.
+  sub_issues:
+  - id: not_classified
+    name: Not Classified
+    description: Understandable call matching nothing above; describe it in the summary.
+    cues: []

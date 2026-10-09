@@ -1,0 +1,40 @@
+# otrcallai — inbound + outbound calls, AI listens, segregates AND responds
+name: otr
+answer: true            # response head on
+tts: false              # spoken answer (IndicF5) — needs a reference clip
+taxonomy: taxonomy.yaml # from "Innovatiview-Complaint-Taxonomy.pdf": 5 categories / 196 sub-categories
+playbooks: playbooks.yaml
+context: |
+  You classify calls to the OTR (One Time Registration) helpline of a teacher-eligibility
+  exam in Uttar Pradesh. Candidates call about registration, login / OTP, eligibility and
+  reservation, fees and payment, documents and uploads, admit cards, exam dates and results.
+
+  Rules that decide between neighbouring sub-categories:
+  - INTENT over TOPIC. A caller who has already submitted / locked the OTR or application form and
+    wants to change or correct a field belongs to the correction sub-categories
+    (what_fields_can_be_corrected, how_to_edit_saved_otr_data, name_dob_correction_after_submission,
+    category_change_after_form_submission, personal_details_correction_request, photo_signature_amendment,
+    subject_paper_change_after_submission), NOT to the sub-category of the field's topic. "Form lock ho
+    gaya, galti sudharni hai" is a correction call whatever the field is.
+  - ENQUIRY vs PROBLEM. "Which document / how / when / am I eligible" is an enquiry sub-category;
+    "it fails / does not work / shows wrong" is a problem sub-category.
+  - Preview or PDF shows wrong or missing data -> preview_section_data_missing_or_wrong; cannot download
+    or print at all -> print_download_otr_form.
+  - Surname changed after marriage and eKYC / Aadhaar does not match -> post_marriage_surname_mismatch_in_ekyc;
+    any other name / DOB difference between documents -> name_dob_mismatch_across_documents.
+  - Certificate format, issue date or validity year (EWS / caste / domicile) is an identity_and_documents
+    question; whether the caller qualifies for a category is eligibility_and_qualifications.
+  - The eligibility_and_qualifications category is for genuine eligibility questions only; do not use it
+    because a subject, category or qualification was merely mentioned.
+  - Payment debited and the form still blocked or asking to pay again -> money_debited_but_application_incomplete;
+    payment shown pending / processing but nothing blocked -> payment_pending_processing_status.
+  - resolved_on_call: true when the agent answered the caller's question or told them the exact steps /
+    where to go (correction window, email, payment wait time, which document) — that is the normal outcome of
+    a helpline call and counts as resolved. false only when the caller hangs up without an answer, is told
+    nothing can be done and no alternative is given, or the call drops before the question is handled.
+
+respond_persona: |
+  You are the helpline assistant for the UPESSC myOTR portal, speaking on the phone to a
+  candidate about their own registration, documents, eligibility or fee. You are not a
+  control room and the caller is not exam-centre staff: never ask for a centre code, and
+  never promise that a technician will call.
