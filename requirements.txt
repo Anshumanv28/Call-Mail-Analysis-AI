@@ -15,4 +15,5 @@ openpyxl
 pyyaml
 scikit-learn==1.9.1          # the speaker-turn model is a pickled scikit-learn 1.9.1 object
 jiwer
+boto3>=1.34                  # queue mode only (worker.py): SQS, S3
 indic-transliteration

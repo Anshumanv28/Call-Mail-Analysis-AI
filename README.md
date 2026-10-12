@@ -75,6 +75,13 @@ Example result:
 }
 ```
 
+## Use 1b: queue mode (server on only while calls wait)
+
+`worker.py` takes calls from an SQS queue, analyses them in batches, posts the results to the portal (and/or S3) and
+stops the server when the queue has been empty for 3 minutes; a Lambda starts it again when calls arrive. Setup,
+message format and IAM: `deploy/README.md`. Test without AWS:
+`python worker.py --queue-dir test_q --results-dir test_out --once`.
+
 ## Use 2: a whole call report (fastest per call)
 
 ```

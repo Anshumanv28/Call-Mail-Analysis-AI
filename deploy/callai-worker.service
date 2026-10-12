@@ -1,0 +1,18 @@
+# /etc/systemd/system/callai-worker.service  (queue mode; use instead of callai.service)
+[Unit]
+Description=CallAI OTR queue worker
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=callai
+WorkingDirectory=/opt/callai/app
+EnvironmentFile=/etc/callai/worker.env
+ExecStart=/opt/callai/app/.venv/bin/python worker.py
+Restart=on-failure
+RestartSec=20
+# let a running batch finish before the instance stops
+TimeoutStopSec=900
+
+[Install]
+WantedBy=multi-user.target
