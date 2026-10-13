@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent
 CODE = ROOT / "code"
 MODELS = ROOT / "models"
 os.environ.setdefault("HF_HOME", str(ROOT / "hf"))
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")   # Whisper + bge-m3 share the GPU with llama-server
 sys.path.insert(0, str(CODE))
 
 import callai.audio as A  # noqa: E402
@@ -102,6 +103,8 @@ class OTRPipeline:
         self.playbooks = yaml.safe_load((CODE / "products/otr/playbooks.yaml").read_text(encoding="utf-8")) or {}
         cal = CODE / "models" / "agent_score.json"            # maps our rubric to Gemini's 1-10 scale
         self.score_cal = json.loads(cal.read_text(encoding="utf-8")) if cal.exists() else None
+        rcal = CODE / "models" / "resolved_cal.json"           # Call Resolved the way Gemini answers it
+        self.resolved_cal = json.loads(rcal.read_text(encoding="utf-8")) if rcal.exists() else None
         lang = CODE / "models" / "language_clf.pkl"           # Hindi / Hinglish the way Gemini labels it
         self.lang_clf = pickle.loads(lang.read_bytes()) if lang.exists() else None
         gpath = CODE / "models" / "gemini_cls.pkl"            # category / sub-category trained on Gemini's labels
@@ -205,7 +208,7 @@ class OTRPipeline:
                 raise RuntimeError("llama-server or the Qwen3-4B model is missing: run python setup.py")
             log = open(ROOT / "logs" / "llama-server.log", "ab")
             self.llama = subprocess.Popen([str(exe), "-m", str(gguf), "--host", "127.0.0.1", "--port", str(LLAMA_PORT),
-                                           "-c", str(16384 * SLOTS), "-np", str(SLOTS), "-ngl", "99", "-fa", "on",
+                                           "-c", str(self.ctx_per_slot() * SLOTS), "-np", str(SLOTS), "-ngl", "99", "-fa", "on",
                                            "-ctk", "q8_0", "-ctv", "q8_0", "--jinja", "--temp", "0", "-t", "2", "--cache-ram", "0"],
                                           stdout=log, stderr=subprocess.STDOUT)
             url = f"http://127.0.0.1:{LLAMA_PORT}/v1"
@@ -234,6 +237,11 @@ class OTRPipeline:
             self.pipe.segregator                      # build it now (loads the labelled pool)
         finally:
             os.chdir(cwd)
+
+    def ctx_per_slot(self) -> int:
+        """LLM context per parallel request. The QA prompt (rubric + approved answer + transcript) stays under ~4k
+        tokens, so 8k is enough when the classifier does categories; the older LLM categoriser needs 16k."""
+        return int(os.environ.get("OTR_LLM_CTX", "8192" if self.gcls is not None else "16384"))
 
     def _llama_log_tail(self) -> str:
         if self.llama is None:
@@ -265,7 +273,11 @@ class OTRPipeline:
         if talk:
             enc = ExamplePool.__new__(ExamplePool)    # embed once, batched; the categorizer then reads the cache
             enc._model_name, enc._model = "BAAI/bge-m3", None
-            enc._cached_encode([r["dialogue"] for r in talk])
+            if self.dev == "cuda":
+                self.torch.cuda.empty_cache()             # hand Whisper's cached blocks back before the long-text pass
+            texts = [r["dialogue"] for r in talk]
+            for i in range(0, len(texts), 4):             # long transcripts: small chunks keep bge-m3's peak memory low
+                enc._cached_encode(texts[i:i + 4])
             enc._model = None
             if self.gcls is not None:
                 E = np.vstack([np.load(ExamplePool.CACHE_DIR / f"{ExamplePool._row_key(r['dialogue'])}.npy") for r in talk])
@@ -324,6 +336,18 @@ class OTRPipeline:
         prob /= prob.sum()
         return int(round(float(prob @ np.array(c["classes"]))))   # expected Gemini score, rounded
 
+    def call_resolved(self, r: dict, items: list[int], llm_says: str) -> str:
+        """The LLM answers Partial for most calls where Gemini says Yes (95% of portal calls); a small model fitted on
+        629 Gemini-labelled calls maps the LLM's answer + QA items to Gemini's answer (95% agreement vs 8% raw)."""
+        c = self.resolved_cal
+        if not c or llm_says not in ("Yes", "Partial", "No"):
+            return llm_says
+        words = len((r.get("dialogue") or "").split())
+        x = np.array([float(v) for v in items] + [sum(items), llm_says == "Yes", llm_says == "Partial", llm_says == "No",
+                                                   np.log1p(words)])
+        logits = np.array(c["coef"]) @ ((x - np.array(c["mu"])) / np.array(c["sd"])) + np.array(c["intercept"])
+        return str(c["classes"][int(logits.argmax())])
+
     def language(self, r: dict, llm_says: str) -> str:
         """The LLM reads a romanised transcript and calls nearly every call Hinglish; Gemini (hearing the audio) says
         Hindi for two in three. A word classifier fitted on Gemini's labels decides, except for English calls."""
@@ -347,7 +371,7 @@ class OTRPipeline:
         base.update({
             "Call Category": seg.get("issue_name", ""), "Sub-Category": seg.get("sub_issue_name", ""),
             "AI Insight": qa.get("insight", ""), "Summary": qa.get("summary") or seg.get("summary", ""),
-            "Call Resolved": qa.get("call_resolved", ""),
+            "Call Resolved": self.call_resolved(r, items, qa.get("call_resolved", "")),
             "Agent Score": self.agent_score(r, items, qa.get("call_resolved", ""), base["Audio Rating"]) if qa else "",
             "Language": self.language(r, qa.get("language", "")),
             # not portal columns: kept for review and audit
@@ -355,7 +379,7 @@ class OTRPipeline:
             "confidence": seg.get("confidence", ""), "needs_review": seg.get("needs_review", ""),
             "alternatives": seg.get("alternatives", []),
             "score_items": dict(zip(("greeting", "understanding", "correctness", "next_steps", "closing"), items)),
-            "agent_score_raw": max(1, sum(items)) if qa else ""})
+            "agent_score_raw": max(1, sum(items)) if qa else "", "call_resolved_raw": qa.get("call_resolved", "")})
         return base
 
     def process_many(self, paths: list) -> list[dict]:

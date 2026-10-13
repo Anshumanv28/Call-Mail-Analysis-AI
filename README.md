@@ -146,7 +146,7 @@ confidence < 0.4: route these to a human), `alternatives` (the next two most lik
   | >= 0.8 | 17% | 83% | 89% |
   | >= 0.9 | 8% | 86% | 94% |
 - Agent Score vs Gemini's on 629 calls (cross-validated): same score 49%, within 1 point 91% (always answering 7
-  would give 46% / 88%). Call Resolved: same answer as Gemini on 82% of calls.
+  would give 46% / 88%). Call Resolved: same answer as Gemini on 95% of calls (a small calibration on the LLM's answer; the raw LLM answer agreed on only 8%, returned as `call_resolved_raw`).
 - Speaker roles, on 300 test calls against the portal's Gemini transcript: 80.6% of words get the same speaker
   (words-only model: 73.9%). Ceiling 88.1%, because some speech segments contain both speakers. Of the agent's
   words, 77% are labelled AGENT; of the caller's words, 84% are labelled CANDIDATE. Details: `code/models/turns_eval.txt`.

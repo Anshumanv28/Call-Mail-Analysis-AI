@@ -60,7 +60,14 @@ def main() -> None:
                 shutil.copy2(lib, server.parent / lib.name)
         if system != "Windows":
             server.chmod(0o755)
-    print("llama-server:", next(llama.rglob(exe)), flush=True)
+    server = next(llama.rglob(exe))
+    print("llama-server:", server, flush=True)
+    import subprocess
+    chk = subprocess.run([str(server), "--version"], capture_output=True, text=True)
+    if chk.returncode != 0 and "GLIBC" in (chk.stderr + chk.stdout):
+        sys.exit("llama-server cannot run on this Linux (it needs glibc 2.38 = Ubuntu 24.04 or newer). Either use "
+                 "Ubuntu 24.04, or build it here: bash deploy/build_llama_from_source.sh  (about 25 minutes), "
+                 "then run python setup.py again.")
     # 2. Qwen3-4B (the exact file our accuracy numbers were measured with)
     gguf = ROOT / "models" / "Qwen3-4B-Instruct-2507-Q4_K_M.gguf"
     if not gguf.exists():
