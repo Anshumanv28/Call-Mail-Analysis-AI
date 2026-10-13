@@ -1,5 +1,9 @@
 # CallAI OTR cost: per call and per mail (instead of Gemini)
 
+> **Update 13 Oct 2026:** measured on a real g4dn.xlarge with 264 calls: about 7.4-8 s per call (this doc estimated
+> 10.2 s with the older LLM categoriser), and AWS lists g4dn.xlarge at $0.579/h on demand, ~$0.19/h spot in Mumbai.
+> Current figures: [aws-deployment-2026-10-13.md](aws-deployment-2026-10-13.md).
+
 Prepared 8 October 2026, as the counterpart of
 [reference/gemini-cost-breakdown-2026-10-08.md](reference/gemini-cost-breakdown-2026-10-08.md) and
 [reference/gemini-call-analysis-operations-2026-10-08.md](reference/gemini-call-analysis-operations-2026-10-08.md).

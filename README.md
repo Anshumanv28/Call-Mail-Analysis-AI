@@ -24,14 +24,25 @@ or decoded get "Recording Unavailable" (both also in Tags, Sub-Category blank), 
 
 ## Requirements
 
-- NVIDIA GPU with 24 GB (tested: AWS g5.xlarge, A10G). 16 GB works for the API with OTR_LLM_SLOTS=2.
-- CUDA driver 12.4 or newer, Python 3.11, 3.12 or 3.13, Windows or Linux x64.
-- About 15 GB of disk (Whisper 1.6 GB, Qwen3-4B 2.5 GB, bge-m3 2.3 GB, llama.cpp, Python packages).
+- NVIDIA GPU with 16 GB or more. Tested on **AWS g4dn.xlarge** (NVIDIA T4 16 GB, 4 vCPU, 16 GB RAM, Mumbai), the
+  cheapest AWS GPU machine, with real calls; also on Kaggle T4s.
+- Linux x64: **Ubuntu 24.04** is simplest. Ubuntu 22.04 works, but the prebuilt llama.cpp needs a newer system
+  library (glibc 2.38), so `deploy/install_ubuntu.sh` builds llama.cpp from source there (about 25 extra minutes).
+- NVIDIA driver R570 or newer. Python 3.11, 3.12 or 3.13 (Ubuntu 22.04 ships 3.10; the installer adds 3.12).
+- 60 GB disk (models ~7 GB, Python packages ~8 GB, CUDA toolkit ~8 GB if llama.cpp is built, working space).
 
 ## Setup (once)
 
+On an AWS GPU server with Ubuntu, from the package folder (the steps run on the first server, 13 Oct 2026):
+
 ```
-unzip CallAI_OTR_portal.zip && cd CallAI_OTR
+bash deploy/install_ubuntu.sh      # grows the disk, installs the NVIDIA driver (then: sudo reboot, run it again),
+                                   # Python 3.12, torch (CUDA 12.6), requirements, setup.py; builds llama.cpp if needed
+```
+
+Manual steps (any OS); the model files that are not in git (MODELS.md) must be in place first:
+
+```
 python -m venv .venv && . .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install torch --index-url https://download.pytorch.org/whl/cu126
 pip install -r requirements.txt
@@ -179,7 +190,9 @@ CallAI_OTR/
 ## Limits
 
 - Hindi / Hinglish / English only. Other languages get a transcript of poor quality.
-- Throughput on one T4 (16 GB, slower than the A10G): 631 calls (avg 2.3 min) in 107 min, i.e. ~6 calls/min end to end. The API took 38 s for a first single call and 11 s for a 2-call batch.
+- Throughput on AWS g4dn.xlarge (T4), measured on 264 real calls averaging 2.6 minutes (queue worker, batches of 32):
+  about 7.4-8 seconds per call end to end (download, transcription, speaker roles, category, QA), so roughly 450
+  calls an hour. Models load in about 20 s after the server starts.
 - Audio Rating is a signal rule (words per speech-minute, empty segments): it flags dead / garbled calls as Poor but
   does not hear background noise the way Gemini does, so it says Good more often than Gemini (Gemini: 71% Good).
 - Language: Gemini's Hindi vs Hinglish choice is hard to reproduce from a transcript; ours agrees on ~68% of calls.
