@@ -1,0 +1,17 @@
+# /etc/systemd/system/callai-api.service — the CallAI API, started at every boot (the portal's dispatcher starts the
+# machine; this brings the API up; the API switches the machine off again when idle).
+[Unit]
+Description=CallAI OTR API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/opt/callai/app
+EnvironmentFile=/etc/callai/api.env
+ExecStart=/opt/callai/app/.venv/bin/python serve.py --host 0.0.0.0 --port 8700
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

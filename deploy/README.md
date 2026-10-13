@@ -18,3 +18,15 @@
 
 Test without AWS: `python worker.py --queue-dir test_q --results-dir test_out --fake-pipeline --once`
 (put `{"call_id": "1", "recording_url": "<path or URL>"}` files in `test_q/`).
+
+# API mode with auto start / stop (what the call center portal uses)
+
+The portal calls the API (`/process` for calls, `/llm` for mail) and starts the machine itself when a backlog builds
+up (its `callaiDispatcher` calls a "callai-start" Lambda). On the server:
+
+1. `sudo mkdir -p /etc/callai && sudo cp deploy/api.env.example /etc/callai/api.env` and fill it in
+   (`CALLAI_TOKEN` = a long random secret, the same value goes into the portal's `CALLAI_TOKEN`;
+   `OTR_IDLE_STOP_S=300` switches the machine off after 5 idle minutes, 0 = never). `sudo chmod 600 /etc/callai/api.env`.
+2. `echo 'ubuntu ALL=(root) NOPASSWD: /sbin/shutdown' | sudo tee /etc/sudoers.d/callai-shutdown`
+3. `sudo cp deploy/callai-api.service /etc/systemd/system/ && sudo systemctl enable --now callai-api`
+4. Instance shutdown behaviour must be **Stop**. Security group: TCP 8700 only from the portal backend.
