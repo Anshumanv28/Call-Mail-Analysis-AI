@@ -72,8 +72,9 @@ def idle_watch() -> None:
             cmd = os.environ.get("OTR_SHUTDOWN_CMD", "sudo /sbin/shutdown -h now")
             print(f"idle for {idle:.0f} s: switching off ({cmd})", flush=True)
             PIPE.close()
-            subprocess.run(shlex.split(cmd), check=False)
-            return
+            rc = subprocess.run(shlex.split(cmd), check=False).returncode
+            # the LLM is stopped now; if the machine is not going down, exit so systemd restarts a working API
+            os._exit(0 if rc == 0 else 1)
 
 
 def fetch(url: str, name: str) -> Path | None:
