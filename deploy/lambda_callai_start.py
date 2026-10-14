@@ -22,7 +22,7 @@ def _reply(code, body):
     return {"statusCode": code, "headers": {"Content-Type": "application/json"}, "body": json.dumps(body)}
 
 
-def handler(event, context):
+def lambda_handler(event, context):
     headers = {k.lower(): v for k, v in (event.get("headers") or {}).items()}
     expected = "Bearer " + os.environ["WAKE_TOKEN"]
     if not hmac.compare_digest(headers.get("authorization", ""), expected):
@@ -38,3 +38,6 @@ def handler(event, context):
         return _reply(200, {"instance": iid, "state": "pending", "started": True})
     # running / pending: nothing to do; stopping: the portal will ask again after its cooldown
     return _reply(200, {"instance": iid, "state": state, "started": False})
+
+
+handler = lambda_handler   # alias, for a handler setting of "<file>.handler"

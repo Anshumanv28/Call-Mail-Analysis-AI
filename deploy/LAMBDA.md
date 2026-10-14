@@ -3,7 +3,7 @@
 Lets the call center portal switch the CallAI server on when work is waiting. About 10 minutes to set up.
 
 1. **Create function**: Lambda → Create function → name `callai-start`, runtime **Python 3.12**, region ap-south-1.
-   Paste `lambda_callai_start.py`; handler `lambda_function.handler` (or match the file name you use).
+   Paste `lambda_callai_start.py`; save it as `lambda_function.py`, handler `lambda_function.lambda_handler` (the console default).
    Configuration → General: timeout **15 s**.
 2. **Environment variables**:
    - `INSTANCE_ID` = `i-0d55086ff058560c3`
